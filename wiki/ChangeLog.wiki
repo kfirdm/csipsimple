@@ -1,7 +1,7 @@
 #summary This page allow you to track what are changes done on CSipSimple
 #labels Featured,Phase-Support
 
-= Last dev version =
+= 0.00-16 =
  * Call recording feature ! (use menu on In Call screen)
  * Missed call notification
  * Widget to activate/deactivate accounts 
@@ -11,6 +11,7 @@
  * Improve help / faq
  * Make quit feature easier to understand by mainstream users
  * Start accessibility task force
+ * G729
  * Local account => Be aware of what you are doing if you try this one !!! Normally absolutely USELESS on a mobile phone, unless you want to play within your local wifi network...
  
 
