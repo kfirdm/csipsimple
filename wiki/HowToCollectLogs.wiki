@@ -1,8 +1,6 @@
 #summary How to provide logs to developpers
 #labels Phase-Support
 
-== WARNING : In current devs builds you have to switch to expert settings mode to enable logging ... I will provide soon an easier way to collect logs.... ==
-
 = Introduction =
 
 CSipSimple is still under heavy development. If you notice a force close or an error while running the app. 
@@ -11,15 +9,17 @@ Then if you found nothing corresponding to your issue, you can open a new one. O
 
 = How to turn on logging on CSipSimple =
 
-Press the menu button on the main CSipSimple view (the dialer), Choose settings, Go on User interface section, scroll down and click on "Log level". A dialog will popup. Here change the value from 1 to 4.
+Press the menu button on the main CSipSimple view (the dialer), Choose Help and press "Record logs to send it to dev team and report a bug".
 
-Go back using the back button twice.
+Go back using the back button.
 You can now reproduce your bug (if possible) logs will now be recorded.
 
 = How to get back the logs and what to do with the logs =
 
-A good idea is to *NOT* share your logs on the issue section since it can contains privacy information that should not be shared.
-For now you can directly send it to the main contributor (developers [ at ] csipsimple [dot] com). Or ask in your issue who you should send your log to.
+Press the menu button on the main CSipSimple view (the dialer), Choose Help and press "Stop recording logs (OPTIONALY send it)".
+(developers [ at ] csipsimple [dot] com). Or ask in your issue who you should send your log to.
 
-To collect and send your logs, you can install and run log-collector : http://code.google.com/p/android-log-collector/ (available both on the market and on their website).
-Log-collector will ask you how you want to send logs, choose mail and send it to the right contact.
+If it doesn't work for any reason you can :
+You can install and run log-collector : http://code.google.com/p/android-log-collector/ (available both on the market and on their website).
+Log-collector will ask you how you want to send logs, choose mail and send it to developers [ at ] csipsimple [dot] com.
+
