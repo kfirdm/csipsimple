@@ -13,7 +13,7 @@ To solve this problem, you *must* activate *STUN* :
 
 Go on setting *Settings > Network - Tick "Use Stun"* and fill a stun server on the field bellow.
 
-CSipSimple use by default a stun server, if you want to use another STUN server than the default one, you can see http://www.voip-info.org/wiki/view/STUN Public Stun server section to know what server you could use freely. 
+CSipSimple has a default a stun server *if you activate STUN option !* (but as soon as you do not activate the STUN setting it is not used), if you want to use another STUN server than the default one, you can see http://www.voip-info.org/wiki/view/STUN Public Stun server section to know what server you could use freely. 
 
 You can also try to use ICE in addition to STUN if STUN alone doesn't solve the problem :
 *Settings > Network - Tick "Use ICE"*
