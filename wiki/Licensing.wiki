@@ -1,0 +1,31 @@
+#summary This page explain the licensing of the project
+
+= Introduction =
+
+The project is globally compounded of 3 parts :
+ * CSipSimple which is the Java application for Android
+ * pjsip_android/jni which is the android portage of pjsip for Android
+ * pjsip which is just re-hosted here to make things easier to build the lib.
+
+= CSipSimple =
+
+This part of the application is released under GPLv3 license. There is *no* commercial license for this part of the project.
+
+So conditions of the GPLv3 applies, specially the fact that any redistribution of the application must also grant GPLv3 rights to users (included publishing the code).
+
+However to allow third party application to work with CSipSimple (or any redistribution of CSipSimple under GPLv3), we grant the right to any third party application (under any license) to use the API defined within CSipSimple. 
+
+This API allow a third party application to rely on CSipSimple (or a redistributed version of CSipSimple under GPLv3), as if it was a SIP service available on the android OS. This API already allow to do many things and can be enriched if any needs appear.
+
+= pjsip_android/jni =
+
+This part of the application is released under Apache v2.0 license. It only applies to source code in the jni folder of this project ( /pjsip_android/apps/pjsip/project/jni ).
+
+The rest of this part (the native library), is covered by pjsip license. See pjsip section.
+
+= pjsip =
+This part of the application is released under GPLv2 and contains some other third party software.
+
+To get more info about this part of the software please see the [http://www.pjsip.org/licensing.htm website of the pjsip project]. pjsip license owner may arrange an alternative license if you do not comply with this GPL license.
+
+However obtaining a license for this part of the software doesn't grant you the right on the rest of the project (CSipSimple).
