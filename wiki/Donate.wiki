@@ -32,3 +32,4 @@ However, if you have not enough time to spent and you still want to contribute, 
 || 11/2010 || Phil Mitchell from Toronto ||
 || 12/2010 || David Morgan ||
 || 12/2010 || Frederic Metz ||
+|| 12/2010 || [http://asterisk-java.org Stefan Reuter] ||
