@@ -1,4 +1,5 @@
 #summary Some frequently asked question are listed here
+#labels Featured,Phase-Support
 
 = Summary =
 <wiki:toc max_depth="1" />
@@ -38,10 +39,9 @@ There is a powerful rewriting/filter/auto-answer tool in CSipSimple.
 To access this tool, go on the account on which you want to apply things. Press menu button and choose "Filters".
 You are now in the tool. Using this tool you can :
  * Rewrite numbers : for example add prefix, suffix, completely replace the number by another one, or apply a custom regexp - if you don't know what a regexp is, don't use it ;).
-  * Don't call some numbers : if you don't want some number to be managed by this account, for example call to other mobiles phone etc, you can add an exclude rule. Then when you'll dial *from native dialer/contact app* if the phone number match this rule, this sip account will not be proposed in the list of choices you have and if there is no SIP account that can handle this number, it will automatically use Mobile without asking you anything
-   * Force call some numbers using this account : same thing that the last point, but here it will not exclude, but force the call to use this account and will not ask you for anything.
-    * Auto answer : if you want to automatically answer to some phone number, you can add a rule here. It's useful if you are using some call callback feature from your provider.
-
+ * Don't call some numbers : if you don't want some number to be managed by this account, for example call to other mobiles phone etc, you can add an exclude rule. Then when you'll dial *from native dialer/contact app* if the phone number match this rule, this sip account will not be proposed in the list of choices you have and if there is no SIP account that can handle this number, it will automatically use Mobile without asking you anything
+ * Force call some numbers using this account : same thing that the last point, but here it will not exclude, but force the call to use this account and will not ask you for anything.
+ * Auto answer : if you want to automatically answer to some phone number, you can add a rule here. It's useful if you are using some call callback feature from your provider.
 
 ----
 = Is there a way to close the application? =
