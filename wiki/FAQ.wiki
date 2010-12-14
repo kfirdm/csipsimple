@@ -1,5 +1,4 @@
 #summary Some frequently asked question are listed here
-#labels Featured,Phase-Support
 
 = Summary =
 <wiki:toc max_depth="1" />
@@ -39,9 +38,9 @@ There is a powerful rewriting/filter/auto-answer tool in CSipSimple.
 To access this tool, go on the account on which you want to apply things. Press menu button and choose "Filters".
 You are now in the tool. Using this tool you can :
  * Rewrite numbers : for example add prefix, suffix, completely replace the number by another one, or apply a custom regexp - if you don't know what a regexp is, don't use it ;).
- * Don't call some numbers : if you don't want some number to be managed by this account, for example call to other mobiles phone etc, you can add an exclude rule. Then when you'll dial *from native dialer/contact app* if the phone number match this rule, this sip account will not be proposed in the list of choices you have and if there is no SIP account that can handle this number, it will automatically use Mobile without asking you anything
- * Force call some numbers using this account : same thing that the last point, but here it will not exclude, but force the call to use this account and will not ask you for anything.
- * Auto answer : if you want to automatically answer to some phone number, you can add a rule here. It's useful if you are using some call callback feature from your provider.
+  * Don't call some numbers : if you don't want some number to be managed by this account, for example call to other mobiles phone etc, you can add an exclude rule. Then when you'll dial *from native dialer/contact app* if the phone number match this rule, this sip account will not be proposed in the list of choices you have and if there is no SIP account that can handle this number, it will automatically use Mobile without asking you anything
+   * Force call some numbers using this account : same thing that the last point, but here it will not exclude, but force the call to use this account and will not ask you for anything.
+    * Auto answer : if you want to automatically answer to some phone number, you can add a rule here. It's useful if you are using some call callback feature from your provider.
 
 
 ----
@@ -61,5 +60,32 @@ However, if you choose "Only for outgoing"... Close option will appear in the me
 Your carrier network probably cut the UDP connection so that you can't receive calls anymore. To keep your connection alive you have to setup CSipSimple to be more aggressive.
 To do so, transform your account into an Expert account (Edit account, press menu, "Choose wizard" and choose Expert). Edit again the account, there is now more settings to set. Try this :
 
-Re-Register (register timeout) : 184
-Keep Alive : 100 
+ * Re-Register (register timeout) : 184
+ * Keep Alive : 100 
+
+----
+= I receive calls twice / Registration is done on the sip server twice =
+
+You SIP server probably don't support fully the RFC and the registration method used by CSipSimple by default is not suitable for your server. Fortunately, there is a way to configure your account to avoid that :
+
+To do so, transform your account into an Expert account (Edit account, press menu, "Choose wizard" and choose Expert). Edit again the account, there is now more settings to set. Try this :
+
+ * Contact rewrite method : legacy
+ * (or if it doesn't work try to disable "Allow contact rewrite")
+
+If your server actually doesn't support the latest RFC you may have to wait for about 15 min for the current registration to timeout. 
+
+In order to improve CSipSimple, if you are experimenting this issue and that this workaround help, you can inform us about that and tell us what is your SIP provider so that we could add a wizard with this enabled by default.
+
+You can also notify your SIP provider that they are not fully RFC compliant (their server doesn't respect the normalization : and precising them that they do not respect RFC 3261 about contact rewrite method)
+
+----
+= I can't end calls =
+
+It's possible that your SIP server doesn't support actually TCP (in terms of SIP RFC compliance). Fortunately, there is a way to configure your account to force the use of UDP only :
+
+To do so, transform your account into an Expert account (Edit account, press menu, "Choose wizard" and choose Expert). Edit again the account, there is now more settings to set. Try this :
+
+ * Transport : choose UDP is the list of transport.
+
+In order to improve CSipSimple, if you are experimenting this issue and that this workaround help, you can inform us about that and tell us what is your SIP provider so that we could add a wizard with this enabled by default.
