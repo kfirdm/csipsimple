@@ -26,7 +26,7 @@ import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import com.csipsimple.R;
+import fr.ippi.voip.app.R;
 
 /**
  * A class for annotating a CharSequence with spans to convert textual emoticons

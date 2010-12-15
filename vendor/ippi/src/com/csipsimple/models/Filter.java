@@ -29,7 +29,7 @@ import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.text.TextUtils;
 
-import com.csipsimple.R;
+import fr.ippi.voip.app.R;
 import com.csipsimple.api.SipProfile;
 import com.csipsimple.db.DBAdapter;
 import com.csipsimple.utils.Log;

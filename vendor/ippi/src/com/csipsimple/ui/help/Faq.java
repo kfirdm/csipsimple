@@ -17,7 +17,7 @@
  */
 package com.csipsimple.ui.help;
 
-import com.csipsimple.R;
+import fr.ippi.voip.app.R;
 import com.csipsimple.utils.CustomDistribution;
 
 import android.app.Activity;

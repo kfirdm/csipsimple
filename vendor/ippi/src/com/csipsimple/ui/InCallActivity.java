@@ -58,7 +58,7 @@ import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
-import com.csipsimple.R;
+import fr.ippi.voip.app.R;
 import com.csipsimple.api.SipManager;
 import com.csipsimple.models.CallInfo;
 import com.csipsimple.service.ISipService;

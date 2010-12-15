@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-  <string name="app_name">CSipSimple</string>
+  <string name="app_name">Ippi</string>
   <string name="unable_to_download_file">Nelze stáhnout soubor</string>
   <string name="connection_not_valid">Vyprané síťové připojení není k dispozici (aktivujte WiFi nebo změňte v nastavení pravidla použití 3G sítí)</string>
   <string name="invalid_sip_uri">SIP URI je pro volání neplatné</string>

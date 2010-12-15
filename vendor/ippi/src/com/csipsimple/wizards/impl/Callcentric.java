@@ -19,7 +19,7 @@ package com.csipsimple.wizards.impl;
 
 import android.text.InputType;
 
-import com.csipsimple.R;
+import fr.ippi.voip.app.R;
 import com.csipsimple.api.SipProfile;
 
 public class Callcentric extends SimpleImplementation {

@@ -29,7 +29,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.csipsimple.R;
+import fr.ippi.voip.app.R;
 import com.csipsimple.api.SipProfile;
 import com.csipsimple.service.ISipService;
 import com.csipsimple.widgets.AccountChooserButton.OnAccountChangeListener;

@@ -17,7 +17,7 @@
  */
 package com.csipsimple.ui.prefs;
 
-import com.csipsimple.R;
+import fr.ippi.voip.app.R;
 import com.csipsimple.utils.PreferencesWrapper;
 
 

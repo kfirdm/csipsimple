@@ -24,7 +24,7 @@ import java.util.regex.Pattern;
 import android.preference.CheckBoxPreference;
 import android.preference.EditTextPreference;
 
-import com.csipsimple.R;
+import fr.ippi.voip.app.R;
 import com.csipsimple.api.SipProfile;
 
 public abstract class SimpleImplementation extends BaseImplementation {

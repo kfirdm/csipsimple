@@ -29,7 +29,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.os.SystemClock;
 
-import com.csipsimple.R;
+import fr.ippi.voip.app.R;
 
 public class CallInfo implements Parcelable {
 

@@ -24,7 +24,7 @@ import java.util.regex.Pattern;
 import android.preference.EditTextPreference;
 import android.text.TextUtils;
 
-import com.csipsimple.R;
+import fr.ippi.voip.app.R;
 import com.csipsimple.api.SipProfile;
 
 public class Ecs extends BaseImplementation {

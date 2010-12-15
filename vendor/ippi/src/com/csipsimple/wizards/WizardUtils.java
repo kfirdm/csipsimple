@@ -30,7 +30,7 @@ import java.util.Set;
 
 import android.content.Context;
 
-import com.csipsimple.R;
+import fr.ippi.voip.app.R;
 import com.csipsimple.api.SipProfile;
 import com.csipsimple.utils.CustomDistribution;
 import com.csipsimple.wizards.impl.Advanced;

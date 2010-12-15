@@ -32,7 +32,7 @@ import android.text.SpannableString;
 import android.text.TextUtils;
 import android.text.style.StyleSpan;
 
-import com.csipsimple.R;
+import fr.ippi.voip.app.R;
 import com.csipsimple.api.SipManager;
 import com.csipsimple.models.AccountInfo;
 import com.csipsimple.models.CallInfo;

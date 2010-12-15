@@ -53,7 +53,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
-import com.csipsimple.R;
+import fr.ippi.voip.app.R;
 import com.csipsimple.animation.Flip3dAnimation;
 import com.csipsimple.api.SipManager;
 import com.csipsimple.api.SipProfile;

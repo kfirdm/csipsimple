@@ -34,7 +34,7 @@ import android.widget.ImageView;
 import android.widget.SimpleExpandableListAdapter;
 import android.widget.TextView;
 
-import com.csipsimple.R;
+import fr.ippi.voip.app.R;
 
 public class WizardChooser extends ExpandableListActivity {
 	private String[] childFrom;

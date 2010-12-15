@@ -22,7 +22,7 @@ import org.pjsip.pjsua.pjsuaConstants;
 
 import android.telephony.TelephonyManager;
 
-import com.csipsimple.R;
+import fr.ippi.voip.app.R;
 import com.csipsimple.utils.Log;
 import com.csipsimple.utils.PreferencesWrapper;
 

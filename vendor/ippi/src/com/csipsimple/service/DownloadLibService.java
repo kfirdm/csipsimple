@@ -68,7 +68,7 @@ import android.preference.PreferenceManager;
 import com.csipsimple.utils.Log;
 import android.widget.Toast;
 
-import com.csipsimple.R;
+import fr.ippi.voip.app.R;
 import com.csipsimple.models.RemoteLibInfo;
 import com.csipsimple.utils.MD5;
 

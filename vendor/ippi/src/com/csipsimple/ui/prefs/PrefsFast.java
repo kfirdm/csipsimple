@@ -28,7 +28,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.RadioButton;
 
-import com.csipsimple.R;
+import fr.ippi.voip.app.R;
 import com.csipsimple.utils.Compatibility;
 import com.csipsimple.utils.PreferencesWrapper;
 

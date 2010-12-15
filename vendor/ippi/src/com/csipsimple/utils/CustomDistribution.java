@@ -17,12 +17,17 @@
  */
 package com.csipsimple.utils;
 
+import java.util.Locale;
+
 import com.csipsimple.wizards.WizardUtils.WizardInfo;
+import com.csipsimple.wizards.impl.Ippi;
+
+import fr.ippi.voip.app.R;
 
 public class CustomDistribution {
 
 	// CSipSimple trunk distribution
-	
+	/*
 	public static boolean distributionWantsOtherAccounts() {
 		return true;
 	}
@@ -58,9 +63,9 @@ public class CustomDistribution {
 	public static boolean showFirstSettingScreen() {
 		return true;
 	}
-	
+	*/
 	//Ippi distribution
-	/*
+	
 	public static boolean distributionWantsOtherAccounts() {
 		return true;
 	}
@@ -92,32 +97,20 @@ public class CustomDistribution {
 				}, false, false, Ippi.class);
 		 
 	}
-	*/
+
+	public static boolean showIssueList() {
+		return false;
+	}
 	
-	
-	
-	//Keyyo distribution
-	/*
-	public static boolean distributionWantsOtherAccounts() {
+	public static String getFaqLink() {
+		return "http://code.google.com/p/csipsimple/wiki/FAQ#Summary";
+	}
+
+	public static String getRootPackage() {
+		return "fr.ippi.voip.app";
+	}
+
+	public static boolean showFirstSettingScreen() {
 		return true;
 	}
-	
-	public static String getSupportEmail() {
-		return null;
-	}
-	
-	public static String getUserAgent() {
-		return "CSipSimple";
-	}
-	
-	public static WizardInfo getCustomDistributionWizard() {
-		 return new WizardInfo("KEYYO", "Keyyo", 
-				R.drawable.ic_wizard_keyyo, 9, 
-				new Locale[]{Locale.FRANCE}, false, false, 
-				Keyyo.class);
-		 
-	}
-	*/
-	
-	
 }

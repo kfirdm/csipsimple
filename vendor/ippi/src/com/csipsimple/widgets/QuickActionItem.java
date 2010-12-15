@@ -35,7 +35,7 @@
 package com.csipsimple.widgets;
 
 
-import com.csipsimple.R;
+import fr.ippi.voip.app.R;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;

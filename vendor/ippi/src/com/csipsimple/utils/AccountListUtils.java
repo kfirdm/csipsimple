@@ -24,7 +24,7 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.os.RemoteException;
 
-import com.csipsimple.R;
+import fr.ippi.voip.app.R;
 import com.csipsimple.models.AccountInfo;
 import com.csipsimple.service.ISipService;
 

@@ -21,7 +21,7 @@ import android.content.Intent;
 import android.preference.Preference;
 import android.preference.PreferenceScreen;
 
-import com.csipsimple.R;
+import fr.ippi.voip.app.R;
 import com.csipsimple.utils.PreferencesWrapper;
 
 

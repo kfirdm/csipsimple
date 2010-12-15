@@ -44,7 +44,7 @@ import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 
-import com.csipsimple.R;
+import fr.ippi.voip.app.R;
 import com.csipsimple.api.SipManager;
 import com.csipsimple.models.CallInfo;
 import com.csipsimple.service.ISipConfiguration;

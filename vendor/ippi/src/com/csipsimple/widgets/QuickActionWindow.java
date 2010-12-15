@@ -44,7 +44,7 @@
 package com.csipsimple.widgets;
 
 
-import com.csipsimple.R;
+import fr.ippi.voip.app.R;
 import com.csipsimple.utils.Log;
 
 import android.app.Activity;

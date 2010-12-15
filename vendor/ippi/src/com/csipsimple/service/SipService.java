@@ -72,7 +72,7 @@ import android.telephony.TelephonyManager;
 import android.view.KeyCharacterMap;
 import android.widget.Toast;
 
-import com.csipsimple.R;
+import fr.ippi.voip.app.R;
 import com.csipsimple.api.SipManager;
 import com.csipsimple.api.SipProfile;
 import com.csipsimple.db.DBAdapter;

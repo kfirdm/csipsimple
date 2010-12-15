@@ -28,7 +28,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.widget.ArrayAdapter;
 
-import com.csipsimple.R;
+import fr.ippi.voip.app.R;
 import com.csipsimple.utils.Compatibility;
 
 public abstract class ContactsWrapper {
