@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-  <string name="app_name">Ippi</string>
+  <string name="app_name">ippi</string>
   <string name="unable_to_download_file">Файла не може да бъде записан</string>
   <string name="connection_not_valid">Избраната мрежа не е на разположение (активирайте WiFi или променете параметрите за използване на 3G)</string>
   <string name="invalid_sip_uri">SIP URI е невалиден за повикване</string>
