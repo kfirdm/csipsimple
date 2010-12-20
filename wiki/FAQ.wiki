@@ -57,11 +57,14 @@ However, if you choose "Only for outgoing"... Close option will appear in the me
 
 ----
 = On 3G I don't always receive calls =
-Your carrier network probably cut the UDP connection so that you can't receive calls anymore. To keep your connection alive you have to setup CSipSimple to be more aggressive.
+ * Your carrier network probably cut the UDP connection so that you can't receive calls anymore. To keep your connection alive you have to setup CSipSimple to be more aggressive.
 To do so, transform your account into an Expert account (Edit account, press menu, "Choose wizard" and choose Expert). Edit again the account, there is now more settings to set. Try this :
 
- * Re-Register (register timeout) : 184
- * Keep Alive : 100 
+   * Re-Register (register timeout) : 184
+   * Keep Alive : 100 
+
+ * According your device, you may also try to activate CPU lock.
+Switch to ExpertSettingMode and in User interface settings activate "Lock CPU".
 
 ----
 = I receive calls twice / Registration is done on the sip server twice =
