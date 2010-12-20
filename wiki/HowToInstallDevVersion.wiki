@@ -9,11 +9,10 @@
     * Click on Application menu
     * Tick unknown sources (allow installation of non market application)
   # Get the application apk on your smartphone
-    List of current apk are available here : [http://code.google.com/p/csipsimple/downloads/list Download section] just go on your pc/mac browser on the page and scan the qr code on screen. If you are using your smartphone browser, just click on the download link.
+    List of current apk are available here : [http://nightlies.csipsimple.com/trunk/ Nightly builds website] just go on your pc/mac browser on the page and scan the qr code on screen. If you are using your smartphone browser, just click on the download link.
     * To download on your smartphone there is several ways :
-      * The faster one is to use a QR code application (many are available on the market) and scan the QR code on the page of the apk. 
-      * Alternatively you can download the application on your pc and then push it on the sdcard connecting your phone on usb and mounting it. (In this case, for installation you'll need a file explorer application to be able to click on the install file and launch the installation.)
-      Android web browser will now download the application. 
+      * Download directly from your smartphone
+      * Alternatively you can download the application on your pc and then push it on the sdcard connecting your phone on usb and mounting it. (In this case, for installation you'll need a file explorer application to be able to click on the install file and launch the installation.) 
   # Install the application
     * If you are running a recent android version, just clicking on the downloaded file will launch the android installer.
     * Then follow instruction on screen (just press Install ;) )
@@ -26,5 +25,4 @@ If you need to report logs on it, follow instructions here : HowToCollectLogs
 
 = Keep up to date =
 Using development version you'll not be automatically upgraded from market. As consequence you should manually install newer dev version.
-A little tip to remain up to date is to subscribe the download section rss feed :
-[http://code.google.com/feeds/p/csipsimple/downloads/basic]
+On [http://nightlies.csipsimple.com/trunk/ Nightly builds website] builds are done each night with the most recent version from the SVN. Be careful with these versions cause it could be broken. In this case we appreciate feedback ;)
