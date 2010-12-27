@@ -1,0 +1,36 @@
+#summary Donate via PayPal
+
+= Donate =
+
+Time is priceless and if you have some to spare then there is no other better way to help an open source project than to get involved at one level or another. Contributions are appreciated and needed in any of the following ways:
+
+ * Help diagnose and report problems
+ * Suggest fixes by sending in patches
+ * Improve the code
+ * Provide peer support on mailing lists, forums or newsgroups
+ * Publish an article on your blog (send the link) or elsewhere (e.g., community sites) to educate others regarding some aspect of the project
+ * Help with missing documentation.
+
+
+However, if you have not enough time to spent and you still want to contribute, you can support CSipSimple development by donating. Any donates will be re-invested into devices (such as Bluetooth handset) in order to improve CSipSimple.
+
+[https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=THH78SD9M9A8G&lc=FR&item_name=CSipSimple&item_number=CSipSimple&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donate_SM%2egif%3aNonHosted https://www.paypal.com/en_US/i/btn/btn_donate_SM.gif]
+
+
+= Donors =
+|| *Date* || *Donor* ||
+|| 09/2010 || Jerald Sibbeston ||
+|| 09/2010 || arcadia2uk ||
+|| 09/2010 || ahaynes ||
+|| 10/2010 || andstrat ||
+|| 10/2010 || [http://solo.dc3.com/ Bob Denny] ||
+|| 10/2010 || [http://restruct.org/ Michael van Schaik] ||
+|| 10/2010 || dgouglev ||
+|| 10/2010 || Matt Robinson ||
+|| 11/2010 || Pumba ||
+|| 11/2010 || [http://www.voxofon.com Voxofon] ||
+|| 11/2010 || Phil Mitchell from Toronto ||
+|| 12/2010 || David Morgan ||
+|| 12/2010 || Frederic Metz ||
+|| 12/2010 || [http://asterisk-java.org Stefan Reuter] ||
+|| 12/2010 || Steve Loosley ||

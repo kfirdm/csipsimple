@@ -1,0 +1,25 @@
+#summary How to provide logs to developpers
+#labels Phase-Support
+
+= Introduction =
+
+CSipSimple is still under heavy development. If you notice a force close or an error while running the app. 
+The first good reflex is to search on the Issue section if you are alone with the problem.
+Then if you found nothing corresponding to your issue, you can open a new one. One thing that can do the fix of your issue quicker is to provides logs to allow developers to understand what has happened. 
+
+= How to turn on logging on CSipSimple =
+
+Press the menu button on the main CSipSimple view (the dialer), Choose Help and press "Record logs to send it to dev team and report a bug".
+
+Go back using the back button.
+You can now reproduce your bug (if possible) logs will now be recorded.
+
+= How to get back the logs and what to do with the logs =
+
+Press the menu button on the main CSipSimple view (the dialer), Choose Help and press "Stop recording logs (OPTIONALY send it)".
+(developers [ at ] csipsimple [dot] com). Or ask in your issue who you should send your log to.
+
+If it doesn't work for any reason you can :
+You can install and run log-collector : http://code.google.com/p/android-log-collector/ (available both on the market and on their website).
+Log-collector will ask you how you want to send logs, choose mail and send it to developers [ at ] csipsimple [dot] com.
+

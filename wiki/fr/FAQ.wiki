@@ -1,0 +1,94 @@
+#summary Some frequently asked question are listed here
+#labels Featured,Phase-Support
+
+= Summary =
+<wiki:toc max_depth="1" />
+
+----
+
+= The other party can hear me but I can not hear them =
+It's probably a NAT problem. Some networks are NATed network. It means that there is some network equipment between you and the rest of the world that "hide" your IP address to the rest and the world. It results that your SIP client will not announce properly your IP to sip server and other party. So when a call is placed and media stream is established, the remote party doesn't know where to send its stream and you can't hear him.
+
+To solve this problem, you *must* activate *STUN* :
+
+Go on setting *Settings > Network - Tick "Use Stun"* and fill a stun server on the field bellow.
+
+CSipSimple has a default a stun server *if you activate STUN option !* (but as soon as you do not activate the STUN setting it is not used), if you want to use another STUN server than the default one, you can see http://www.voip-info.org/wiki/view/STUN Public Stun server section to know what server you could use freely. 
+
+You can also try to use ICE in addition to STUN if STUN alone doesn't solve the problem :
+*Settings > Network - Tick "Use ICE"*
+
+If it doesn't help, there is maybe a problem with your device (on some device, manufacturers does strange things with the android audio stack). So report the problem on the issue section.
+
+----
+= There is a mute icon in the notification bar while in call =
+
+That's absolutely normal. In order to avoid your ear to explode if there is an incoming GSM call, I put the ringer mode to silent (that's the mean of the icon in the notification bar).
+When call will end, ringer state will be restored to previous value.
+
+----
+= There is no contact list =
+
+Hey guys, just try to make a call using the standard android phone dialer, or clicking a contact in the official contact application ;).... And you'll see that a contact list is not needed at all in the SIP application !!!
+
+----
+
+= When integrated to android, I don't want some number to be handled by SIP =
+== I want to automatically add prefix/rewrite some numbers == 
+There is a powerful rewriting/filter/auto-answer tool in CSipSimple.
+To access this tool, go on the account on which you want to apply things. Press menu button and choose "Filters".
+You are now in the tool. Using this tool you can :
+ * Rewrite numbers : for example add prefix, suffix, completely replace the number by another one, or apply a custom regexp - if you don't know what a regexp is, don't use it ;).
+ * Don't call some numbers : if you don't want some number to be managed by this account, for example call to other mobiles phone etc, you can add an exclude rule. Then when you'll dial *from native dialer/contact app* if the phone number match this rule, this sip account will not be proposed in the list of choices you have and if there is no SIP account that can handle this number, it will automatically use Mobile without asking you anything
+ * Force call some numbers using this account : same thing that the last point, but here it will not exclude, but force the call to use this account and will not ask you for anything.
+ * Auto answer : if you want to automatically answer to some phone number, you can add a rule here. It's useful if you are using some call callback feature from your provider.
+
+----
+= Is there a way to close the application? =
+Yes, but you have to configure CSipSimple according to the fact you want to be able to close it !
+
+Let me explain : CSipSimple can run under several setting configuration :
+ * "Always available" when you want to be able to receive calls
+ * "Only for outgoing calls" when you only want to use sip for outgoing calls (CSipSimple starts when you dial from native dialer or when you launch the application).
+
+When you set "Always available", close option make no sense : indeed, the application will automatically restart when network will change of state... and you'll say me "Hey there's a bug... the app constantly restart itself". By using this profile you tell the software that you want to receive your calls, and it will do it's best to be running when you can receive calls.
+
+However, if you choose "Only for outgoing"... Close option will appear in the menu of CSipSimple dialer! Since here, it make sense to use this option, since the app will never restart itself.
+
+----
+= On 3G I don't always receive calls =
+ * Your carrier network probably cut the UDP connection so that you can't receive calls anymore. To keep your connection alive you have to setup CSipSimple to be more aggressive.
+To do so, transform your account into an Expert account (Edit account, press menu, "Choose wizard" and choose Expert). Edit again the account, there is now more settings to set. Try this :
+
+   * Re-Register (register timeout) : 184
+   * Keep Alive : 100 
+
+ * According your device, you may also try to activate CPU lock.
+Switch to ExpertSettingMode and in User interface settings activate "Use partial wake lock".
+
+----
+= I receive calls twice / Registration is done on the sip server twice =
+
+You SIP server probably don't support fully the RFC and the registration method used by CSipSimple by default is not suitable for your server. Fortunately, there is a way to configure your account to avoid that :
+
+To do so, transform your account into an Expert account (Edit account, press menu, "Choose wizard" and choose Expert). Edit again the account, there is now more settings to set. Try this :
+
+ * Contact rewrite method : legacy
+ * (or if it doesn't work try to disable "Allow contact rewrite")
+
+If your server actually doesn't support the latest RFC you may have to wait for about 15 min for the current registration to timeout. 
+
+In order to improve CSipSimple, if you are experimenting this issue and that this workaround help, you can inform us about that and tell us what is your SIP provider so that we could add a wizard with this enabled by default.
+
+You can also notify your SIP provider that they are not fully RFC compliant (their server doesn't respect the normalization : and precising them that they do not respect RFC 3261 about contact rewrite method)
+
+----
+= I can't end calls =
+
+It's possible that your SIP server doesn't support actually TCP (in terms of SIP RFC compliance). Fortunately, there is a way to configure your account to force the use of UDP only :
+
+To do so, transform your account into an Expert account (Edit account, press menu, "Choose wizard" and choose Expert). Edit again the account, there is now more settings to set. Try this :
+
+ * Transport : choose UDP is the list of transport.
+
+In order to improve CSipSimple, if you are experimenting this issue and that this workaround help, you can inform us about that and tell us what is your SIP provider so that we could add a wizard with this enabled by default.

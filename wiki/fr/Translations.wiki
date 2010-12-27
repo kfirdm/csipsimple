@@ -1,0 +1,18 @@
+#summary Translations information.
+#labels Phase-Implementation
+
+= How can I help? =
+If you want to help us to translate CSipSimple in your language, here's the good place.
+
+We use miracle2k's android2po tool and the Roseta project from Launchpad to translate CSipSimple. That's more user friendly than plain xml files!
+
+Any way, be really careful with xml quotes, and xml tags if any !
+
+
+So, how t help this software translation :
+
+ # Register on Launchpad. You can use an openID - so your google account should enough.
+ # Go to csipsimple translations : https://translations.launchpad.net/csipsimple/trunk
+ # Choose your language and use webinterface to contribute 
+
+If you encounter any problem, let us know. But in most case Launchpad tutorials should be enough.
