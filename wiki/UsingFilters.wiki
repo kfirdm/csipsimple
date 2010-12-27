@@ -1,0 +1,50 @@
+#summary How to use the filters and also how they work
+#labels Phase-Deploy
+
+= Introduction =
+<img src="http://solo.dc3.com/extimage/csfilt1-sm.png" align="right" />
+
+It is often useful to be able to alter certain actions based on the phone number to be dialed. Also, sometimes the contact phone numbers are in a form that cannot be used for SIP calls, and thus need to be rewritten for the needs of the SIP switch/account. These things are handled by *filters* in the application. Important points:
+
+  * Filters are specific to each account.
+  * Filters may also be set for the native phone dialer.
+  * A filter has a match type and pattern (a _rule_), plus an action to perform if the phone number matches the rule.
+  * A filter operates based on the rule, and if the phone number matches the rule, the selected action occurs.
+  * There are several types of matching such as _starts-with_ and _ends-with_.
+  * Multiple filters may be set up for an account or the dialer.
+  * If multiple filters are set, they are run in the order listed
+  * Mutiple rewriting filters may be set up, and the input to each is the output of the previous rewrite filter, or the original number for the first rewrite filter in the list.
+
+Filters are a very powerful feature of the application, so use your imagination and creativity and you can probably solve the problem you have. Filters are much more powerful and flexible than the more common "dial plan" features found on other SIP phones. 
+
+= Creating and Editing Filters =
+
+The filters editor is one of the settings categories. We won't give touch-by-touch directions here, it's assumed you'll be able figure the user interface out. It is intuitive and simple. Once you're in the filters main screen, you'll see a list of SIP accounts and, at the bottom, a Dialer entry (which acts like an account but for the native dialer). Touching an account starts the filter editor for that account. Now you can add a new filter or edit an existing one (by touching it in the list). Delete a filter with a long-touch and then touching _Delete filter_.
+
+== Some Examples of Filter Use ==
+
+_to be written_
+
+== Multiple Filters on an Account==
+
+You can create multiple filters on an account. They will be run in the order listed. <u>You can reorder the filters by dragging and dropping</u>. Touch and drag by the gray icon on the left edge of the filter entry in the list. Note that the _Can't call_ and _Directly call_ filter actions happen immediately; any filters listed afterward will not run if these actions occur.
+
+= Reference =
+<img src="http://solo.dc3.com/extimage/csfilt3-sm.png" align="right" />
+This section describes the filter rules and the actions that can occur if the phone number matches the rule. A _rule_ consists of a match type and some value you supply such as a match pattern or a numeric value. An _action_ is what happens if the rule is matched. In the filter editor, the action is selected at the top and the rule is specified in the box below that. If the action is _Rewrite_ a third area appears in which you specify some prefix, suffix, or replacement text. 
+
+== Actions ==
+
+_to be written_
+
+== Match Types ==
+
+_to be written_
+
+== Rewrite Types ==
+
+_to be written_
+
+= Tips and Tricks =
+
+_ to be written_
