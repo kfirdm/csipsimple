@@ -1,36 +1,36 @@
-#summary Cette page résume les changements du logiciel CSipSimple
+#summary Cette page rÃ©sume les changements du logiciel CSipSimple
 #labels Featured,Phase-Support
 
 = 0.00-17 =
  * A venir
 
 = 0.00-16 =
- * Enregistrement en cours d'appel (Utilisez la touche Menu sur l'écran d'appel)
- * Notification des appels manqués
- * Widget pour activer / désactiver les comptes
+ * Enregistrement en cours d'appel (Utilisez la touche Menu sur l'Ã©cran d'appel)
+ * Notification des appels manquÃ©s
+ * Widget pour activer / dÃ©sactiver les comptes
  * Ajout d'assistants de connexion et refonte du moteur des assistants
- * Amélioration de la gestion des drivers audio pour les terminaux ayant un _petit_ processeur et Android 1.6
- * Ajout d'une fonctionnaloité de gain audio logiciel en cours d'appel via des sliders. Cela sert de gestion du volume pour les terminaux ne supportant pas une gestion correcte du volume audio.
- * Amélioration de la Foire aux Question et de l'aide
+ * AmÃ©lioration de la gestion des drivers audio pour les terminaux ayant un _petit_ processeur et Android 1.6
+ * Ajout d'une fonctionnalitÃ© de gain audio logiciel en cours d'appel via des sliders. Cela sert de gestion du volume pour les terminaux ne supportant pas une gestion correcte du volume audio.
+ * AmÃ©lioration de la Foire aux Question et de l'aide
  * Rendre la fonction _Quitter_ plus simple auxc utilisateurs
- * Démarrage des travaux d'accessibilité
+ * DÃ©marrage des travaux d'accessibilitÃ©
  * Support du codec G729
- * Compte local. Attention, en utilisant un compte _local_ vous savez ce que vous faite. En général, totalement inutile sur un téléphone mobile sauf pour un usage exclusif sur votre réseau privé Wi-Fi.
+ * Compte local. Attention, en utilisant un compte _local_ vous savez ce que vous faite. En gÃ©nÃ©ral, totalement inutile sur un tÃ©lÃ©phone mobile sauf pour un usage exclusif sur votre rÃ©seau privÃ© Wi-Fi.
  
 
 = 0.00-15 =
- * Désactivation du serveur STUN par défaut. Si vous rencontrez des problèmes avec l'audio, activez l'option dans les options Media.
+ * DÃ©sactivation du serveur STUN par dÃ©faut. Si vous rencontrez des problÃ¨mes avec l'audio, activez l'option dans les options Media.
 
 = 0.00-14 =
 
- * Résolution du crash lors d'un appel _tel:_ alors que CSipSimple n'est pas démarré
- * Résolution du problème de haut parleur sur le Samsung Galaxy S GT-I9000
- * Support basique d'IPv6 (résolution dns non supportée mais l'usage de votre registrar et du proxy avec une adresse IPv6 fonctionne - voir issue 265)
- * Contournement pour le HTC Evo et desire HD à propos du mode Wi-Fi PSP de HTC. Réglage par défaut activé comme sur Nexus One et HTC Desire - voir issue 277)
+ * RÃ©solution du crash lors d'un appel _tel:_ alors que CSipSimple n'est pas dÃ©marrÃ©
+ * RÃ©solution du problÃ¨me de haut parleur sur le Samsung Galaxy S GT-I9000
+ * Support basique d'IPv6 (rÃ©solution dns non supportÃ©e mais l'usage de votre registrar et du proxy avec une adresse IPv6 fonctionne - voir issue 265)
+ * Contournement pour le HTC Evo et desire HD Ã  propos du mode Wi-Fi PSP de HTC. RÃ©glage par dÃ©faut activÃ© comme sur Nexus One et HTC Desire - voir issue 277)
  * Ajout des assistants Sipgate & PlanetPhone
  * Support des modes DTMF depuis les options
  * Support DNS SRV
- * Ajout d'un serveur STUN par défaut. Merci à Ekiga
+ * Ajout d'un serveur STUN par dÃ©faut. Merci Ã  Ekiga
  * Support Armv4
  * Nouvelles traductions : bg, de, fr, hu, it, nl, pt, ru - Merci aux traducteurs
  * Support du Bluetooth Android 2.2.1 
@@ -38,4 +38,4 @@
 
 = 0.00-13 =
 
- * Première version publique
+ * PremiÃ©re version publique
