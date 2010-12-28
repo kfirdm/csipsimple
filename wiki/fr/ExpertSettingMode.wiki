@@ -1,26 +1,25 @@
-#summary This page explain what is the Expert Setting Mode
+#summary Passer CSipSimple en mode expert
 #labels Phase-Support
 
 = Introduction =
 
-In order to not flood mainstream users with settings, most of "Expert" settings are hidden.
-However, for an expert it's possible to get it back :)... But in this mode you are considered as an Expert, so do not complain if you change something here that break your configuration. 
-So in this mode, either be a SIP expert or be advised on this website by a SIP expert that you should try to change a Setting
+Pour ne pas submerger les utilisateurs courants avec trop de paramètres, la plupart des options _avancées_ sont masquées. 
+Il reste possible de les afficher pour les experts ... Ne vous plaignez toutefois pas si en jouant avec ces options, CSipSimple cesse de fonctionner.
+Dans ce mode, restez donc prudent ou ayez recours à l'aide d'experts.
 
-= General settings =
+= Options générales =
 
-To switch to expert setting mode : 
- * Go in settings
- * Press menu button
- * Switch to Expert mode (if you are already in expert mode label is Advanced mode and it's useless to switch again).
- * Go in settings... there is now much more settings to set ;)
+Pour passer en mode expert,
+ * Afficher l'écran des options
+ * Appuyez sur le bouton _Menu_
+ * Basculez en mode expert (quand vous l'êtes déjà, le bouton devient _mode avancé_).
+ * Entrez dans les différents réglages, vous avez maintenant accès à bien plus d'options
 
-= Account settings =
+= Réglage de compte =
 
-By default it's advised to use Basic or Advanced wizard.
-However, you can switch when you want to expert wizard (which is the more complete wizard) :
+Par défault, il est recommandé d'utiliser les assistants de création de compte. Qu'ils soient pour un fournisseur ou générique basique ou avancé. Si vous souhaitez transformer un compte existant en _expert_, suivez ces quelques instructions.
 
- * Go in accounts
- * Long press on the account row you want to transform 
- * "Choose wizard"
- * In the wizard list choose Expert
+ * Affichez la liste des comptes
+ * Appuyez longuement sur le nom d'un compte pour afficher le menu contextuel
+ * Appuyez sur _Choisissez l'assistant_
+ * Dans la liste des assistants, choisissez l'assistant expert.

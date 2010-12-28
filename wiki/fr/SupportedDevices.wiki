@@ -1,21 +1,20 @@
-#summary This page give an overview of which devices and rom are tested with CSipSimple.
+#summary Cette page liste de manière non exhaustive les terminaux ainsi que les firmwares sur lesquels CSipSimple fonctionne
 #labels Phase-Deploy
 
 = Introduction =
 
-The audio driver is now based on a method that is a little bit more official (using java api).
-So it should now work on almost all devices.
+Le driver audio est maintenant basé sur une méthode plus officielle (JNI) et n'adresse plus les drivers bas niveau des différents constructeurs. Cela doit fonctionner sur la plupart des terminaux quelque soit le constructeur. Il est recommandé d'utiliser Android 1.6 ou plus.
 
-However there is some restrictions :
+Quelques restrictions toutefois :
 
-= Known incompatibility =
- * Some armv4 based devices - If you own an armv4t device and want to help us to support it, please send us the "device" name : install an application such as DeviceInfo to get this information (that's a string that allow to determine which device it's exactly).
+= Incompatibilités connues =
+ * Des terminaux basés sur la plateforme ARMv4 - Si vous avez un de ces terminaux et que vous souahitez nous aider à le supporter, envoyez nous son *_Device Name_*. Pour cela installer depuis l'Android Market une application comme DeviceInfo qui vous donnera le nom exact du modèle (certains constructeurs ont un nom commercxail et un nom logique)
 
-= There is also some audio routing issues =
-It can produce echo if routed to rear speaker or no sound at all.
- * Galaxy S (not able to change volume see issue 254)
- * Sony X10 / X10 mini (micro record both mic+line : everything spread through speaker is recorded directly by the micro...)
- * Samsung i5500 (route to rear speaker : issue 258)
+= Quelques bugs de route audio =
+Si le haut parleur arrière reçois le flux audio, il peut en résulter un écho important ou pas de son du tout.
+ * Samsung Galaxy S (impossible de changer le niveau sonore - voir issue 254 - contournéer via le gain audio)
+ * Sony Ericsson Xperia X10 et X10 mini (Enregistrement simultané du mirco et de l'entrée ligne. Tout ce qui est envoyé vers le haut parleur est capturé par le micro...)
+ * Samsung Galaxy Europe i5500 (Le son est dirigé vers le haut parleur arrière - voir issue 258)
 
-Most of the time for this issue, manufacturer is to blame (and maybe also android that doesn't define clearly to manufacturer what should be done). 
-So be indulgent with android sip applications : solving this kind of issues, is finding a workaround to make things working with a crappy implementation. It can take a lot of time, and having a device to test on is quietly indispensable to be able to really solve this kind of problem... So can take time to solve it. 
+Souvent les problèmes audio sont de la responsabilité des contructeurs et probablement Android également qui ne défini pas clairement ce que les contructeurs ont à faire exactement.
+Soyez donc indulgents vis-à-vis des applications SIP / VoIP face à ce type de problème. Résoudre ces soucis est souvent long et nécessite de trouver des contournements. De plus, avoir physiquement l'appareil est souvent nécessaire pour tester le fonctionnement. En d'autres termes, vous êtes les bienvenu pour nous aidez et faites preuve de patience.

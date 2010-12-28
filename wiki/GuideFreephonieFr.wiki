@@ -1,5 +1,9 @@
-#summary Guide d'installation pour Freephonie
+#summary Freephonie installation guide
 #labels Phase-Deploy
+
+= Note =
+
+Free is a French FAI providing SIP / VoIP account linked to the internet subscription. This guide should be useless for most people not living in France. That's why this in untranslated.
 
 = Introduction =
 

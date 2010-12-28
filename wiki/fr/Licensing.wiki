@@ -1,31 +1,35 @@
-#summary This page explain the licensing of the project
+#summary Mode de licence du projet
 
 = Introduction =
 
-The project is globally compounded of 3 parts :
- * CSipSimple which is the Java application for Android
- * pjsip_android/jni which is the android portage of pjsip for Android
- * pjsip which is just re-hosted here to make things easier to build the lib.
+Le projet est composé de 3 éléments :
+ * CSipSimple qui est l'interface Android de l'application écrite en Java
+ * pjsip_android/jni qui est le portage Android de PJSip
+ * pjsip qui est la bibliothèque SIP / VoIP hzbergze sur ce projet pour faciliter la compilation
 
 = CSipSimple =
 
-This part of the application is released under GPLv3 license. There is *no* commercial license for this part of the project.
+Cette partie de l'application est fournie sous licence GNU-GPL V3. Il n'y a *pas de licence commerciale* incluse dans ce projet.
 
-So conditions of the GPLv3 applies, specially the fact that any redistribution of the application must also grant GPLv3 rights to users (included publishing the code).
+Les termes de la licences GPLv3 s'appliquent, en particulier que les redistributions  de l'application doivent zgalement être fournies sous cette même licence aux utilisateurs et que les sources doivent être libérées.
 
-However to allow third party application to work with CSipSimple (or any redistribution of CSipSimple under GPLv3), we grant the right to any third party application (under any license) to use the API defined within CSipSimple. 
+Pour faciliter à n'importe quelle application tierce, sous toute forme de licence, le fonctionnement avec CSipSimple (ou toute redistribution de CSipSimple) nous donnons le droit à ces dites applications de s'interfacer aux API fournies par CSipSimple.
 
-This API allow a third party application to rely on CSipSimple (or a redistributed version of CSipSimple under GPLv3), as if it was a SIP service available on the android OS. This API already allow to do many things and can be enriched if any needs appear.
+Ces API permettent aux applications tierces de s'appuyer sur CSipSimple (ou toute redistribution GNU-GPLv3 de CSipSimple) comme si c'était service SIP / VoIP de l'OS Android. Ces API peuvent être enrichies par des contributions si le besoin s'en fait sentir.
 
 = pjsip_android/jni =
 
-This part of the application is released under Apache v2.0 license. It only applies to source code in the jni folder of this project ( /pjsip_android/apps/pjsip/project/jni ).
-
-The rest of this part (the native library), is covered by pjsip license. See pjsip section.
+Cette partie de l'application est livrée sous licence Apache V2.0. Celle-ci s'applique au dossier JNI du projet ( /pjsip_android/apps/pjsip/project/jni ).
+Les autres éléments (bibliothèques natives) de cette partie sont couverts par la licence PJSIP.
 
 = pjsip =
-This part of the application is released under GPLv2 and contains some other third party software.
 
-To get more info about this part of the software please see the [http://www.pjsip.org/licensing.htm website of the pjsip project]. pjsip license owner may arrange an alternative license if you do not comply with this GPL license.
+Cette partie de l'application est livrée sous licence GPLv2 et inclue des logiciels tiers.
 
-However obtaining a license for this part of the software doesn't grant you the right on the rest of the project (CSipSimple).
+Pour plus d'information sur ce logiciel, merci de vous référer [http://www.pjsip.org/licensing.htm au site web du projet PjSip]. Les propriétaires du projet PJSip peuvent adapter leur licence à votre projet si vous n'êtes pas compatinle avec les licneces GPL.
+
+Toutefois, obtenir une licence modifiée pour PJSip ne veut pass dire que vous obtenez automatiqument une licence modifiée pour les 2 éléments ci-dessus : CSipSimple et pjsip_android/jni.
+
+= Redistributions connues de CSipSimple =
+ * [https://code.google.com/p/keyyo-mobile-android-voip/ Keyyo VoIP] par Keyyo Mobile
+ * Ippi

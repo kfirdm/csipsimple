@@ -29,3 +29,7 @@ This part of the application is released under GPLv2 and contains some other thi
 To get more info about this part of the software please see the [http://www.pjsip.org/licensing.htm website of the pjsip project]. pjsip license owner may arrange an alternative license if you do not comply with this GPL license.
 
 However obtaining a license for this part of the software doesn't grant you the right on the rest of the project (CSipSimple).
+
+= Knwon redistributions of CSipSimple =
+ * [https://code.google.com/p/keyyo-mobile-android-voip/ Keyyo VoIP] by Keyyo Mobile
+ * Ippi
