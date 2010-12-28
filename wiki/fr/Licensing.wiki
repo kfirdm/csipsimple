@@ -2,10 +2,11 @@
 
 = Introduction =
 
-Le projet est composé de 3 éléments :
+Le projet est composé de 4 éléments :
  * CSipSimple qui est l'interface Android de l'application écrite en Java
  * pjsip_android/jni qui est le portage Android de PJSip
- * pjsip qui est la bibliothèque SIP / VoIP hzbergze sur ce projet pour faciliter la compilation
+ * pjsip qui est la bibliothèque SIP / VoIP hébergé sur ce projet pour faciliter la compilation
+ * Le codec G729
 
 = CSipSimple =
 
@@ -29,6 +30,10 @@ Cette partie de l'application est livrée sous licence GPLv2 et inclue des logic
 Pour plus d'information sur ce logiciel, merci de vous référer [http://www.pjsip.org/licensing.htm au site web du projet PjSip]. Les propriétaires du projet PJSip peuvent adapter leur licence à votre projet si vous n'êtes pas compatinle avec les licneces GPL.
 
 Toutefois, obtenir une licence modifiée pour PJSip ne veut pass dire que vous obtenez automatiqument une licence modifiée pour les 2 éléments ci-dessus : CSipSimple et pjsip_android/jni.
+
+= Le codec G729 =
+
+L'implémentation de ce codec est couvert par la licence GNU-GPLv3 du projet. Toutefois l'usage de celui-ci n'est pas libre de droits. Assurez voux d'acquérir le droit d'usage auprès de [http://www.synapseglobal.com/g729_codec_license.html Synapse Global].
 
 = Redistributions connues de CSipSimple =
  * [https://code.google.com/p/keyyo-mobile-android-voip/ Keyyo VoIP] par Keyyo Mobile
