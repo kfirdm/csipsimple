@@ -34,3 +34,4 @@ However, if you have not enough time to spent and you still want to contribute, 
 || 12/2010 || Frederic Metz ||
 || 12/2010 || [http://asterisk-java.org Stefan Reuter] ||
 || 12/2010 || Steve Loosley ||
+|| 12/2010 || [http://emstar.com Emstar Solutions, LLC] ||
