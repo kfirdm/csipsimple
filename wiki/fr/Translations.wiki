@@ -2,18 +2,19 @@
 #labels Phase-Implementation
 
 = Comment aider ? =
-Pour participer à la traduction de CSipSimple dans une langue que vous maitrisez, vous êtes au bon endroit.
-Nous utilisons l'outil Android2po de Miracle2K et le projet Roseta de Launchpad pour la traduction. C'est plus facile à utiliser que des fichiers XML.
+Pour participer Ã  la traduction de CSipSimple dans une langue que vous maitrisez, vous Ãªtes au bon endroit.
+Nous utilisons l'outil Android2po de Miracle2K et le projet Roseta de Launchpad pour la traduction. C'est plus facile Ã  utiliser que des fichiers XML.
 
-Pour participer à la traduction de l'application, 
- # Enregistrez vous sur Launchpad - _Vous pouvez utiliser un Open ID, votre compte Google devrait être suffisant
+Pour participer Ã  la traduction de l'application, 
+ # Enregistrez vous sur Launchpad - _Vous pouvez utiliser un Open ID, votre compte Google devrait Ãªtre suffisant
  # Allez dans la section de traduction de CSipSimple : https://translations.launchpad.net/csipsimple/trunk
  # Choisissez votre langue et participez via l'interface web.
-Si vous rencontrez des problèmes, laissez le nous savoir. La plupart du temps les tutoriels Launchpad devraient être suffire.
+Si vous rencontrez des problÃ¨mes, laissez le nous savoir. La plupart du temps les tutoriels Launchpad suffisent.
 
-Pour partcicper à la traduction du Wiki
- # Créer un dossier nommé avec le code ISO de la langue choisie
- # Créez les fichiers textes *_nom.wiki_* formatés en UTF8 sans BOM - le nom des pages WiKi doit être le même que les pages existantes
- # rédigez votre texte en utilisant la syntaxe Wiki - http://code.google.com/p/support/wiki/WikiSyntax#Localizing_Wiki_Content
- # Transmettez nous votre oeuvre ou demandez à devenir contributeur via le SVN
+Pour partcicper Ã  la traduction du Wiki
+ # Connectez vous au SVN du projet Ã  l'URL https://csipsimple.googlecode.com/svn/wiki pour crÃ©er une copie locale du Wiki
+ # CrÃ©er un sous-dossier nommÃ© avec le code ISO de la langue choisie - fr pour France par exemple 
+ # CrÃ©ez les fichiers textes *_nom.wiki_* formatÃ©s en UTF8 sans BOM - le nom des pages WiKi doit Ãªtre le mÃªme que les pages existantes
+ # rÃ©digez votre texte en utilisant la syntaxe Wiki - http://code.google.com/p/support/wiki/WikiSyntax#Localizing_Wiki_Content
+ # Transmettez nous votre oeuvre ou demandez Ã  devenir contributeur via le SVN
  

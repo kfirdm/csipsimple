@@ -5,7 +5,6 @@
 <wiki:toc max_depth="1" />
 
 ----
-
 = CSipSimple c'est quoi? Qui sommes nous ? =
 
 CSipSimple est un projet français de softphone VoIP pour Android. Il utilise les bibliotèques open source [http://www.pjsip.org/ PJSIP]. [http://code.google.com/p/csipsimple/ CSipSimple] est un projet Open Source. [http://code.google.com/u/r3gis.3R/ Régis] est le principal développeur. Des contributeurs comme des développeurs, des fournisseurs de solutions SIP / VoIP des constructeurs de terminaux sont les bienvenus.
@@ -19,7 +18,7 @@ Si vous êtes un développeur, connectez vous au SVN pour nous aider. ce sera tr
 
 Si vous aimez notre travail, l'aide peut aussi être un don financier. Tous les dons seront ré-investi dans du matériel qui, comme vous le savez, reste très cher.
 
-Toute les détails sont sur la page dédiée aux [Donate donnations]
+Toute les détails sont sur la page dédiée aux [Donate donations]
 
 ----
 = La VoIP - Cela sert à quoi ? =
@@ -27,7 +26,6 @@ Toute les détails sont sur la page dédiée aux [Donate donnations]
 La VoIP - voix sur IP - est une technologie de téléphonie à travers Internet. Associée au protocole SIP, elle permet de téléphoner, moyennant un compte SIP / VoIP obtenu auprès d'un fournisseur d'accès, où vous le souhaitez à moindre coût.
 
 ----
-
 = Quelle version d'Android est compatible ? =
 
 Théoriquement, toutes les versions d'Android depuis la 1.6 jusqu'à la version 2.2.1 sont compatibles. La compatibilité exacte dépend de chaque contructeur et de la manière dont Android a été adapté aux terminaux. Les drivers audio et wi-Fi de chaque contructeurs jouent un rôle majeur

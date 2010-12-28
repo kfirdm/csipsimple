@@ -1,21 +1,21 @@
-#summary Fournir des logs aux dÈveloppeurs de l'application
+#summary Fournir des logs aux d√©veloppeurs de l'application
 #labels Phase-Support
 
 = Introduction =
 
-CSipSimple est en cours de dÈveloppement intensif. Si vous remarquez des erreurs ou des crashs pendants l'utilisation de l'application, il sera apprÈciÈ que vous paratgiez ces observations.
-Le premier rÈflexe est de vÈrifier si le problËme a dÈj‡ ÈtÈ remontÈ dans la section des [http://code.google.com/p/csipsimple/issues/list annomalies]. Vous pouvez alors prÈciser celle-ci dans les commentaires.
-Si aucune annomalie ne correspond au souci rencontrÈ, vous pouvez ouvrir une nouvelle annomalie avec, ‡ minima, les ÈlÈments suivants : modËle du tÈlÈphone, version de firmware, description de l'annomalie, comportement attendu ‡ la place, moyen de reproduire l'annomalie.
+CSipSimple est en cours de d√©veloppement intensif. Si vous remarquez des erreurs ou des crashs pendants l'utilisation de l'application, il sera appr√©ci√© que vous partagiez ces observations.
+Le premier r√©flexe est de v√©rifier si le probl√®me a d√©j√† √©t√© remont√© dans la section des [http://code.google.com/p/csipsimple/issues/list annomalies]. Vous pouvez alors pr√©ciser celle-ci dans les commentaires.
+Si aucune annomalie ne correspond au souci rencontr√©, vous pouvez ouvrir une nouvelle annomalie avec, √† minima, les √©l√©ments suivants : mod√®le du t√©l√©phone, version de firmware, description de l'annomalie, comportement attendu √† la place, moyen de reproduire l'annomalie.
 
-= Comment crÈer des logs avec CSipSimple =
+= Comment cr√©er des logs avec CSipSimple =
 
-Depuis l'interface principale de CSipSimple (clavier tÈlÈphonique), appuyez sur le bouton _Menu > Aide > Enregistrer les logs_.
-Revenez ‡ l'Ècran principal en utilisant le bouton retour. Voous pouvez maintenant reproduire l'annomalie. Les logs seront enregistrÈs pendant toutes vos manipulations.
+Depuis l'interface principale de CSipSimple (clavier t√©l√©phonique), appuyez sur le bouton _Menu > Aide > Enregistrer les logs_.
+Revenez √† l'√©cran principal en utilisant le bouton retour. Voous pouvez maintenant reproduire l'annomalie. Les logs seront enregistr√©s pendant toutes vos manipulations.
 
-= Comment rÈcupÈrer les logs et que faire avec ? =
+= Comment r√©cup√©rer les logs et que faire avec ? =
 
-Depuis l'interface principale de CSipSimple (clavier tÈlÈphonique), appuyez sur le bouton _Menu > Aide > ArrÍter l'enregistrement des logs et les envoyer_. Vous pouvez alors choisir de les envoyer par e-mail en sÈlectionnant l'option G-Mail ou E-Mail. Par dÈfaut, les logs sont envoyÈs ‡ developers [ at ] csipsimple [dot] com.
+Depuis l'interface principale de CSipSimple (clavier t√©l√©phonique), appuyez sur le bouton _Menu > Aide > Arr√™ter l'enregistrement des logs et les envoyer_. Vous pouvez alors choisir de les envoyer par e-mail en s√©lectionnant l'option G-Mail ou E-Mail. Par d√©faut, les logs sont envoy√©s √† developers [ at ] csipsimple [dot] com.
 
 Si cela ne fonctionne pas pour quelques raison que ce soit, vous pouvez utiliser in logiciel comme Log-Collector disponible sur Android Market ou  http://code.google.com/p/android-log-collector/
-Log-collector vous demandera ‡ qui envoyer les e-mails. Choisissez developers [ at ] csipsimple [dot] com.
+Log-collector vous demandera √† qui envoyer les e-mails. Choisissez developers [ at ] csipsimple [dot] com.
 

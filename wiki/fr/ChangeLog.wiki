@@ -27,7 +27,7 @@
  * Résolution du problème de haut parleur sur le Samsung Galaxy S GT-I9000
  * Support basique d'IPv6 (résolution dns non supportée mais l'usage de votre registrar et du proxy avec une adresse IPv6 fonctionne - voir issue 265)
  * Contournement pour le HTC Evo et desire HD à propos du mode Wi-Fi PSP de HTC. Réglage par défaut activé comme sur Nexus One et HTC Desire - voir issue 277)
- * Ajout des assistants Sipgate & PlanetPhone
+ * Ajout des assistants Sipgate et PlanetPhone
  * Support des modes DTMF depuis les options
  * Support DNS SRV
  * Ajout d'un serveur STUN par défaut. Merci à Ekiga
