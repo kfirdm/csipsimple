@@ -1,23 +1,23 @@
-#summary Donate via PayPal
+#summary Donations via PayPal
 
-= Donate =
+= Donations =
 
-Time is priceless and if you have some to spare then there is no other better way to help an open source project than to get involved at one level or another. Contributions are appreciated and needed in any of the following ways:
+Le temps est précieux. Si vous avez un peu de temps libre, n'hésitez pas à aider à ce projet Open Source. Vous pouvez vous impliquer à tous les niveaux. Les contributions sont appréciées et peuvent intervenir par exemple :
 
- * Help diagnose and report problems
- * Suggest fixes by sending in patches
- * Improve the code
- * Provide peer support on mailing lists, forums or newsgroups
- * Publish an article on your blog (send the link) or elsewhere (e.g., community sites) to educate others regarding some aspect of the project
- * Help with missing documentation.
+ * Aide au diagnostic et à la remontée de problèmes
+ * Suggérer des correctifs en partageants des patchs.
+ * Améliorer le code
+ * Fournir du support aux utilisateurs à travers les mailing lists, forums ou newsgroups
+ * Publication d'articles sur votre blog (envoyez-nous le lien) ou ailleurs (forum, réseaux sociaux, ...)
+ * Ajouter de la documentation à CSipSimple
 
 
-However, if you have not enough time to spent and you still want to contribute, you can support CSipSimple development by donating. Any donates will be re-invested into devices (such as Bluetooth handset) in order to improve CSipSimple.
+Toutefois, si le temps vous manque, et si vous souhaitez contribuer, une aide financière sera également appréciée. Toutes les donations seront investies dans du matériel de développement pour améliorer CSipSimple.
 
 [https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=THH78SD9M9A8G&lc=FR&item_name=CSipSimple&item_number=CSipSimple&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donate_SM%2egif%3aNonHosted https://www.paypal.com/en_US/i/btn/btn_donate_SM.gif]
 
 
-= Donors =
+= Donateurs =
 || *Date* || *Donor* ||
 || 09/2010 || Jerald Sibbeston ||
 || 09/2010 || arcadia2uk ||
