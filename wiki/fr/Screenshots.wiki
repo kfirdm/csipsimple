@@ -7,7 +7,7 @@
 = Introduction =
 Voici quelques captures d'écran de l'application
 
-= Accounts =
+= Gestion des comptes =
 Ajouter un compte
 
 http://csipsimple.googlecode.com/svn/graphics/addaccount.png
