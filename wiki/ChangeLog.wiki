@@ -1,6 +1,14 @@
 #summary This page allow you to track what are changes done on CSipSimple
 #labels Featured,Phase-Support
 
+= Current dev version =
+ * Voice mails
+ * SILK codec
+ * Improved filter / rewriting rules
+ * New wizards
+ * Some bug fix and auto configuration
+ * Added support for sip: and skype: protocols
+
 = 0.00-16 =
  * Call recording feature ! (use menu on In Call screen)
  * Missed call notification
