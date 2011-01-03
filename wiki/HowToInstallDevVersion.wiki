@@ -9,7 +9,7 @@
     * Click on Application menu
     * Tick unknown sources (allow installation of non market application)
   # Get the application apk on your smartphone
-    List of current apk are available here : [http://nightlies.csipsimple.com/trunk/ Nightly builds website] just go on your pc/mac browser on the page and scan the qr code on screen. If you are using your smartphone browser, just click on the download link.
+    List of current apk are available here : [http://nightlies.csipsimple.com/trunk/ Nightly builds website] or [http://nightlies.csipsimple.dc3.com/trunk/ mirror] just go on your pc/mac browser on the page and scan the qr code on screen. If you are using your smartphone browser, just click on the download link.
     * To download on your smartphone there is several ways :
       * Download directly from your smartphone
       * Alternatively you can download the application on your pc and then push it on the sdcard connecting your phone on usb and mounting it. (In this case, for installation you'll need a file explorer application to be able to click on the install file and launch the installation.) 
