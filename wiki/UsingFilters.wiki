@@ -117,9 +117,9 @@ The number is matched if it is the given length or longer.
 
 The number is matched if it is exactly the same as the given text.
 
-=== Custom RegExp ===
+=== Custom !RegExp ===
 
-Matching is specified by the given [http://developer.android.com/reference/java/util/regex/Pattern.html Java regular expression]. The regular expression pattern can contain one or more _capturing groups_, useful for Rewrite filters with the Custom RegExp replacement type.
+Matching is specified by the given [http://developer.android.com/reference/java/util/regex/Pattern.html Java regular expression]. The regular expression pattern can contain one or more _capturing groups_, useful for Rewrite filters with the Custom !RegExp replacement type.
 
 == Replacement Types ==
 
@@ -144,9 +144,9 @@ The given text replaces the matched text in the number. The unmatched text in th
 
 The given text replaces the entire number.
 
-=== Custom RegExp ===
+=== Custom !RegExp ===
 
-Useful only if the match type is also Custom RegExp, and if the match regular expression pattern contains one or more _capturing groups_. In this case, the captured text for each group (left to right) can be specified with $1, $2, etc,. and the entire matched string can be specified with $0. For more information see the documentation of [http://developer.android.com/reference/java/util/regex/Pattern.html java.util.regex.Pattern].
+Useful only if the match type is also Custom !RegExp, and if the match regular expression pattern contains one or more _capturing groups_. In this case, the captured text for each group (left to right) can be specified with $1, $2, etc,. and the entire matched string can be specified with $0. For more information see the documentation of [http://developer.android.com/reference/java/util/regex/Pattern.html java.util.regex.Pattern].
 
 = Tips and Tricks =
 
