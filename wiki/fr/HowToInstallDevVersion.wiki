@@ -13,7 +13,7 @@
       * Téléchargement direct depuis le navigateur du mobile
       * Chargement par USB sur la carte mémoire
   # Installation de l'application
-    * Depuis le gestionnaire de téléchargement du navigateur, vous pouvez lancer l'intallation par un simple clic sur le fichier puis suivez les instructions à l'écran
+    * Depuis le gestionnaire de téléchargement du navigateur, vous pouvez lancer l'installation par un simple clic sur le fichier puis suivez les instructions à l'écran
     * Depuis la carte mémoire, utilisez un explorateur de fichier sur le mobile pour lancer l'installation. Astro le fait très bien. Il est disponible sur l'Android Market.
 
 
