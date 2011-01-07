@@ -35,7 +35,7 @@ Hey guys, just try to make a call using the standard android phone dialer, or cl
 
 = When integrated to android, I don't want some number to be handled by SIP =
 == I want to automatically add prefix/rewrite some numbers == 
-There is a powerful rewriting/filter/auto-answer tool in CSipSimple.
+There is a powerful rewriting/filter/auto-answer tool in CSipSimple (see the UsingFilters wiki page).
 To access this tool, go on the account on which you want to apply things. Press menu button and choose "Filters".
 You are now in the tool. Using this tool you can :
  * Rewrite numbers : for example add prefix, suffix, completely replace the number by another one, or apply a custom regexp - if you don't know what a regexp is, don't use it ;).
