@@ -92,3 +92,27 @@ To do so, transform your account into an Expert account (Edit account, press men
  * Transport : choose UDP is the list of transport.
 
 In order to improve CSipSimple, if you are experimenting this issue and that this workaround help, you can inform us about that and tell us what is your SIP provider so that we could add a wizard with this enabled by default.
+
+----
+= Audio routing troubleshooting =
+If you are experimenting audio automatically routed through rear speaker instead of earpiece or other problem with audio driver on your phone, it's probably cause manufacturer implement a strange way its audio driver and android official API for routing audio.
+
+Fortunately, there is some common behavior that can be managed by activating some "hacks" in CSipSimple.
+
+To do so :
+ 1 - Install a dev version (HowToInstallDevVersion wiki page)
+ 2 - Switch to ExpertSettingMode (wiki page) global setting section
+ 3 - Try to play with these settings : 
+  * Use Mode API (try to use this one first and without activating others)
+  * Use Routing API.
+  * Use tone hack.
+Try each of these settings independently and then in combination. 
+
+If one or a combination of that modes helps... well good news for you, you have CSipSimple running correctly on your phone ;). 
+You can then share with me which setting helps so that I can automatically turn on one of the correct hack by default for your device. 
+
+To do so, I need the exact device info (the infos announced by android to the application about the device). An easy way to collect these info is to send me logs using my embedded tool : see HowToCollectLogs. 
+
+If it doesn't work you can install other apps on the market such as "Device Info" and tell me what are the "Device" and "Product" values.
+
+It's possible that none of these settings helps (for example it's currently a known issue on samsung moment). In this case we have to cross finger for your manufacturer or a custom ROM maker to fix that in the ROM directly. Maybe another hack could be found for your device too, but it requires devs skills and a phone to test on. If you are in this case, you can contact us so that we can give you what to test on source code to troubleshoot the problem.
