@@ -100,12 +100,12 @@ If you are experimenting audio automatically routed through rear speaker instead
 Fortunately, there is some common behavior that can be managed by activating some "hacks" in CSipSimple.
 
 To do so :
- 1 - Install a dev version (HowToInstallDevVersion wiki page)
- 2 - Switch to ExpertSettingMode (wiki page) global setting section
- 3 - Try to play with these settings : 
-  * Use Mode API (try to use this one first and without activating others)
-  * Use Routing API.
-  * Use tone hack.
+  # Install a dev version (HowToInstallDevVersion wiki page).
+  # Switch to ExpertSettingMode (wiki page) global setting section.
+  # Try to play with these settings : 
+    * Use Mode API (try to use this one first and without activating others)
+    * Use Routing API.
+    * Use tone hack.
 Try each of these settings independently and then in combination. 
 
 If one or a combination of that modes helps... well good news for you, you have CSipSimple running correctly on your phone ;). 
