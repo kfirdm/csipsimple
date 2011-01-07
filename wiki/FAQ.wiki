@@ -102,7 +102,7 @@ Fortunately, there is some common behavior that can be managed by activating som
 To do so :
   # Install a dev version (HowToInstallDevVersion wiki page).
   # Switch to ExpertSettingMode (wiki page) global setting section.
-  # Try to play with these settings : 
+  # Try to play with these settings (available in Media settings > ... (bottom of the list): 
     * Use Mode API (try to use this one first and without activating others)
     * Use Routing API.
     * Use tone hack.
