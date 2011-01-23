@@ -74,4 +74,7 @@ The project has to be imported as an android project (with sdk 2.2).<br/>
 The project is compatible with android 1.5 but different layout support is available only after 1.6 and some features of manifest file after 2.2. 
 
 Then you can launch the project using run (and choose your remote device or a virtual device _(emulator)_).
+
+If you are running something different than a Linux or MacOS or with a platform without svn properly configured, you will experiment problems with the auto svn tagger tool for android manifest. In this case remove the .externalTools dir from the CSipSimple project and revert the Manifest file from the version available on the repository.
+
 If you experiments problems at first run use _Project > Clean ..._
