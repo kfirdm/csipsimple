@@ -116,3 +116,16 @@ To do so, I need the exact device info (the infos announced by android to the ap
 If it doesn't work you can install other apps on the market such as "Device Info" and tell me what are the "Device" and "Product" values.
 
 It's possible that none of these settings helps (for example it's currently a known issue on samsung moment). In this case we have to cross finger for your manufacturer or a custom ROM maker to fix that in the ROM directly. Maybe another hack could be found for your device too, but it requires devs skills and a phone to test on. If you are in this case, you can contact us so that we can give you what to test on source code to troubleshoot the problem.
+
+= When screen goes off sound quality is bad =
+
+That's cause of the fact your device has special policy when screen goes off.
+There is two well known reason for that :
+ * Could be cause of the PSP behavior of the wifi card (see http://code.google.com/p/android/issues/detail?id=9781)
+ * Could be due to the fact you have setCPU that change CPU speed when screen goes off.
+
+Fortunately, there is an existing workaround in CSipSimple to prevent screen going off and so keeping up the good call quality.
+To activate this workaround if not automatically detected by CSipSimple (there is an autodetection done for the PSP behavior).
+
+  # Switch to ExpertSettingMode (wiki page) global setting section.
+  # In User interface section scroll to "Keep awake while in call" option and activate it
