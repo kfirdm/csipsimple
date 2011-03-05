@@ -6,42 +6,73 @@ The application has two distinct parts :
  * The pjsip dynamic library part that produce a .so (to be more precise a .so by android target).
  * The java application that produce a .apk (and can be installed on your android device).
 
-Due to the fact the dynamic library has to be recompiled for each android target (the ndk doesn't support audio library yet), by default the application apk will download the .so from the csipsimple website.
-Although, if you want to make your own builds, there is a simple way to use your own .so builds. (See the *Build the android application* section for more details).
+Both java and native part must have the same level of code if you want the app to run. So it's better to build both parts and follow the complete process.
 
-*Important : * If you are a java developer and you are not interested in building the sip stack, you can directly go to the *Build the android application* section.
+If you are a java developer and you are not interested in building the sip stack, you can directly go to the *Build the android application* section.
 
-<wiki:toc max_depth="1" />
+Some very important note : *CSipSimple is released under GPL license*. 
+Be really aware about what does that mean before developing. Read [Licensing] wiki page. 
+So if you plan to improve CSipSimple and redistribute it, you *MUST* release your source code. As we (CSipSimple developers) are open to any contribution, I'd advise you to directly contribute the CSipSimple project. All contributions are welcome !!!
+
+<wiki:toc max_depth="2" />
 
 = System and Software Requirements =
-I assume that you have a linux system with svn and all android ndk requirements.
+Assuming that you have a linux system with svn and all android ndk requirements.
+
+I don't not explain how to build for Windows cause I consider that if you really want to develop you probably don't use Windows. However it should be possible to build it for Windows too.
 
 
+First thing to do :
 Create a new directory for the project.
 
 = Build the pjsip library for android =
 
-I have not committed into the svn the compiler, linker etc for android. It doesn't come any more from the official Google NDK but from an alternate NDK that allow us to build ZRTP lib (and in the future any third party cpp lib). So you have to get the Crystax NDK  
-(For reference [http://www.crystax.net/android/ndk-r4.php crystax NDK])
+== Get the NDK and the source ==
+I have not committed into the svn the build toolchain for android. 
+The one distributed in CSipSimple SVN is a mix between Crystax NDK and a NDK that allow to build for armv4t devices (thx to H. Manson).
+(For reference [http://www.crystax.net/android/ndk-r4.php crystax NDK] and [http://code.google.com/p/android-on-freerunner/issues/detail?id=142 android armv4t NDK].
+
+You can now also use the official android ndk r5b since it support C++ (if you try to build with opensl-ES you must use it).
 
  * First of all get the ndk and unzip
+EITHER : 
+ ** Crystax NDK :
 {{{
 wget http://www.crystax.net/data/android-ndk-r4-linux-x86-crystax-4.tar.bz2
 tar -xvf android-ndk-r4-linux-x86-crystax-4.tar.bz2
 rm android-ndk-r4-linux-x86-crystax-4.tar.bz2
-}}}
-
- * Then checkout the pjsip part of the project :
-{{{
+# Checkout the pjsip part of the project
 svn checkout http://csipsimple.googlecode.com/svn/trunk/pjsip_android pjsip_android
-}}}
-
- * Now we have to add the ndk toolchains into the pjsip_android project ndk.
-{{{
+# Now we have to add the ndk toolchains into the pjsip_android project ndk.
 cp -r android-ndk-r4-crystax/build/prebuilt pjsip_android/build/
 }}}
 _ Note : You can now delete the android-ndk-r4-crystax folder _
 
+ ** Armv4t NDK :
+{{{
+# Checkout the pjsip part of the project
+svn checkout http://csipsimple.googlecode.com/svn/trunk/pjsip_android pjsip_android
+cd pjsip_android/build
+# Get the NDK prebuilt
+wget http://nightlies.csipsimple.com/tools/prebuilt.tar.gz
+tar -xvf prebuilt.tar.gz
+rm prebuilt.tar.gz
+cd ../../
+}}}
+
+ ** Official android NDK:
+{{{
+wget http://dl.google.com/android/ndk/android-ndk-r5b-linux-x86.tar.bz2
+tar -xvf android-ndk-r5b-linux-x86.tar.bz2
+mv android-ndk-r5b pjsip_android
+# Get only the relevant part of the svn
+svn checkout http://csipsimple.googlecode.com/svn/trunk/pjsip_android/apps apps
+cd ../
+}}}
+
+_Note : the source is also available in a [https://code.launchpad.net/csipsimple/+branches?field.lifecycle=DEVELOPMENT&field.lifecycle-empty-marker=1&field.sort_by=by+owner+name&field.sort_by-empty-marker=1 Bazar mirror] 
+
+== Build the library ==
 
  * Go into the pjsip_android directory:
 {{{
@@ -51,6 +82,7 @@ cd pjsip_android
  * Launch a make (but it will generate only one target lib)
 {{{
 make APP=pjsip
+#if you want to build for target android 2.3 (for OpenSL-ES support type) : make APP=pjsip TARGET_PLATFORM=android-9
 }}}
 
 Congratulation you've just build the dynamic library.
@@ -60,6 +92,22 @@ You can find your build under
 ../CSipSimple/libs/armeabi & armeabi-v7a
 }}}
 
+== Customize your builds ==
+
+pjsip_android can be built with several build flags to activate/deactivate some features.
+The file that allow you to say what you'd like to build is in :
+pjsip_android/apps/pjsip/Application.mk
+
+You can here choose :
+ * The output dir of your libs with APP_PROJECT_PATH := ....your_directory.....
+ * The target abi you'd like to build with APP_ABI depending the NDK you choose available are : armeabi, armeabi-v7a, armv4t. (You can combine eabi and eabi-v7a targets separating with space. armv4t that must be built alone).
+ * Codecs you want to build with MY_USE_G729|SILK|SPEEX|G722|GSM|CODEC2 := 1 (if you want to enable it) 0 (if you don't). 
+SPEEX codec should always be 1 if you build for armv7a cause it is required for AEC.
+ * TLS/ZRTP support with MY_USE_TLS := 1
+ * Android audio dev backend with MY_ANDROID_DEV := 1 (for a backend that relies on java API and is compatible from android 1.5) 2 (for the new OpenSL-ES backend. it uses the new android native audio API and require to build for target android-9 and will be compatible only with devices that has android 2.3 or upper). 
+In the future we plan to make it more modular so that it will be possible to make builds that can rely on java or/and opensl api.
+Also when OpenSL-ES api will allow it, it will be possible to have direct encoding capabilities (amr / gsm) from the device. (For now it's not allowed by OpenSL-ES api...)
+
 
 = Build the android application =
 From the android sdk point of view, the application is a standard android application.
@@ -68,14 +116,15 @@ So you can use eclipse.
 Checkout the csipsimple directory (under trunk) from the source. (You can use [http://subclipse.tigris.org/ Subclipse] to checkout directly into Eclipse).
 
  * If you have build the pjsip library, copy the .so generated by the build in the directories : `libs/armeabi/libpjsipjni.so` and `libs/armeabi-v7a/libpjsipjni.so` of the android project.
- * Alternatively, you can use nightly builds to extract from apk the .so files and then put the files in the correct directory
+ * Alternatively, you can use *nightly builds* to extract from apk the .so files and then put the files in the correct directory. In this case you *MUST* be sure that the nightly build version is the same than your SVN version !!!
 
-The project has to be imported as an android project (with sdk 2.2).<br/>
-The project is compatible with android 1.5 but different layout support is available only after 1.6 and some features of manifest file after 2.2. 
+The project has to be imported as an android project (with sdk 2.3).<br/>
+The project is compatible with android 1.5 but different layout support is available only after 1.6 and some features of manifest file after 2.3. 
 
 Then you can launch the project using run (and choose your remote device or a virtual device _(emulator)_).
 
-If you are running something different than a Linux or MacOS or with a platform without svn properly configured, you will experiment problems with the auto svn tagger tool for android manifest. In this case remove the .externalTools dir from the CSipSimple project and revert the Manifest file from the version available on the repository.
+If you are running something different than a Linux or MacOS or with a platform without svn properly configured, you will experiment problems with the auto svn tagger tool for android manifest. 
+In this case remove the .externalTools dir from the CSipSimple project and revert the Manifest file from the version available on the repository.
 
 It's deeply advised to not make audio tests using the emulator cause the audio driver of the qemu is really bad and leads to pledging CPU of the emulator.
 
