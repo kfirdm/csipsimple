@@ -130,3 +130,20 @@ To activate this workaround if not automatically detected by CSipSimple (there i
 
   # Switch to ExpertSettingMode (wiki page) global setting section.
   # In User interface section scroll to "Keep awake while in call" option and activate it
+----
+= In gingerbread with dialer integration I can't place GSM call anymore =
+
+Actually you can, you just don't know how :).
+
+The first prompt you get is there cause both *CSipSimple* and the *stock SIP* application can intercept the outgoing call to treat it. 
+
+If you choose "Dialer", you actually choose the *stock SIP* application !! If you choose CSipSimple, you choose the standard process of telephony intent.
+
+So just choose CSipSimple ! You'll see, next you'll have the CSipSimple chooser which allow to choose Mobile call.
+
+If you don't want to be bothered anymore with the stock chooser that propose you between the stock 2.3 SIP application and CSipSimple, in the first popup _(which CSipSimple don't and CAN'T manage)_, there is checkbox to *remember your choice*.
+
+Activate it and choose CSipSimple. Then you'll not be bothered anymore with this chooser and benefit all powerful features of CSipSimple in terms of Filters and Rewriting rules.
+
+_Todo : add a screenshot here_
+----
