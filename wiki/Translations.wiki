@@ -1,5 +1,6 @@
 #summary Translations information.
 #labels Phase-Implementation
+#sidebar MainSideBar
 
 = How can I help? =
 If you want to help us to translate CSipSimple in your language, here's the good place.
