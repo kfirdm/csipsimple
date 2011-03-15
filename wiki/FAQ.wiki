@@ -145,5 +145,6 @@ If you don't want to be bothered anymore with the stock chooser that propose you
 
 Activate it and choose CSipSimple. Then you'll not be bothered anymore with this chooser and benefit all powerful features of CSipSimple in terms of Filters and Rewriting rules.
 
-_Todo : add a screenshot here_
+
+_In future release this will not be relevant anymore. You can try nightly builds if you are hurry to get something working well on gingerbread (there is also cool features for gingerbread included in latests nightlies)_
 ----
