@@ -1,5 +1,6 @@
 #summary Quick how to for installing development version
 #labels Featured,Phase-Deploy
+#sidebar MainSideBar
 
 = Steps to install a dev version =
 
