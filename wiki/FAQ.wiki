@@ -1,5 +1,7 @@
-#summary Some frequently asked question are listed here
 #labels Featured,Phase-Support
+#sidebar MainSideBar
+
+#summary Some frequently asked question are listed here
 
 = Summary =
 <wiki:toc max_depth="1" />
