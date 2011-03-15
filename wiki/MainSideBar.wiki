@@ -12,3 +12,4 @@
  * About
    * [Screenshots]
    * [PermissionsUse What permissions this app uses?]
+   * [Donate]
