@@ -1,5 +1,6 @@
 #summary How to use the filters and also how they work
 #labels Phase-Deploy
+#sidebar MainSideBar
 
 = Introduction =
 <img src="http://solo.dc3.com/extimage/csfilt1-sm.png" align="right" />
