@@ -1,5 +1,6 @@
 #summary Quelques questions fréquentes reprises ici
 #labels Featured,Phase-Support
+#sidebar MainSideBar
 
 = Sommaire =
 <wiki:toc max_depth="1" />
