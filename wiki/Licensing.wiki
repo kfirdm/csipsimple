@@ -1,4 +1,5 @@
 #summary This page explain the licensing of the project
+#sidebar MainSideBar
 
 = Introduction =
 
