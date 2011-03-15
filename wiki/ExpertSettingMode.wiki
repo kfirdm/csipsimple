@@ -1,5 +1,6 @@
 #summary This page explain what is the Expert Setting Mode
 #labels Phase-Support
+#sidebar MainSideBar
 
 = Introduction =
 
