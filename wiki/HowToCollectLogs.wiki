@@ -1,5 +1,6 @@
 #summary How to provide logs to developpers
 #labels Phase-Support
+#sidebar MainSideBar
 
 = Introduction =
 
@@ -22,4 +23,3 @@ Press the menu button on the main CSipSimple view (the dialer), Choose Help and 
 If it doesn't work for any reason you can :
 You can install and run log-collector : http://code.google.com/p/android-log-collector/ (available both on the market and on their website).
 Log-collector will ask you how you want to send logs, choose mail and send it to developers [ at ] csipsimple [dot] com.
-
