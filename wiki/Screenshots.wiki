@@ -1,5 +1,6 @@
 #summary CSipSimple screenshots
 #labels Phase-UI
+#sidebar MainSideBar
 
 <wiki:toc max_depth="1" />
 ----
