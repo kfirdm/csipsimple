@@ -5,7 +5,7 @@
    * [ExpertSettingMode The Expert setting mode]
  * Use the power of the application
    * [UsingFilters Using filtering rules]
- * Developers
+ * For developers
    * [HowToBuild How to build the app]
    * [Licensing The application licenses]
    * [Translations]
