@@ -68,6 +68,9 @@ For using bluetooth device. It's not yet fully supported but with a correct conf
 == READ_LOGS ==
 It is useful for the embedded issue reporting tool. CSipSimple use the standard logging system to write logs. To get back logs and send it to developers, it requires the permission to read logs. It's interesting for us to get the entire logs cause we can get some interesting logs about the audio driver of the phone for example. Or logs from network stack.
 
+== WRITE_EXTERNAL_STORAGE ==
+Used to write audio records on SDCard, to write backups and logs.
+
 == USE_SIP ==
 == CONFIGURE_SIP ==
 This is mostly for internal use. CSipSimple may provide other application to control SIP calls and messages and also SIP configuration. To restrict rights of other apps to do that. There is these two rights.
