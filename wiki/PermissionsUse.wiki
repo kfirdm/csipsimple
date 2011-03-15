@@ -1,5 +1,6 @@
 #summary This page describe permissions used by CSipSimple and why these permissions are used
 #labels Featured,Phase-Support
+#sidebar MainSideBar
 
 As security is important stuff on mobile system, Android has a permissions system. It's up to users to be really careful with what permission he grant to an application. 
 
