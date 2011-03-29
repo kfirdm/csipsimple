@@ -18,7 +18,7 @@ So if you plan to improve CSipSimple and redistribute it, you *MUST* release you
 <wiki:toc max_depth="2" />
 
 = System and Software Requirements =
-Assuming that you have a linux system with svn and all android ndk requirements.
+Assuming that you have a linux system with svn and all android sdk requirements.
 
 I don't not explain how to build for Windows cause I consider that if you really want to develop you probably don't use Windows. However it should be possible to build it for Windows too.
 
