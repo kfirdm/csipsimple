@@ -15,4 +15,4 @@ If application is not distributed under GPLv3 license terms the company can be s
 
 = List of forks with pending regularisation regarding GPL =
  * VoipAlot. -- I sent a request to get source code of modified version. Waiting for reply.
- * Mobyler --
+ * Mobyler -- and actually almost all android SIP application distributed by Finarea.
