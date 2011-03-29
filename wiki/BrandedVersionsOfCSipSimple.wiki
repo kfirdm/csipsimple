@@ -1,0 +1,17 @@
+#summary This page list existing known forks of CSipSimple.
+
+= Introduction =
+
+CSipSimple is released under GPL license. As consequence it's allowed to distribute forks of CSipSimple as far as branded version are distributed under GPL license.
+If application is not distributed under GPLv3 license terms the company can be sued by copyrights owners of the application.
+
+= List of known forks =
+
+ * ippi for android (source code is hosted on a CSipSimple branch - changes are not significant)
+ * keyyoVoip for android (source code is available here : http://code.google.com/p/keyyo-mobile-android-voip/ )
+ * Voxofon VoIP addon (only the addon part). (code *of the addon application* can be requested to voxofon but changes are not significant from CSipSimple).
+ * Mytunu VoIP plugin (only the addon part). (code *of the addon application* can be requested to mytunu but changes are not significant from CSipSimple).
+
+
+= List of forks with pending regularisation regarding GPL =
+ * VoipAlot. -- I sent a request to get source code of modified version. Waiting for reply.
