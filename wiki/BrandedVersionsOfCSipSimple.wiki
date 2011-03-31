@@ -11,8 +11,4 @@ If application is not distributed under GPLv3 license terms the company can be s
  * keyyoVoip for android (source code is available here : http://code.google.com/p/keyyo-mobile-android-voip/ )
  * Voxofon VoIP addon (only the addon part). (code *of the addon application* can be requested to voxofon but changes are not significant from CSipSimple).
  * Mytunu VoIP plugin (only the addon part). (code *of the addon application* can be requested to mytunu but changes are not significant from CSipSimple).
-
-
-= List of forks with pending regularisation regarding GPL =
- * VoipAlot. -- I sent a request to get source code of modified version. Waiting for reply.
- * Mobyler -- and actually almost all android SIP application distributed by Finarea.
+ * VoipAlot, Mobyler and some other android SIP application distributed by Finarea / Dellmont (code of applications can be requested to Dellmont).
