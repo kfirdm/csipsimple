@@ -1,4 +1,5 @@
 #summary Tutorials about how to use CSipSimple
+#sidebar MainSideBar
 
 = Introduction =
 
