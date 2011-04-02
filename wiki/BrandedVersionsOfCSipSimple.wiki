@@ -12,3 +12,7 @@ If application is not distributed under GPLv3 license terms the company can be s
  * Voxofon VoIP addon (only the addon part). (code *of the addon application* can be requested to voxofon but changes are not significant from CSipSimple).
  * Mytunu VoIP plugin (only the addon part). (code *of the addon application* can be requested to mytunu but changes are not significant from CSipSimple).
  * VoipAlot, Mobyler and some other android SIP application distributed by Finarea / Dellmont (code of applications can be requested to Dellmont).
+ * Telna SIP phone client (code of applications can be requested to Telna).
+
+= List of forks that still need to confirm they correctly respect GPL license =
+ * Voipon3G
