@@ -3,6 +3,7 @@
    * [HowToInstallDevVersion  Install latest version]
    * [HowToCollectLogs How to get logs]
    * [ExpertSettingMode The Expert setting mode]
+   * [Tutorials]
  * Use the power of the application
    * [UsingFilters Using filtering rules]
  * For developers
