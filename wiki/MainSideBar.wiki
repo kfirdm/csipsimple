@@ -14,3 +14,4 @@
    * [Screenshots]
    * [PermissionsUse What permissions this app uses?]
    * [Donate]
+   * [BrandedVersionsOfCSipSimple Branded versions of CSipSimple]
