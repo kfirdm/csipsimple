@@ -4,7 +4,6 @@
 
 = Steps to install a dev version =
 
-  # *Really important* Uninstall the CSipSimple version installed from the market. In most case development version and devs versions are not compatible (you will lost configuration but there is no other way)
   # Activate development application on your android :
     * Go to the phone settings (On home screen, press menu > Settings (or use the Settings app)
     * Click on Application menu
