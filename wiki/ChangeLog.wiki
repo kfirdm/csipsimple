@@ -1,6 +1,16 @@
 #summary This page allow you to track what are changes done on CSipSimple
 #labels Featured,Phase-Support
 
+= 0.02 =
+ * Many bug fixes 
+ * Battery usage improvement
+ * Theming of the app by third party app (+ gingerbread theme by default)
+ * Multiple calls management (conferencing) - OPTIONAL -
+ * Compact mode option to reduce network usage
+ * Android 2.3 integration : new micro and audio mode
+ * Android 2.3 integration : seamless call intents
+
+
 = 0.01 =
  * Voice mails
  * SILK codec
