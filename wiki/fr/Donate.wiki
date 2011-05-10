@@ -34,3 +34,16 @@ Toutefois, si le temps vous manque, et si vous souhaitez contribuer, une aide fi
 || 12/2010 || Frederic Metz ||
 || 12/2010 || [http://asterisk-java.org Stefan Reuter] ||
 || 12/2010 || Steve Loosley ||
+|| 12/2010 || [http://emstar.com Emstar Solutions, LLC] ||
+|| 12/2010 || markmar1945 ||
+|| 01/2011 || Tobias ||
+|| 01/2011 || [https://guardianproject.info The Guardian Project] ||
+|| 01/2011 || [http://www.mozzarellashop.it Mozzarella Shop] ||
+|| 02/2011 || Emil Muratov ||
+|| 03/2011 || [https://www.camundanet.com/ Camunda Networks Inc.] ||
+|| 03/2011 || Lasse Bjerre ||
+|| 04/2011 || [http://www.deltathree.com/ Deltathree] ||
+|| 04/2011 || [https://www.pulsetele.com/ Pulse Telecom] ||
+|| 04/2011 || Travis Rambert ||
+|| 04/2011 || Ralph Burleson ||
+|| 05/2011 || Bruno Berteau ||
