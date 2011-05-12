@@ -11,6 +11,7 @@
    * [Licensing The application licenses]
    * [Translations]
  * About
+   * [WhatIsSIP What is SIP?]
    * [Screenshots]
    * [PermissionsUse What permissions this app uses?]
    * [Donate]
