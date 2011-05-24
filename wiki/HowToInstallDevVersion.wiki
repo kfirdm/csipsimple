@@ -26,3 +26,14 @@ If you need to report logs on it, follow instructions here : HowToCollectLogs
 = Keep up to date =
 Using development version you'll not be automatically upgraded from market. As consequence you should manually install newer dev version.
 On [http://nightlies.csipsimple.com/trunk/ Nightly builds website] builds are done each night with the most recent version from the SVN. Be careful with these versions cause it could be broken. In this case we appreciate feedback ;)
+
+= About versions =
+On the nightly build website there is several branch that you can choose to use.
+ * Trunk : it's just the standard version of CSipSimple. It contains both armeabi and armeabi-v7a versions of the library. The android OS will choose automatically the relevant version for your device. One of the version of the lib will be useless. If you don't know what mean armeabi and armeabi-v7a, choose this one :)
+ * Armeabi : it's CSipSimple with the native library only built for armeabi CPU. This version should also be compatible with armeabi-v7a devices but it will not be optimised for these devices (for example no floating point support and slower enc/decode. The goal of this version is to provide a smaller package for those that know their device does not support armeabi-v7a. (You can check with apps such as Device Infos for example to know what CPU ABI are supported by your device).
+ * Armeabi-v7a : it's CSipSimple the native library only built for armeabi-v7a. If you are running a device without v7a support, it will just not work at all. Else the goal is also to have a smaller package.
+ * Armv4t : this is CSipSimple with the native library built for special CPU, armv4t. This CPU is not supported by android official tools. However few device has this CPU (it's usually really cheap devices). This build should be compatible with devices that has a CPU only compatible with armv4t set. It may also work on more recent device, but it's very very not optimized. So use it only if you have a device with armv4t CPU.
+ * TLS : this build is CSipSimple with TLS/ZRTP support. The build produced is bigger cause in order to be compatible with all devices it has to bring openssl library. It also contains both armeabi and armeabi-v7a arch. If your SIP server do SIP over TLS use this build. If you plan to use the ZRTP feature use this build. 
+ * Gingerbread : this build is an experimental branch for the audio implementation used. Android 2.3 introduced a new way to stream audio and record audio. This way is announced to be the future best way to do things (with lower latency). For now, even on android 2.3, no device really implement that in a low latency way... but CSipSimple is already ready for that !!! :) - For more technical infos about that search for openSL-ES -. This build is only compatible with android 2.3 device or higher.
+
+
