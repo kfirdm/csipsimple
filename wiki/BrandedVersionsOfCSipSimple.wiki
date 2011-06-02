@@ -18,3 +18,4 @@ If application is not distributed under GPLv3 license terms the company can be s
 
 = List of forks that still need to confirm they correctly respect GPL license =
  * Voipon3G
+ * EasyBell VoIP.
