@@ -14,8 +14,7 @@ If application is not distributed under GPLv3 license terms the company can be s
  * VoipAlot, Mobyler and some other android SIP application distributed by Finarea / Dellmont (code of applications can be requested to Dellmont).
  * Telna SIP phone client (code of applications can be requested to Telna).
  * WebsiteChat.net Live Help Chat (code will be available in csipsimple googlecode level7 branch)
- * EasyBell VoIP (code source of application to be released soon).
+ * EasyBell VoIP, smartcalls, 3gGlobal, voipcall (code source can be asked to MatrixConsultants www.matrixconsultants.com.au ).
 
 = List of forks that still need to confirm they correctly respect GPL license =
  * Voipon3G
- * Mobyler
