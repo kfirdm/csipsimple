@@ -2,6 +2,7 @@
 #labels Featured,Phase-Support
 
 = 0.02 =
+(current is 0.02-02)
  * Many bug fixes 
  * Battery usage improvement
  * Theming of the app by third party app (+ gingerbread theme by default)
