@@ -9,7 +9,7 @@ SIP is an open protocol to do Voice Over IP.
 CSipSimple is just a SIP client. It is not a SIP provider.
 To use a SIP client application you need a SIP provider.
 
-= Comparison with other domains =
+= Comparison with other internet technologies =
 If we had to compare SIP to other things you are probably more familiar with : 
 
  * SIP is a little bit like HTTP is an open protocol to navigate the internet.
