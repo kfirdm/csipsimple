@@ -149,3 +149,13 @@ Activate it and choose CSipSimple. Then you'll not be bothered anymore with this
 
 _In future release this will not be relevant anymore. You can try nightly builds if you are hurry to get something working well on gingerbread (there is also cool features for gingerbread included in latests nightlies)_
 ----
+
+= I mistake when I set up the voice mail number of my sip provider, how can I change it? =
+ * First of all, if you have to set up manually the voice mail number of your sip provider it means that the corresponding wizard for this sip provider has not yet the voice mail number automatically configured, so you should ask for that.
+ * If this is a non mainstream users provider or if you want to workaround quickly there is an easy solution :
+    # Go in accounts list
+    # Long press on the concerned account
+    # Choose wizard > Expert
+    # Click on the account row
+    # Scroll down to "Voice mail number", change it, and save
+    # Optionally you can revert to the previous wizard by reproducing point 1 to 3.
