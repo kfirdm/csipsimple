@@ -32,7 +32,7 @@ import android.widget.TextView;
 import fr.ippi.voip.app.R;
 import com.csipsimple.api.SipProfile;
 import com.csipsimple.db.DBAdapter;
-import com.csipsimple.service.ISipService;
+import com.csipsimple.api.ISipService;
 import com.csipsimple.utils.AccountListUtils;
 import com.csipsimple.utils.AccountListUtils.AccountStatusDisplay;
 import com.csipsimple.utils.Compatibility;
@@ -160,6 +160,7 @@ public class AccountChooserButton extends LinearLayout implements OnClickListene
 				return;
 			}
 			
+			Log.d(THIS_FILE, "update acc sel button "+canChangeIfValid);
 			if(service != null) {
 				for(SipProfile account: accountsList) {
 					AccountStatusDisplay accountStatusDisplay = AccountListUtils.getAccountDisplay(getContext(), service, account.id);
@@ -177,6 +178,11 @@ public class AccountChooserButton extends LinearLayout implements OnClickListene
 	}
 
 	public SipProfile getSelectedAccount() {
+		if(account == null) {
+			SipProfile retAcc = new SipProfile();
+			retAcc.id = SipProfile.GSM_ACCOUNT_ID;
+			return retAcc;
+		}
 		return account;
 	}
 	

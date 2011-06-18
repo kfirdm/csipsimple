@@ -44,12 +44,14 @@ public class Expert extends BaseImplementation {
 	private ListPreference accountTransport;
 	private CheckBoxPreference accountPublishEnabled;
 	private EditTextPreference accountRegTimeout;
-	private EditTextPreference accountKaInterval;
+//	private EditTextPreference accountKaInterval;
 	private EditTextPreference accountForceContact;
 	private CheckBoxPreference accountAllowContactRewrite;
 	private ListPreference accountContactRewriteMethod;
 	private EditTextPreference accountProxy;
 	private ListPreference accountUseSrtp;
+	private EditTextPreference accountRegDelayRefresh;
+	private EditTextPreference accountVm;
 	
 	private void bindFields() {
 		accountDisplayName = (EditTextPreference) parent.findPreference("display_name");
@@ -64,11 +66,12 @@ public class Expert extends BaseImplementation {
 		accountUseSrtp = (ListPreference) parent.findPreference("use_srtp");
 		accountPublishEnabled = (CheckBoxPreference) parent.findPreference("publish_enabled");
 		accountRegTimeout = (EditTextPreference) parent.findPreference("reg_timeout");
-		accountKaInterval = (EditTextPreference) parent.findPreference("ka_interval");
+		accountRegDelayRefresh = (EditTextPreference) parent.findPreference("reg_delay_before_refresh");
 		accountForceContact = (EditTextPreference) parent.findPreference("force_contact");
 		accountAllowContactRewrite = (CheckBoxPreference) parent.findPreference("allow_contact_rewrite");
 		accountContactRewriteMethod = (ListPreference) parent.findPreference("contact_rewrite_method");
 		accountProxy = (EditTextPreference) parent.findPreference("proxy");
+		accountVm = (EditTextPreference) parent.findPreference("vm_number");
 	}
 
 	public void fillLayout(final SipProfile account) {
@@ -87,7 +90,7 @@ public class Expert extends BaseImplementation {
 			if (scheme != null && !scheme.equals("")) {
 				accountScheme.setValue(scheme);
 			} else {
-				accountScheme.setValue("Digest");
+				accountScheme.setValue(SipProfile.CRED_SCHEME_DIGEST);
 			}
 		}
 		{
@@ -109,7 +112,7 @@ public class Expert extends BaseImplementation {
 		accountTransport.setValue(account.transport.toString());
 		accountPublishEnabled.setChecked((account.publish_enabled == 1));
 		accountRegTimeout.setText(Long.toString(account.reg_timeout));
-		accountKaInterval.setText(Long.toString(account.ka_interval));
+		accountRegDelayRefresh.setText(Long.toString(account.reg_delay_before_refresh));
 		
 		accountForceContact.setText(account.force_contact);
 		accountAllowContactRewrite.setChecked(account.allow_contact_rewrite);
@@ -120,7 +123,11 @@ public class Expert extends BaseImplementation {
 			accountProxy.setText("");
 		}
 		Log.d(THIS_FILE, "use srtp : "+account.use_srtp);
-		accountUseSrtp.setValueIndex(account.use_srtp);
+		if(account.use_srtp >= 0) {
+			accountUseSrtp.setValueIndex(account.use_srtp);
+		}
+		
+		accountVm.setText(account.vm_nbr);
 	}
 	
 
@@ -163,7 +170,7 @@ public class Expert extends BaseImplementation {
 
 		isValid &= checkField(accountDisplayName, isEmpty(accountDisplayName));
 		isValid &= checkField(accountAccId, isEmpty(accountAccId) || !isMatching(accountAccId, "[^<]*<sip(s)?:[^@]*@[^@]*>"));
-		isValid &= checkField(accountRegUri, isEmpty(accountRegUri) || !isMatching(accountRegUri, "sip(s)?:.*"));
+		isValid &= checkField(accountRegUri, !isEmpty(accountRegUri) && !isMatching(accountRegUri, "sip(s)?:.*"));
 		isValid &= checkField(accountProxy, !isEmpty(accountProxy) && !isMatching(accountProxy, "sip(s)?:.*"));
 
 		return isValid;
@@ -207,7 +214,7 @@ public class Expert extends BaseImplementation {
 			account.realm = "";
 			account.username = "";
 			account.data = "";
-			account.scheme = "Digest";
+			account.scheme = SipProfile.CRED_SCHEME_DIGEST;
 			account.datatype = SipProfile.CRED_DATA_PLAIN_PASSWD;
 		}
 
@@ -215,28 +222,43 @@ public class Expert extends BaseImplementation {
 		try {
 			account.reg_timeout = Integer.parseInt(accountRegTimeout.getText());
 		} catch (NumberFormatException e) {
-			account.reg_timeout = 0;
+			//Leave default
+			//account.reg_timeout = 900;
 		}
 		try {
-			account.ka_interval = Integer.parseInt(accountKaInterval.getText());
-		} catch (NumberFormatException e) {
-			account.ka_interval = 0;
+			int reg_delay =  Integer.parseInt(accountRegDelayRefresh.getText());
+			if(reg_delay > 0) {
+				account.reg_delay_before_refresh = reg_delay;
+			}
+		}catch (NumberFormatException e) {
+			//Leave default
+			//account.reg_timeout = 900;
 		}
+		
 		try {
 			account.contact_rewrite_method = Integer.parseInt(accountContactRewriteMethod.getValue());
 		} catch (NumberFormatException e) {
 			//DO nothing
 		}
 		account.allow_contact_rewrite = accountAllowContactRewrite.isChecked();
-		String forceContact = accountForceContact.getText();
+		String forceContact = getText(accountForceContact);
 		if(!TextUtils.isEmpty(forceContact)) {
-			account.force_contact = getText(accountForceContact);
+			account.force_contact = forceContact;
+		}else {
+			account.force_contact = "";
 		}
 		
 		if (!isEmpty(accountProxy)) {
 			account.proxies = new String[] { accountProxy.getText() };
 		} else {
 			account.proxies = null;
+		}
+		
+		String vmNbr = getText(accountVm);
+		if(!TextUtils.isEmpty(vmNbr)) {
+			account.vm_nbr = vmNbr;
+		}else {
+			account.vm_nbr = "";
 		}
 		
 		return account;

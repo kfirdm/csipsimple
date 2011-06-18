@@ -26,6 +26,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.net.Uri;
 import android.provider.CallLog;
 import android.text.Spannable;
 import android.text.SpannableString;
@@ -33,36 +34,47 @@ import android.text.TextUtils;
 import android.text.style.StyleSpan;
 
 import fr.ippi.voip.app.R;
+import com.csipsimple.api.SipProfile;
+import com.csipsimple.api.SipProfileState;
 import com.csipsimple.api.SipManager;
-import com.csipsimple.models.AccountInfo;
-import com.csipsimple.models.CallInfo;
+import com.csipsimple.api.SipCallSession;
+import com.csipsimple.api.SipUri;
 import com.csipsimple.models.SipMessage;
-import com.csipsimple.utils.SipUri;
+import com.csipsimple.utils.CustomDistribution;
 import com.csipsimple.widgets.RegistrationNotification;
 
 public class SipNotifications {
 
 	private NotificationManager notificationManager;
-	private RegistrationNotification contentView;
 	private Notification inCallNotification;
 	private Context context;
 	private Notification missedCallNotification;
 	private Notification messageNotification;
+	private Notification messageVoicemail;
 
 	public static final int REGISTER_NOTIF_ID = 1;
 	public static final int CALL_NOTIF_ID = REGISTER_NOTIF_ID + 1;
 	public static final int CALLLOG_NOTIF_ID = REGISTER_NOTIF_ID + 2;
 	public static final int MESSAGE_NOTIF_ID = REGISTER_NOTIF_ID + 3;
+	public static final int VOICEMAIL_NOTIF_ID = REGISTER_NOTIF_ID + 4;
+	
+	private static boolean isInit = false;
 	
 	public SipNotifications(Context aContext) {
 		context = aContext;
 		notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+		
+		if(!isInit) {
+			cancelAll();
+			cancelCalls();
+			isInit = true;
+		}
 	}
 	
 	//Announces
 
 	//Register
-	public void notifyRegisteredAccounts(ArrayList<AccountInfo> activeAccountsInfos) {
+	public synchronized void notifyRegisteredAccounts(ArrayList<SipProfileState> activeAccountsInfos, boolean showNumbers) {
 		int icon = R.drawable.sipok;
 		CharSequence tickerText = context.getString(R.string.service_ticker_registered_text);
 		long when = System.currentTimeMillis();
@@ -73,9 +85,8 @@ public class SipNotifications {
 		notificationIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		PendingIntent contentIntent = PendingIntent.getActivity(context, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
-		if (contentView == null) {
-			contentView = new RegistrationNotification(context.getPackageName());
-		}
+		
+		RegistrationNotification contentView = new RegistrationNotification(context.getPackageName());
 		contentView.clearRegistrations();
 		contentView.addAccountInfos(context, activeAccountsInfos);
 
@@ -83,14 +94,16 @@ public class SipNotifications {
 		// contentText, contentIntent);
 		notification.contentIntent = contentIntent;
 		notification.contentView = contentView;
-		notification.flags = Notification.FLAG_ONGOING_EVENT | Notification.FLAG_NO_CLEAR;
-		// notification.flags = Notification.FLAG_FOREGROUND_SERVICE;
-
+		notification.flags = Notification.FLAG_ONGOING_EVENT | Notification.FLAG_NO_CLEAR | Notification.FLAG_ONLY_ALERT_ONCE;
+		if(showNumbers) {
+			notification.number = activeAccountsInfos.size();
+		}
+		
 		notificationManager.notify(REGISTER_NOTIF_ID, notification);
 	}
 
 	// Calls
-	public void showNotificationForCall(CallInfo currentCallInfo2) {
+	public void showNotificationForCall(SipCallSession currentCallInfo2) {
 		// This is the pending call notification
 		//int icon = R.drawable.ic_incall_ongoing;
 		int icon = android.R.drawable.stat_sys_phone_call;
@@ -138,13 +151,16 @@ public class SipNotifications {
 	}
 	
 	public void showNotificationForMessage(SipMessage msg) {
+		if(!CustomDistribution.supportMessaging()) {
+			return;
+		}
 		//CharSequence tickerText = context.getText(R.string.instance_message);
 		if(!msg.getFrom().equalsIgnoreCase(viewingRemoteFrom)) {
-			String from = SipUri.getDisplayedSimpleUri(msg.getFrom());
+			String from = msg.getDisplayName();
 			CharSequence tickerText = buildTickerMessage(context, from, msg.getBody());
 			
 			if(messageNotification == null) {
-				messageNotification = new Notification(SipUri.isPhoneNumber(from)?R.drawable.stat_notify_sms: android.R.drawable.stat_notify_chat, tickerText, System.currentTimeMillis());
+				messageNotification = new Notification(SipUri.isPhoneNumber(from) ? R.drawable.stat_notify_sms: android.R.drawable.stat_notify_chat, tickerText, System.currentTimeMillis());
 				messageNotification.flags = Notification.FLAG_ONLY_ALERT_ONCE | Notification.FLAG_SHOW_LIGHTS | Notification.FLAG_AUTO_CANCEL;
 				messageNotification.defaults |= Notification.DEFAULT_SOUND;
 				messageNotification.defaults |= Notification.DEFAULT_LIGHTS;
@@ -160,6 +176,35 @@ public class SipNotifications {
 			messageNotification.setLatestEventInfo(context, from, msg.getBody(), contentIntent);
 			notificationManager.notify(MESSAGE_NOTIF_ID, messageNotification);
 		}
+	}
+	
+	
+
+	public void showNotificationForVoiceMail(SipProfile acc, int numberOfMessages, String voiceMailNumber) {
+		if(messageVoicemail == null) {
+			messageVoicemail = new Notification(android.R.drawable.stat_notify_voicemail, context.getString(R.string.voice_mail), System.currentTimeMillis());
+			messageVoicemail.flags = Notification.FLAG_ONLY_ALERT_ONCE | Notification.FLAG_SHOW_LIGHTS | Notification.FLAG_AUTO_CANCEL;
+			messageVoicemail.defaults |= Notification.DEFAULT_SOUND;
+			messageVoicemail.defaults |= Notification.DEFAULT_LIGHTS;
+		}
+		
+		Intent notificationIntent = new Intent(Intent.ACTION_CALL);
+		notificationIntent.setData(Uri.parse(voiceMailNumber));
+		if(acc != null) {
+			notificationIntent.putExtra(SipProfile.FIELD_ACC_ID, acc.id);
+		}
+		notificationIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+		
+		PendingIntent contentIntent = PendingIntent.getActivity(context, 0, notificationIntent, PendingIntent.FLAG_CANCEL_CURRENT);
+		
+		String messageText = "";
+		if(acc != null) {
+			messageText += acc.getProfileName() + " : ";
+		}
+		messageText += Integer.toString(numberOfMessages);
+		
+		messageVoicemail.setLatestEventInfo(context, context.getString(R.string.voice_mail), messageText, contentIntent);
+		notificationManager.notify(VOICEMAIL_NOTIF_ID, messageVoicemail);
 	}
 	
 	private static String viewingRemoteFrom = null;
@@ -210,7 +255,18 @@ public class SipNotifications {
 		notificationManager.cancel(MESSAGE_NOTIF_ID);
 	}
 	
-	public void cancelAll() {
-		notificationManager.cancelAll();
+	public void cancelVoicemails() {
+		notificationManager.cancel(VOICEMAIL_NOTIF_ID);
 	}
+	
+	
+	public void cancelAll() {
+		//notificationManager.cancelAll();
+		//Do not cancel calls notification since it's possible that there is still an ongoing call.
+		cancelMessages();
+		cancelMissedCalls();
+		cancelRegisters();
+		cancelVoicemails();
+	}
+
 }

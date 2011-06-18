@@ -18,20 +18,32 @@
 package com.csipsimple.utils;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Date;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager.NameNotFoundException;
+import android.net.Uri;
+import android.text.format.DateFormat;
 
 public class CollectLogs {
 
 	private static final Object LINE_SEPARATOR = "\n";
 	private static final String THIS_FILE = "Collect Logs";
 	
+	private static class LogResult {
+		public StringBuilder head;
+		public File file;
+		
+		public LogResult(StringBuilder aHead, File aFile) {
+			head = aHead;
+			file = aFile;
+		}
+	};
 
 	/*Usage: logcat [options] [filterspecs]
     options include:
@@ -69,12 +81,28 @@ public class CollectLogs {
 
     If not specified with -v, format is set from ANDROID_PRINTF_LOG
     or defaults to "brief"*/
-	public final static StringBuilder getLogs() {
+	public final static LogResult getLogs() {
+		//Clear old files
+		PreferencesWrapper.cleanLogsFiles();
+		
         final StringBuilder log = new StringBuilder();
+        File outFile = null;
         try{
-            ArrayList<String> commandLine = new ArrayList<String>();
-            commandLine.add("logcat");//$NON-NLS-1$
-            commandLine.add("-d");//$NON-NLS-1$
+        	ArrayList<String> commandLine = new ArrayList<String>();
+            commandLine.add("logcat");
+        	
+        	
+        	File dir = PreferencesWrapper.getLogsFolder();
+        	if( dir != null) {
+    			Date d = new Date();
+    			outFile = new File(dir.getAbsoluteFile() + File.separator + "logs_"+DateFormat.format("MM-dd-yy_kkmmss", d)+".txt");
+    			
+    			commandLine.add("-f");
+    			commandLine.add(outFile.getAbsolutePath());
+    			Log.d(THIS_FILE, commandLine.toString());
+        	}
+
+            commandLine.add("-d");
             commandLine.add("D");
             
             Process process = Runtime.getRuntime().exec(commandLine.toArray(new String[0]));
@@ -91,8 +119,8 @@ public class CollectLogs {
             Log.e(THIS_FILE, "Collect logs failed : ", e);//$NON-NLS-1$
             log.append("Unable to get logs : " + e.toString());
         }
-        
-        return log;
+
+        return new LogResult(log, outFile);
 	}
 	
 	public final static StringBuilder getDeviceInfo() {
@@ -120,12 +148,6 @@ public class CollectLogs {
         log.append(LINE_SEPARATOR); 
 		log.append("android.os.Build.VERSION.SDK : " + android.os.Build.VERSION.SDK );
         log.append(LINE_SEPARATOR); 
-		try {
-			log.append("android.os.Build.VERSION.SDK_INT : " + android.os.Build.VERSION.SDK_INT);
-	        log.append(LINE_SEPARATOR); 
-		}catch(Exception e) {
-			//android 1.5
-		}
 		
 		return log;
 	}
@@ -134,21 +156,24 @@ public class CollectLogs {
 		String result = "";
 		result += "Based on the GPL CSipSimple version : ";
 		
-		PackageInfo pinfo;
-		try {
-			pinfo = ctx.getPackageManager().getPackageInfo(ctx.getPackageName(), 0);
+		PackageInfo pinfo = PreferencesWrapper.getCurrentPackageInfos(ctx);
+		if(pinfo != null) {
 			result += pinfo.versionName + " r" + pinfo.versionCode;
-		} catch (NameNotFoundException e) {
-			Log.e(THIS_FILE, "Impossible to find version of current package !!");
 		}
 		return result;
 	}
 	
+	
+	
 	public static Intent getLogReportIntent(String userComment, Context ctx) {
+		LogResult logs = getLogs();
+		
+		
 		Intent sendIntent = new Intent(Intent.ACTION_SEND);
         sendIntent.putExtra(Intent.EXTRA_SUBJECT, "CSipSimple Error-Log report");
-        sendIntent.setType("text/plain");
         sendIntent.putExtra(Intent.EXTRA_EMAIL, new String[] { CustomDistribution.getSupportEmail() });
+        
+        
         
         StringBuilder log = new StringBuilder();
         log.append(userComment);
@@ -158,13 +183,39 @@ public class CollectLogs {
         log.append(LINE_SEPARATOR);
         log.append(getDeviceInfo());
         log.append(LINE_SEPARATOR);
-        log.append(getLogs());
+        log.append(logs.head);
+        
+
+        if(logs.file != null) {
+        	sendIntent.putExtra( Intent.EXTRA_STREAM, Uri.fromFile(logs.file) );
+        	/*
+        	BufferedReader buf;
+			String line;
+			try {
+				buf = new BufferedReader(new FileReader(logs.second));
+			
+				while( (line = buf.readLine()) != null ) {
+					 log.append(line);
+				}
+			
+			} catch (FileNotFoundException e) {
+				Log.e(THIS_FILE, "Impossible to open log file", e);
+			} catch (IOException e) {
+				Log.e(THIS_FILE, "Impossible to read log file", e);
+			}
+			*/
+        }
+        
+
         log.append(LINE_SEPARATOR);
         log.append(LINE_SEPARATOR);
         log.append(userComment);
+        
+        sendIntent.setType("text/plain");
         
         sendIntent.putExtra(Intent.EXTRA_TEXT, log.toString());
         
         return sendIntent;
 	}
+	
 }

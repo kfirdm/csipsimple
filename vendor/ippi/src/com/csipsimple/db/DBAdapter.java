@@ -20,8 +20,6 @@ package com.csipsimple.db;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.pjsip.pjsua.pjsip_status_code;
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
@@ -33,6 +31,7 @@ import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.provider.CallLog;
 
+import com.csipsimple.api.SipCallSession;
 import com.csipsimple.api.SipManager;
 import com.csipsimple.api.SipProfile;
 import com.csipsimple.models.Filter;
@@ -43,7 +42,7 @@ public class DBAdapter {
 	static String THIS_FILE = "SIP ACC_DB";
 
 	private static final String DATABASE_NAME = "com.csipsimple.db";
-	private static final int DATABASE_VERSION = 16;
+	private static final int DATABASE_VERSION = 26;
 	private static final String ACCOUNTS_TABLE_NAME = "accounts";
 	private static final String CALLLOGS_TABLE_NAME = "calllogs";
 	private static final String FILTERS_TABLE_NAME = "outgoing_filters";
@@ -79,18 +78,26 @@ public class DBAdapter {
 			+ SipProfile.FIELD_CONTACT_PARAMS 		+ " TEXT,"
 			+ SipProfile.FIELD_CONTACT_URI_PARAMS	+ " TEXT,"
 			+ SipProfile.FIELD_TRANSPORT	 		+ " INTEGER," 
-			+ SipProfile.FIELD_USE_SRTP	 		+ " INTEGER," 
+			+ SipProfile.FIELD_USE_SRTP	 			+ " INTEGER," 
+			+ SipProfile.FIELD_USE_ZRTP	 			+ " INTEGER," 
 
 			// Proxy infos
 			+ SipProfile.FIELD_PROXY				+ " TEXT,"
+			+ SipProfile.FIELD_REG_USE_PROXY		+ " INTEGER,"
 
 			// And now cred_info since for now only one cred info can be managed
 			// In future release a credential table should be created
 			+ SipProfile.FIELD_REALM 				+ " TEXT," 
 			+ SipProfile.FIELD_SCHEME 				+ " TEXT," 
-			+ SipProfile.FIELD_USERNAME			+ " TEXT," 
+			+ SipProfile.FIELD_USERNAME				+ " TEXT," 
 			+ SipProfile.FIELD_DATATYPE 			+ " INTEGER," 
-			+ SipProfile.FIELD_DATA 				+ " TEXT"
+			+ SipProfile.FIELD_DATA 				+ " TEXT,"
+			
+			
+			+ SipProfile.FIELD_SIP_STACK 			+ " INTEGER," 
+			+ SipProfile.FIELD_VOICE_MAIL_NBR		+ " TEXT,"
+			+ SipProfile.FIELD_REG_DELAY_BEFORE_REFRESH	+ " INTEGER" 
+			
 		+ ");";
 	
 	private final static String TABLE_CALLLOGS_CREATE = "CREATE TABLE IF NOT EXISTS "
@@ -132,7 +139,8 @@ public class DBAdapter {
 			+ SipMessage.FIELD_TYPE				+ " INTEGER,"
 			+ SipMessage.FIELD_DATE				+ " INTEGER,"
 			+ SipMessage.FIELD_STATUS			+ " INTEGER,"
-			+ SipMessage.FIELD_READ				+ " BOOLEAN"
+			+ SipMessage.FIELD_READ				+ " BOOLEAN,"
+			+ SipMessage.FIELD_FROM_FULL		+ " TEXT"
 		+");";
 	
 
@@ -197,7 +205,80 @@ public class DBAdapter {
 				}
 				
 			}
-
+			if(oldVersion < 17) {
+				try {
+					db.execSQL("UPDATE " + ACCOUNTS_TABLE_NAME + " SET " + SipProfile.FIELD_KA_INTERVAL + "=0");
+				}catch(SQLiteException e) {
+					Log.e(THIS_FILE, "Upgrade fail... maybe a crappy rom...", e);
+				}
+			}
+			if(oldVersion < 18) {
+				try {
+					//As many users are crying... remove auto transport and force udp
+					db.execSQL("UPDATE " + ACCOUNTS_TABLE_NAME + " SET " + SipProfile.FIELD_TRANSPORT + "="+SipProfile.TRANSPORT_UDP +" WHERE "+ SipProfile.FIELD_TRANSPORT + "=" + SipProfile.TRANSPORT_AUTO);
+				}catch(SQLiteException e) {
+					Log.e(THIS_FILE, "Upgrade fail... maybe a crappy rom...", e);
+				}
+			}
+			if(oldVersion < 22) {
+				try {
+					//Add use proxy row
+					db.execSQL("ALTER TABLE " + ACCOUNTS_TABLE_NAME + " ADD "+
+							SipProfile.FIELD_REG_USE_PROXY + " INTEGER");
+					db.execSQL("UPDATE " + ACCOUNTS_TABLE_NAME + " SET " + SipProfile.FIELD_REG_USE_PROXY + "=3");
+					//Add stack field
+					db.execSQL("ALTER TABLE " + ACCOUNTS_TABLE_NAME + " ADD "+
+							SipProfile.FIELD_SIP_STACK + " INTEGER");
+					db.execSQL("UPDATE " + ACCOUNTS_TABLE_NAME + " SET " + SipProfile.FIELD_SIP_STACK + "=0");
+					Log.d(THIS_FILE, "Upgrade done");
+				}catch(SQLiteException e) {
+					Log.e(THIS_FILE, "Upgrade fail... maybe a crappy rom...", e);
+				}
+			}
+			if(oldVersion < 23) {
+				try {
+					//Add use zrtp row
+					db.execSQL("ALTER TABLE " + ACCOUNTS_TABLE_NAME + " ADD "+
+							SipProfile.FIELD_USE_ZRTP + " INTEGER");
+					db.execSQL("UPDATE " + ACCOUNTS_TABLE_NAME + " SET " + SipProfile.FIELD_USE_ZRTP + "=0");
+				}catch(SQLiteException e) {
+					Log.e(THIS_FILE, "Upgrade fail... maybe a crappy rom...", e);
+				}
+			}
+			if(oldVersion < 24) {
+				try {
+					//Add voice mail row
+					db.execSQL("ALTER TABLE " + ACCOUNTS_TABLE_NAME + " ADD "+
+							SipProfile.FIELD_VOICE_MAIL_NBR + " TEXT");
+					db.execSQL("UPDATE " + ACCOUNTS_TABLE_NAME + " SET " + SipProfile.FIELD_VOICE_MAIL_NBR + "=''");
+					Log.d(THIS_FILE, "Upgrade done");
+				}catch(SQLiteException e) {
+					Log.e(THIS_FILE, "Upgrade fail... maybe a crappy rom...", e);
+				}
+			}
+			if(oldVersion < 25) {
+				try {
+					//Add voice mail row
+					db.execSQL("ALTER TABLE " + MESSAGES_TABLE_NAME + " ADD "+
+							SipMessage.FIELD_FROM_FULL + " TEXT");
+					db.execSQL("UPDATE " + MESSAGES_TABLE_NAME + " SET " + SipMessage.FIELD_FROM_FULL + "="+ SipMessage.FIELD_FROM);
+					Log.d(THIS_FILE, "Upgrade done");
+				}catch(SQLiteException e) {
+					Log.e(THIS_FILE, "Upgrade fail... maybe a crappy rom...", e);
+				}
+			}
+			if(oldVersion < 26) {
+				try {
+					//Add reg delay before refresh row
+					db.execSQL("ALTER TABLE " + ACCOUNTS_TABLE_NAME + " ADD "+
+							SipProfile.FIELD_REG_DELAY_BEFORE_REFRESH + " INTEGER");
+					db.execSQL("UPDATE " + ACCOUNTS_TABLE_NAME + " SET " + SipProfile.FIELD_REG_DELAY_BEFORE_REFRESH + "=-1");
+					Log.d(THIS_FILE, "Upgrade done");
+				}catch(SQLiteException e) {
+					Log.e(THIS_FILE, "Upgrade fail... maybe a crappy rom...", e);
+				}
+			}
+			
 			onCreate(db);
 		}
 	}
@@ -249,7 +330,6 @@ public class DBAdapter {
 	 * @return true if succeed
 	 */
 	public boolean updateAccount(SipProfile account) {
-		
 		return db.update(ACCOUNTS_TABLE_NAME, account.getDbContentValues(),
 				SipProfile.FIELD_ID + "=" + account.id, null) > 0;
 	}
@@ -453,9 +533,11 @@ public class DBAdapter {
 		return numRows;
 	}
 	
-	public int countAvailableAccountsForNumber(String number) {
+
+	public void removeAllAccounts() {
+		db.delete(FILTERS_TABLE_NAME, "1", null);
+		db.delete(ACCOUNTS_TABLE_NAME, "1", null);
 		
-		return 0;
 	}
 	
 	
@@ -663,14 +745,17 @@ public class DBAdapter {
 				new String[]{
 					"ROWID AS _id",
 					SipMessage.FIELD_FROM, 
+					SipMessage.FIELD_FROM_FULL, 
+					SipMessage.FIELD_TO, 
+					"CASE WHEN "+SipMessage.FIELD_FROM+"='SELF' THEN "+SipMessage.FIELD_TO+" WHEN "+SipMessage.FIELD_FROM+"!='SELF' THEN "+SipMessage.FIELD_FROM+" END AS message_ordering",
 					SipMessage.FIELD_BODY, 
 					"MAX(" + SipMessage.FIELD_DATE + ") AS " + SipMessage.FIELD_DATE,
 					"MIN(" + SipMessage.FIELD_READ + ") AS " + SipMessage.FIELD_READ,
 					//SipMessage.FIELD_READ,
 					"COUNT(" + SipMessage.FIELD_DATE + ") AS counter"
 				}, 
-				SipMessage.FIELD_TYPE+"="+SipMessage.MESSAGE_TYPE_INBOX, null, 
-				SipMessage.FIELD_FROM, null, 
+				SipMessage.FIELD_TYPE+" in ("+SipMessage.MESSAGE_TYPE_INBOX+","+SipMessage.MESSAGE_TYPE_SENT+")", null, 
+				"message_ordering", null, 
 				SipMessage.FIELD_DATE+" DESC");
 	}
 	
@@ -683,7 +768,8 @@ public class DBAdapter {
 					SipMessage.FIELD_DATE, 
 					SipMessage.FIELD_MIME_TYPE,
 					SipMessage.FIELD_TYPE,
-					SipMessage.FIELD_STATUS
+					SipMessage.FIELD_STATUS,
+					SipMessage.FIELD_FROM_FULL
 				}, SipMessage.THREAD_SELECTION,
 				new String[] {
 					remoteFrom,
@@ -715,8 +801,8 @@ public class DBAdapter {
 		ContentValues args = new ContentValues();
 		args.put(SipMessage.FIELD_TYPE, messageType);
 		args.put(SipMessage.FIELD_STATUS, status);
-		if(status != pjsip_status_code.PJSIP_SC_OK.swigValue() 
-				&& status != pjsip_status_code.PJSIP_SC_ACCEPTED.swigValue()) {
+		if(status != SipCallSession.StatusCode.OK 
+			&& status != SipCallSession.StatusCode.ACCEPTED ) {
 			args.put(SipMessage.FIELD_BODY, body + " // " + reason);
 		}
 		return db.update(MESSAGES_TABLE_NAME, args,
@@ -725,5 +811,5 @@ public class DBAdapter {
 				SipMessage.FIELD_TYPE+ "="+SipMessage.MESSAGE_TYPE_QUEUED, 
 				new String[] {sTo, body}) > 0;
 	}
-	
+
 }

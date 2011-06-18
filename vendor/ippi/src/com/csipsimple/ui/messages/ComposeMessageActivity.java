@@ -17,7 +17,9 @@
  */
 package com.csipsimple.ui.messages;
 
-import org.pjsip.pjsua.pjsip_status_code;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import android.app.Activity;
 import android.content.BroadcastReceiver;
@@ -49,16 +51,17 @@ import android.widget.ResourceCursorAdapter;
 import android.widget.TextView;
 
 import fr.ippi.voip.app.R;
+import com.csipsimple.api.SipCallSession;
 import com.csipsimple.api.SipManager;
 import com.csipsimple.api.SipProfile;
+import com.csipsimple.api.SipUri;
 import com.csipsimple.db.DBAdapter;
 import com.csipsimple.models.SipMessage;
-import com.csipsimple.service.ISipService;
+import com.csipsimple.api.ISipService;
 import com.csipsimple.service.SipNotifications;
 import com.csipsimple.service.SipService;
 import com.csipsimple.ui.PickupSipUri;
 import com.csipsimple.utils.Log;
-import com.csipsimple.utils.SipUri;
 import com.csipsimple.utils.SmileyParser;
 import com.csipsimple.widgets.AccountChooserButton;
 
@@ -68,6 +71,7 @@ public class ComposeMessageActivity extends Activity implements OnClickListener 
 	private String remoteFrom;
 	private ListView messageList;
 	private TextView fromText;
+	private TextView fullFromText;
 	private EditText bodyInput;
 	private AccountChooserButton accountChooserButton;
 	private Button sendButton;
@@ -86,7 +90,8 @@ public class ComposeMessageActivity extends Activity implements OnClickListener 
         Log.d(THIS_FILE, "Creating compose message");
         
         messageList = (ListView) findViewById(R.id.history);
-        fromText = (TextView) findViewById(R.id.subject);
+        fullFromText = (TextView) findViewById(R.id.subject);
+        fromText = (TextView) findViewById(R.id.subjectLabel);
         bodyInput = (EditText) findViewById(R.id.embedded_text_editor);
         accountChooserButton = (AccountChooserButton) findViewById(R.id.accountChooserButton);
         sendButton = (Button) findViewById(R.id.send_button);
@@ -129,7 +134,15 @@ public class ComposeMessageActivity extends Activity implements OnClickListener 
 		
 
         bindService(new Intent(this, SipService.class), connection, Context.BIND_AUTO_CREATE);
-        setFromField(getIntent().getStringExtra(SipMessage.FIELD_FROM));
+        
+        Intent intent = getIntent();
+        String from = intent.getStringExtra(SipMessage.FIELD_FROM);
+		String fullForm = intent.getStringExtra(SipMessage.FIELD_FROM_FULL);
+		if(fullForm == null) {
+			fullForm = from;
+		}
+		setFromField(from, fullForm);
+		
         if(remoteFrom == null) {
 			chooseSipUri();
 		}
@@ -177,7 +190,12 @@ public class ComposeMessageActivity extends Activity implements OnClickListener 
 	protected void onNewIntent(Intent intent) {
 		super.onNewIntent(intent);
 		setIntent(intent);
-		setFromField(intent.getStringExtra(SipMessage.FIELD_FROM));
+		String from = intent.getStringExtra(SipMessage.FIELD_FROM);
+		String fullForm = intent.getStringExtra(SipMessage.FIELD_FROM_FULL);
+		if(fullForm == null) {
+			fullForm = from;
+		}
+		setFromField(from, fullForm);
 		if(remoteFrom == null) {
 			chooseSipUri();
 		}
@@ -189,7 +207,8 @@ public class ComposeMessageActivity extends Activity implements OnClickListener 
 		switch (requestCode) {
 		case PICKUP_SIP_URI:
 			if(resultCode == RESULT_OK) {
-				setFromField(data.getStringExtra(Intent.EXTRA_PHONE_NUMBER));
+				String from = data.getStringExtra(Intent.EXTRA_PHONE_NUMBER);
+				setFromField(from, from);
 			}
 			if(remoteFrom == null) {
 				finish();
@@ -236,21 +255,23 @@ public class ComposeMessageActivity extends Activity implements OnClickListener 
 		accountChooserButton.updateRegistration(canChangeIfValid);
 	}
 	
-    public static Intent createIntent(Context context, String from) {
+    public static Intent createIntent(Context context, String from, String fromFull) {
         Intent intent = new Intent(context, ComposeMessageActivity.class);
 
         if (from != null) {
             intent.putExtra(SipMessage.FIELD_FROM, from);
+            intent.putExtra(SipMessage.FIELD_FROM_FULL, fromFull);
         }
 
         return intent;
    }
     
-    private void setFromField(String from) {
+    private void setFromField(String from, String fullFrom) {
     	if(from != null) {
     		if(remoteFrom != from) {
     			remoteFrom = from;
     			fromText.setText(remoteFrom);
+    			fullFromText.setText(SipUri.getDisplayedSimpleContact(fullFrom));
     			loadMessageContent();
     			notifications.setViewingMessageFrom(remoteFrom);
     		}
@@ -263,6 +284,9 @@ public class ComposeMessageActivity extends Activity implements OnClickListener 
 		TextView errorView;
 		ImageView deliveredIndicator;
 	}
+	
+	private static SimpleDateFormat dateFormatter = new SimpleDateFormat("HH:mm:ss");
+
     
 	class MessagesCursorAdapter extends ResourceCursorAdapter {
 
@@ -275,16 +299,24 @@ public class ComposeMessageActivity extends Activity implements OnClickListener 
 		public void bindView(View view, Context context, Cursor cursor) {
 			final MessageListItemViews tagView = (MessageListItemViews) view.getTag();
 			String number = cursor.getString(cursor.getColumnIndex(SipMessage.FIELD_FROM));
+			if(! number.equalsIgnoreCase(SipMessage.SELF)) {
+				number = cursor.getString(cursor.getColumnIndex(SipMessage.FIELD_FROM_FULL));
+			}
 			long date = cursor.getLong(cursor.getColumnIndex(SipMessage.FIELD_DATE));
 			String subject = cursor.getString(cursor.getColumnIndex(SipMessage.FIELD_BODY));
 			String mimeType = cursor.getString(cursor.getColumnIndex(SipMessage.FIELD_MIME_TYPE));
 			int type = cursor.getInt(cursor.getColumnIndex(SipMessage.FIELD_TYPE));
 			int status = cursor.getInt(cursor.getColumnIndex(SipMessage.FIELD_STATUS));
 			
-			int flags = DateUtils.FORMAT_ABBREV_RELATIVE;
-			String timestamp = (String) DateUtils.getRelativeTimeSpanString(date, System.currentTimeMillis(), DateUtils.MINUTE_IN_MILLIS, flags);
-			
-			
+			String timestamp = "";
+			if( System.currentTimeMillis() - date > 1000 * 60 * 60 * 24 ) {
+				// If it was recieved one day ago or more display relative timestamp - SMS like behavior
+				int flags = DateUtils.FORMAT_ABBREV_RELATIVE;
+				timestamp = (String) DateUtils.getRelativeTimeSpanString(date, System.currentTimeMillis(), DateUtils.MINUTE_IN_MILLIS, flags);
+			}else {
+				// If it has been recieved recently show time of reception - IM like behavior
+				timestamp = dateFormatter.format(new Date(date));
+			}
 	        
 			
 	        //Delivery state
@@ -299,8 +331,8 @@ public class ComposeMessageActivity extends Activity implements OnClickListener 
 	        }
 	        
 	        if(status == SipMessage.STATUS_NONE 
-	        		|| status == pjsip_status_code.PJSIP_SC_OK.swigValue()
-	        		|| status == pjsip_status_code.PJSIP_SC_ACCEPTED.swigValue()) {
+	        		|| status == SipCallSession.StatusCode.OK
+	        		|| status == SipCallSession.StatusCode.ACCEPTED) {
 	        	tagView.errorView.setVisibility(View.GONE);
 	        }else {
 	        	
@@ -347,9 +379,12 @@ public class ComposeMessageActivity extends Activity implements OnClickListener 
 			if(contact.equalsIgnoreCase(SipMessage.SELF)) {
 				formatedContact = getString(R.string.messagelist_sender_self);
 			}else {
-				formatedContact = SipUri.getDisplayedSimpleUri(contact);
+				formatedContact = SipUri.getDisplayedSimpleContact(contact);
 			}
-			SpannableStringBuilder buf = new SpannableStringBuilder(TextUtils.replace(template, 
+			SpannableStringBuilder buf = new SpannableStringBuilder();
+			
+			
+			buf.append(TextUtils.replace(template, 
 					new String[] { "%s" }, 
 					new CharSequence[] { formatedContact }));
 

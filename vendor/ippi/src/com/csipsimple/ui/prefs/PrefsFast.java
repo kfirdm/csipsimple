@@ -29,7 +29,7 @@ import android.widget.CheckBox;
 import android.widget.RadioButton;
 
 import fr.ippi.voip.app.R;
-import com.csipsimple.utils.Compatibility;
+import com.csipsimple.api.SipConfigManager;
 import com.csipsimple.utils.PreferencesWrapper;
 
 public class PrefsFast extends Activity implements OnClickListener {
@@ -147,7 +147,6 @@ public class PrefsFast extends Activity implements OnClickListener {
 		}else if (id == R.id.save_bt) {
 			if(!prefsWrapper.hasAlreadySetup()) {
 				prefsWrapper.setPreferenceBooleanValue(PreferencesWrapper.HAS_ALREADY_SETUP, true);
-				Compatibility.setFirstRunParameters(prefsWrapper);
 			}
 			finish();
 		}
@@ -166,7 +165,12 @@ public class PrefsFast extends Activity implements OnClickListener {
 		}
 		
 		Editor edt = prefs.edit();
-		edt.putBoolean("integrate_with_native_dialer", integrate);
+		
+		// About integration
+		edt.putBoolean(SipConfigManager.INTEGRATE_WITH_DIALER, integrate);
+		edt.putBoolean(SipConfigManager.INTEGRATE_WITH_CALLLOGS, integrate);
+		
+		// About out/in mode
 		if(mode != Profile.UNKOWN) {
 			
 			edt.putBoolean("use_3g_in", (useGsm && mode == Profile.ALWAYS));

@@ -20,6 +20,7 @@ package com.csipsimple.wizards.impl;
 import android.preference.ListPreference;
 
 import fr.ippi.voip.app.R;
+import com.csipsimple.api.SipConfigManager;
 import com.csipsimple.api.SipProfile;
 import com.csipsimple.utils.PreferencesWrapper;
 
@@ -43,6 +44,17 @@ public class IiNet extends SimpleImplementation {
         accountState.setDefaultValue("act");
         parent.getPreferenceScreen().addPreference(accountState);
         
+        String domain = account.reg_uri;
+        if( domain != null ) {
+	        for(CharSequence state : states) {
+	        	String currentComp = "sip:sip."+state+".iinet.net.au";
+	        	if( currentComp.equalsIgnoreCase(domain) ) {
+	        		accountState.setValue((String) state);
+	        		break;
+	        	}
+	        }
+        }
+        
         accountUsername.setTitle(R.string.w_iinet_username);
 		accountUsername.setDialogTitle(R.string.w_iinet_username);
 		accountPassword.setTitle(R.string.w_iinet_password);
@@ -57,10 +69,6 @@ public class IiNet extends SimpleImplementation {
 		
 		account.reg_uri = regUri;
 		account.proxies = new String[] { regUri } ;
-		
-		// Enable dns srv
-		PreferencesWrapper prefs = new PreferencesWrapper(parent);
-		prefs.setPreferenceBooleanValue(PreferencesWrapper.ENABLE_DNS_SRV, true);
 		
 		return account;
 	}
@@ -85,6 +93,15 @@ public class IiNet extends SimpleImplementation {
 		return "iinet";
 	}
 
+	
+	@Override
+	public void setDefaultParams(PreferencesWrapper prefs) {
+		super.setDefaultParams(prefs);
+		// Add stun server
+		prefs.setPreferenceBooleanValue(SipConfigManager.ENABLE_STUN, true);
+		prefs.setPreferenceBooleanValue(SipConfigManager.ENABLE_DNS_SRV, true);
+	}
+	
 	@Override
 	public boolean needRestart() {
 		return true;

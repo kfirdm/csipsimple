@@ -17,16 +17,16 @@
  */
 package com.csipsimple.utils;
 
-import org.pjsip.pjsua.pjsip_status_code;
-import org.pjsip.pjsua.pjsuaConstants;
-
 import android.content.Context;
 import android.content.res.Resources;
 import android.os.RemoteException;
+import android.text.TextUtils;
 
 import fr.ippi.voip.app.R;
-import com.csipsimple.models.AccountInfo;
-import com.csipsimple.service.ISipService;
+import com.csipsimple.api.SipManager;
+import com.csipsimple.api.SipProfileState;
+import com.csipsimple.api.SipCallSession;
+import com.csipsimple.api.ISipService;
 
 
 public class AccountListUtils {
@@ -48,20 +48,19 @@ public class AccountListUtils {
 		accountDisplay.availableForCalls = false;
 		
 		if (service != null) {
-			AccountInfo accountInfo;
+			SipProfileState accountInfo;
 			try {
-				accountInfo = service.getAccountInfo(accountId);
+				accountInfo = service.getSipProfileState(accountId);
 			} catch (RemoteException e) {
 				accountInfo = null;
 			}
 			if (accountInfo != null && accountInfo.isActive()) {
-				if (accountInfo.getAddedStatus() == pjsuaConstants.PJ_SUCCESS) {
+				if (accountInfo.getAddedStatus() >= SipManager.SUCCESS) {
 
 					accountDisplay.statusLabel = context.getString(R.string.acct_unregistered);
 					accountDisplay.statusColor = resources.getColor(R.color.account_unregistered);
 					accountDisplay.checkBoxIndicator = R.drawable.ic_indicator_yellow;
-					
-					if(accountInfo.getWizard().equalsIgnoreCase("LOCAL")) {
+					if( TextUtils.isEmpty( accountInfo.getRegUri()) ) {
 						// Green
 						accountDisplay.statusColor = resources.getColor(R.color.account_valid);
 						accountDisplay.checkBoxIndicator = R.drawable.ic_indicator_on;
@@ -69,8 +68,8 @@ public class AccountListUtils {
 						accountDisplay.availableForCalls = true;
 					}else if (accountInfo.getPjsuaId() >= 0) {
 						String pjStat = accountInfo.getStatusText();	// Used only on error status message
-						pjsip_status_code statusCode = accountInfo.getStatusCode();
-						if (statusCode == pjsip_status_code.PJSIP_SC_OK) {
+						int statusCode = accountInfo.getStatusCode();
+						if (statusCode == SipCallSession.StatusCode.OK) {
 							// Log.d(THIS_FILE,
 							// "Now account "+account.display_name+" has expires "+accountInfo.getExpires());
 							if (accountInfo.getExpires() > 0) {
@@ -85,8 +84,8 @@ public class AccountListUtils {
 								accountDisplay.checkBoxIndicator = R.drawable.ic_indicator_yellow;
 								accountDisplay.statusLabel = context.getString(R.string.acct_unregistered);
 							}
-						} else {
-							if (statusCode == pjsip_status_code.PJSIP_SC_PROGRESS || statusCode == pjsip_status_code.PJSIP_SC_TRYING) {
+						} else if(statusCode != -1 ){
+							if (statusCode == SipCallSession.StatusCode.PROGRESS || statusCode == SipCallSession.StatusCode.TRYING) {
 								// Yellow progressing ...
 								accountDisplay.statusColor = resources.getColor(R.color.account_unregistered);
 								accountDisplay.checkBoxIndicator = R.drawable.ic_indicator_yellow;
@@ -98,11 +97,23 @@ public class AccountListUtils {
 								accountDisplay.checkBoxIndicator = R.drawable.ic_indicator_red;
 								accountDisplay.statusLabel = context.getString(R.string.acct_regerror) + " - " + pjStat;	// Why can't ' - ' be in resource?
 							}
+						}else {
+							// Account is currently registering (added to pjsua but not replies yet from pjsua registration)
+							accountDisplay.statusColor = resources.getColor(R.color.account_inactive);
+							accountDisplay.checkBoxIndicator = R.drawable.ic_indicator_yellow;
+							accountDisplay.statusLabel = context.getString(R.string.acct_registering);
 						}
 					}
 				} else {
-					accountDisplay.statusLabel = context.getString(R.string.acct_regfailed);
-					accountDisplay.statusColor = resources.getColor(R.color.account_error);
+					if(accountInfo.isAddedToStack()) {
+						accountDisplay.statusLabel = context.getString(R.string.acct_regfailed);
+						accountDisplay.statusColor = resources.getColor(R.color.account_error);
+					}else {
+						accountDisplay.statusColor = resources.getColor(R.color.account_inactive);
+						accountDisplay.checkBoxIndicator = R.drawable.ic_indicator_yellow;
+						accountDisplay.statusLabel = context.getString(R.string.acct_registering);
+						
+					}
 				}
 			}
 		}

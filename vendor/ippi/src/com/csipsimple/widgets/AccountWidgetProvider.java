@@ -30,7 +30,6 @@ import fr.ippi.voip.app.R;
 import com.csipsimple.api.SipManager;
 import com.csipsimple.api.SipProfile;
 import com.csipsimple.db.DBAdapter;
-import com.csipsimple.service.SipService;
 import com.csipsimple.utils.Log;
 import com.csipsimple.wizards.WizardUtils;
 
@@ -67,7 +66,7 @@ public class AccountWidgetProvider extends AppWidgetProvider {
      * @param intent  Indicates the pressed button.
      */
     @Override
-    public void onReceive(Context context, Intent intent) {
+    public void onReceive(final Context context, Intent intent) {
         
 		if (AppWidgetManager.ACTION_APPWIDGET_DELETED.equals(intent.getAction())) {
 			final int appWidgetId = intent.getExtras().getInt(AppWidgetManager.EXTRA_APPWIDGET_ID, AppWidgetManager.INVALID_APPWIDGET_ID);
@@ -76,7 +75,12 @@ public class AccountWidgetProvider extends AppWidgetProvider {
 			}
 		} else {
 			if (SipManager.ACTION_SIP_REGISTRATION_CHANGED.equals(intent.getAction()) || SipManager.ACTION_SIP_ACCOUNT_ACTIVE_CHANGED.equals(intent.getAction())) {
-				updateWidget(context);
+				Thread t = new Thread() {
+					public void run() {
+						updateWidget(context);
+					};
+				};
+				t.start();
 			}
 			super.onReceive(context, intent);
 		}
@@ -140,7 +144,7 @@ public class AccountWidgetProvider extends AppWidgetProvider {
      * @return
      */
     private static PendingIntent getLaunchPendingIntent(Context context, long accId, boolean activate ) {
-        Intent launchIntent = new Intent(SipService.INTENT_SIP_ACCOUNT_ACTIVATE);
+        Intent launchIntent = new Intent(SipManager.INTENT_SIP_ACCOUNT_ACTIVATE);
         launchIntent.putExtra(SipManager.EXTRA_ACCOUNT_ID, accId);
         launchIntent.putExtra(SipManager.EXTRA_ACTIVATE, activate);
         Log.d(THIS_FILE, "Create intent "+activate);

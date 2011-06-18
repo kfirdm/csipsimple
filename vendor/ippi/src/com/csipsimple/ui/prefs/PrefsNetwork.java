@@ -17,20 +17,18 @@
  */
 package com.csipsimple.ui.prefs;
 
-import org.pjsip.pjsua.pjsua;
-import org.pjsip.pjsua.pjsuaConstants;
-
 import android.telephony.TelephonyManager;
 
 import fr.ippi.voip.app.R;
-import com.csipsimple.utils.Log;
+import com.csipsimple.api.SipConfigManager;
+import com.csipsimple.utils.Compatibility;
 import com.csipsimple.utils.PreferencesWrapper;
 
 
 public class PrefsNetwork extends GenericPrefs {
 	
 
-	private static final String THIS_FILE = "Prefs Network";
+	//private static final String THIS_FILE = "Prefs Network";
 
 	@Override
 	protected int getXmlPreferences() {
@@ -50,40 +48,38 @@ public class PrefsNetwork extends GenericPrefs {
 			hidePreference("for_outgoing", "use_edge_out");
 		}
 		PreferencesWrapper pfw = new PreferencesWrapper(this);
+		
+
+		if(!Compatibility.isCompatible(9)) {
+			hidePreference("perfs", SipConfigManager.LOCK_WIFI_PERFS);
+		}
+		
 		if(!pfw.isAdvancedUser()) {
 			hidePreference(null, "perfs");
 			
-			hidePreference("nat_traversal", "enable_turn");
-			hidePreference("nat_traversal", "turn_server");
+			hidePreference("nat_traversal", SipConfigManager.ENABLE_TURN);
+			hidePreference("nat_traversal", SipConfigManager.TURN_SERVER);
+			hidePreference("nat_traversal", SipConfigManager.TURN_USERNAME);
+			hidePreference("nat_traversal", SipConfigManager.TURN_PASSWORD);
 			
-			hidePreference("transport", "enable_tcp");
-			hidePreference("transport", "enable_udp");
-			hidePreference("transport", "network_tcp_transport_port");
-			hidePreference("transport", "network_udp_transport_port");
-			hidePreference("transport", "network_rtp_port");
-			hidePreference("transport", "use_ipv6");
-			hidePreference("transport", "override_nameserver");
+			hidePreference("transport", SipConfigManager.ENABLE_TCP);
+			hidePreference("transport", SipConfigManager.ENABLE_UDP);
+			hidePreference("transport", SipConfigManager.TCP_TRANSPORT_PORT);
+			hidePreference("transport", SipConfigManager.UDP_TRANSPORT_PORT);
+			hidePreference("transport", SipConfigManager.RTP_PORT);
+			hidePreference("transport", SipConfigManager.USE_IPV6);
+			hidePreference("transport", SipConfigManager.OVERRIDE_NAMESERVER);
 			
-			hidePreference("transport", "enable_qos");
-			hidePreference("transport", "dscp_val");
+			hidePreference("transport", SipConfigManager.ENABLE_QOS);
+			hidePreference("transport", SipConfigManager.DSCP_VAL);
+			hidePreference("transport", SipConfigManager.USER_AGENT);
 			
-			
-			
-		}
-		boolean canUseTLS = false;
-		try{
-			canUseTLS = (pjsua.can_use_tls() == pjsuaConstants.PJ_TRUE);
-		}catch (Exception e) {
-			Log.e(THIS_FILE, "Unable to get pjsua tls state");
-		}
-		if(!canUseTLS) {
-			hidePreference(null, "secure_transport");
 		}
 	}
 
 	@Override
 	protected void updateDescriptions() {
-		setStringFieldSummary("stun_server");
+		setStringFieldSummary(SipConfigManager.STUN_SERVER);
 	}
 	
 }

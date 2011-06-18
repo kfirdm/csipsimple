@@ -17,13 +17,17 @@
  */
 package com.csipsimple.ui;
 
+import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
@@ -57,11 +61,13 @@ import fr.ippi.voip.app.R;
 import com.csipsimple.api.SipManager;
 import com.csipsimple.api.SipProfile;
 import com.csipsimple.db.DBAdapter;
-import com.csipsimple.service.ISipService;
+import com.csipsimple.api.ISipService;
 import com.csipsimple.service.SipService;
 import com.csipsimple.utils.AccountListUtils;
 import com.csipsimple.utils.AccountListUtils.AccountStatusDisplay;
 import com.csipsimple.utils.Log;
+import com.csipsimple.utils.PreferencesWrapper;
+import com.csipsimple.utils.SipProfileJson;
 import com.csipsimple.wizards.BasePrefsWizard;
 import com.csipsimple.wizards.WizardChooser;
 import com.csipsimple.wizards.WizardUtils;
@@ -141,6 +147,7 @@ public class AccountsList extends Activity implements OnItemClickListener {
 		bindService(new Intent(this, SipService.class), connection, Context.BIND_AUTO_CREATE);
 		//And register to ua state events
 		registerReceiver(registrationStateReceiver, new IntentFilter(SipManager.ACTION_SIP_REGISTRATION_CHANGED));
+		registerReceiver(registrationStateReceiver, new IntentFilter(SipManager.ACTION_SIP_ACCOUNT_ACTIVE_CHANGED));
 		
 	}
 	
@@ -218,9 +225,9 @@ public class AccountsList extends Activity implements OnItemClickListener {
             case MENU_ITEM_ACTIVATE: {
             	account.active = ! account.active;
             	database.open();
-            	database.updateAccount(account);
+    			database.setAccountActive(account.id, account.active);
             	database.close();
-				reloadAsyncAccounts(account.id, account.active?1:0);
+			//	reloadAsyncAccounts(account.id, account.active?1:0);
 				return true;
             }
             case MENU_ITEM_WIZARD:{
@@ -299,6 +306,14 @@ public class AccountsList extends Activity implements OnItemClickListener {
 		case REQUEST_MODIFY:
 			if(resultCode == RESULT_OK){
 				handler.sendMessage(handler.obtainMessage(NEED_LIST_UPDATE));
+				/*
+				int accId = data.getIntExtra(Intent.EXTRA_UID, -1);
+				if(accId != -1) {
+					reloadAsyncAccounts(accId, 1);
+				}else {
+					reloadAsyncAccounts(null, 1);
+				}
+				*/
 			}
 			break;
 		case CHANGE_WIZARD:
@@ -332,6 +347,9 @@ public class AccountsList extends Activity implements OnItemClickListener {
 				if (service != null) {
 					Log.d(THIS_FILE, "Will reload all accounts !");
 					try {
+						//Ensure sip service is started
+						service.sipStart();
+						
 						if(accountId == null) {
 							service.reAddAllAccounts();
 						}else {
@@ -347,7 +365,7 @@ public class AccountsList extends Activity implements OnItemClickListener {
 			}
 		};
 		
-		Thread t = new Thread() {
+		Thread t = new Thread("ReloadAccounts") {
 			@Override
 			public void run() {
 				Log.d(THIS_FILE, "Would like to reload all accounts");
@@ -464,17 +482,20 @@ public class AccountsList extends Activity implements OnItemClickListener {
 			
 			
 			boolean isActive = tagView.activeCheckbox.isChecked();
+			account.active = ! account.active;
 			
+
+			//Update visual
+			/* -- Not need cause setAccount active will broadcast finally ACTION_SIP_ACCOUNT_ACTIVE_CHANGED
+			tagView.barOnOff.setImageResource(account.active ? R.drawable.ic_indicator_yellow : R.drawable.ic_indicator_off);
+			tagView.labelView.setTextColor(account.active ? getResources().getColor(R.color.account_unregistered) : getResources().getColor(R.color.account_inactive) );
+			tagView.statusView.setText(getResources().getText(R.string.acct_unregistered));
+			*/
 			//Update database and reload accounts
 			database.open();
 			database.setAccountActive(account.id, isActive);
 			database.close();
 		//	reloadAsyncAccounts(account.id, account.active?1:0);
-			
-			//Update visual
-			tagView.barOnOff.setImageResource(account.active?R.drawable.ic_indicator_on : R.drawable.ic_indicator_off);
-			
-			
 		}
 
 	}
@@ -488,7 +509,7 @@ public class AccountsList extends Activity implements OnItemClickListener {
 		public void onServiceConnected(ComponentName arg0, IBinder arg1) {
 			service = ISipService.Stub.asInterface(arg1);
 			if(onServiceConnect != null) {
-				Thread t = new Thread() {
+				Thread t = new Thread("Service-connected") {
 					public void run() {
 						onServiceConnect.serviceConnected();
 						onServiceConnect = null;
@@ -545,11 +566,13 @@ public class AccountsList extends Activity implements OnItemClickListener {
 	}
 	public static final int ADD_MENU = Menu.FIRST + 1;
 	public static final int REORDER_MENU = Menu.FIRST + 2;
+	public static final int BACKUP_MENU = Menu.FIRST + 3;
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		menu.add(Menu.NONE, ADD_MENU, Menu.NONE, R.string.add_account).setIcon(android.R.drawable.ic_menu_add);
 		menu.add(Menu.NONE, REORDER_MENU, Menu.NONE, R.string.reorder).setIcon(android.R.drawable.ic_menu_sort_by_size);
+		menu.add(Menu.NONE, BACKUP_MENU, Menu.NONE, R.string.backup_restore).setIcon(android.R.drawable.ic_menu_save);
 		return super.onCreateOptionsMenu(menu);
 	}
 	
@@ -561,6 +584,38 @@ public class AccountsList extends Activity implements OnItemClickListener {
 			return true;
 		case REORDER_MENU:
 			startActivityForResult(new Intent(this, ReorderAccountsList.class), REQUEST_MODIFY);
+			return true;
+		case BACKUP_MENU:
+			
+			//Populate choice list
+			List<String> items = new ArrayList<String>();
+			items.add(getResources().getString(R.string.backup));
+			final File backupDir = PreferencesWrapper.getConfigFolder();
+			if(backupDir != null) {
+				String[] filesNames = backupDir.list();
+				for(String fileName : filesNames) {
+					items.add(fileName);
+				}
+			}
+			
+			final String[] fItems = (String[]) items.toArray(new String[0]);
+			AlertDialog.Builder builder = new AlertDialog.Builder(this);
+			builder.setTitle(R.string.backup_restore);
+			builder.setItems(fItems, new DialogInterface.OnClickListener() {
+			    public void onClick(DialogInterface dialog, int item) {
+			    	if(item == 0) {
+			    		SipProfileJson.saveSipConfiguration(AccountsList.this);
+			    	}else {
+						File fileToRestore = new File(backupDir + File.separator + fItems[item]);
+			    		SipProfileJson.restoreSipConfiguration(AccountsList.this, fileToRestore);
+			    		reloadAsyncAccounts(null, null);
+			    		handler.sendMessage(handler.obtainMessage(NEED_LIST_UPDATE));
+			    	}
+			    }
+			});
+			builder.setCancelable(true);
+			AlertDialog backupDialog = builder.create();
+			backupDialog.show();
 			return true;
 		}
 		return super.onOptionsItemSelected(item);

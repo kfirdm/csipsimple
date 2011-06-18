@@ -17,24 +17,43 @@
  */
 package com.csipsimple.utils;
 
-import com.csipsimple.models.CallInfo;
-import com.csipsimple.models.CallerInfo;
-
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.provider.CallLog;
+
+import com.csipsimple.api.SipCallSession;
+import com.csipsimple.models.CallerInfo;
 
 public class CallLogHelper {
 
+	private static final String ACTION_ANNOUNCE_SIP_CALLLOG = "de.ub0r.android.callmeter.SAVE_SIPCALL";
+	// Uri of call log entry
+	private static final String EXTRA_CALL_LOG_URI = "uri";
+	// Provider name
+	public static final String EXTRA_SIP_PROVIDER = "provider";
+	
 
-	public static void addCallLog(Context context, ContentValues values) {
+	public static void addCallLog(Context context, ContentValues values, ContentValues extraValues) {
 		ContentResolver contentResolver = context.getContentResolver();
-		contentResolver.insert(CallLog.Calls.CONTENT_URI, values);
+		Uri result = contentResolver.insert(CallLog.Calls.CONTENT_URI, values);
+		
+		if(result != null) {
+			// Announce that to other apps
+			final Intent broadcast = new Intent(ACTION_ANNOUNCE_SIP_CALLLOG);
+			broadcast.putExtra(EXTRA_CALL_LOG_URI, result.toString());
+			String provider = extraValues.getAsString(EXTRA_SIP_PROVIDER);
+			if(provider != null) {
+				broadcast.putExtra(EXTRA_SIP_PROVIDER, provider);
+			}
+			context.sendBroadcast(broadcast);
+		}
 	}
 	
 	
-	public static ContentValues logValuesForCall(Context context, CallInfo call, long callStart) {
+	public static ContentValues logValuesForCall(Context context, SipCallSession call, long callStart) {
 		ContentValues cv = new ContentValues();
 		String remoteContact = call.getRemoteContact();
 		
@@ -47,9 +66,15 @@ public class CallLogHelper {
 		if(call.isIncoming()) {
 			type = CallLog.Calls.MISSED_TYPE;
 			nonAcknowledge = 1;
-			if(callStart>0) {
-				nonAcknowledge = 0;
+			Log.d("CallLogHelper", "Last status code is "+call.getLastStatusCode());
+			if(callStart > 0) {
+				// Has started on the remote side, so not missed call
 				type = CallLog.Calls.INCOMING_TYPE;
+				nonAcknowledge = 0;
+			}else if(call.getLastStatusCode() == SipCallSession.StatusCode.DECLINE) {
+				// We have intentionally declined this call
+				type = CallLog.Calls.INCOMING_TYPE;
+				nonAcknowledge = 0;
 			}
 		}
 		cv.put(CallLog.Calls.TYPE, type);

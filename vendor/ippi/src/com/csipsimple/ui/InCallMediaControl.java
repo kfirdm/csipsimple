@@ -20,8 +20,6 @@ package com.csipsimple.ui;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import org.pjsip.pjsua.pjsip_inv_state;
-
 import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
@@ -29,6 +27,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
+import android.media.AudioManager;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.os.RemoteException;
@@ -45,12 +44,12 @@ import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 
 import fr.ippi.voip.app.R;
+import com.csipsimple.api.ISipConfiguration;
+import com.csipsimple.api.ISipService;
+import com.csipsimple.api.SipCallSession;
+import com.csipsimple.api.SipConfigManager;
 import com.csipsimple.api.SipManager;
-import com.csipsimple.models.CallInfo;
-import com.csipsimple.service.ISipConfiguration;
-import com.csipsimple.service.ISipService;
 import com.csipsimple.utils.Log;
-import com.csipsimple.utils.PreferencesWrapper;
 
 public class InCallMediaControl extends Activity implements OnSeekBarChangeListener, OnCheckedChangeListener, OnClickListener {
 	protected static final String THIS_FILE = "inCallMediaCtrl";
@@ -103,8 +102,8 @@ public class InCallMediaControl extends Activity implements OnSeekBarChangeListe
 		bindService(sipServiceIntent , sipConnection, BIND_AUTO_CREATE);
 		
 		
-		int keyEvent = getIntent().getIntExtra(Intent.EXTRA_KEY_EVENT, -1);
-		if(keyEvent == KeyEvent.KEYCODE_VOLUME_DOWN || keyEvent == KeyEvent.KEYCODE_VOLUME_UP) {
+		int direction = getIntent().getIntExtra(Intent.EXTRA_KEY_EVENT, -1);
+		if(direction == AudioManager.ADJUST_LOWER  || direction == AudioManager.ADJUST_RAISE) {
 			isAutoClose = true;
 			LinearLayout l = (LinearLayout) findViewById(R.id.ok_bar);
 			if(l != null) {
@@ -158,14 +157,14 @@ public class InCallMediaControl extends Activity implements OnSeekBarChangeListe
 			if(action.equals(SipManager.ACTION_SIP_CALL_CHANGED)){
 				if(sipService != null) {
 					try {
-						CallInfo[] callsInfo = sipService.getCalls();
-						CallInfo currentCallInfo = null;
+						SipCallSession[] callsInfo = sipService.getCalls();
+						SipCallSession currentCallInfo = null;
 						if(callsInfo != null) {
-							for(CallInfo callInfo : callsInfo) {
-								pjsip_inv_state state = callInfo.getCallState();
+							for(SipCallSession callInfo : callsInfo) {
+								int state = callInfo.getCallState();
 								switch (state) {
-									case PJSIP_INV_STATE_NULL:
-									case PJSIP_INV_STATE_DISCONNECTED:
+									case SipCallSession.InvState.NULL:
+									case SipCallSession.InvState.DISCONNECTED:
 										break;
 									default:
 										currentCallInfo = callInfo;
@@ -202,7 +201,7 @@ public class InCallMediaControl extends Activity implements OnSeekBarChangeListe
 			quitTimer = null;
 		}
 		
-		quitTimer = new Timer();
+		quitTimer = new Timer("Quit-timer-media");
 		
 		quitTimer.schedule(new LockTimerTask(), time);
 	}
@@ -285,12 +284,16 @@ public class InCallMediaControl extends Activity implements OnSeekBarChangeListe
 	private void updateUIFromMedia() {
 		if(sipService != null && configurationService != null) {
 			try {
-				Float speakerLevel = configurationService.getPreferenceFloat(PreferencesWrapper.SND_SPEAKER_LEVEL) * 10;
+				boolean useBT = sipService.getCurrentMediaState().isBluetoothScoOn;
+				
+				Float speakerLevel = configurationService.getPreferenceFloat(useBT ? 
+						SipConfigManager.SND_BT_SPEAKER_LEVEL : SipConfigManager.SND_SPEAKER_LEVEL) * 10;
 				speakerAmplification.setProgress(speakerLevel.intValue());
-				Float microLevel = configurationService.getPreferenceFloat(PreferencesWrapper.SND_MIC_LEVEL) * 10;
+				Float microLevel = configurationService.getPreferenceFloat(useBT ?
+						SipConfigManager.SND_BT_MIC_LEVEL : SipConfigManager.SND_MIC_LEVEL) * 10;
 				microAmplification.setProgress(microLevel.intValue());
 				
-				echoCancellation.setChecked(configurationService.getPreferenceBoolean(PreferencesWrapper.ECHO_CANCELLATION));
+				echoCancellation.setChecked(configurationService.getPreferenceBoolean(SipConfigManager.ECHO_CANCELLATION));
 			} catch (RemoteException e) {
 				Log.e(THIS_FILE, "Impossible to get mic/speaker level", e);
 			}
@@ -307,15 +310,18 @@ public class InCallMediaControl extends Activity implements OnSeekBarChangeListe
 		if(sipService != null && configurationService != null) {
 			try {
 				Float newValue = (float) ( value / 10.0 );
-				
+				String key;
+				boolean useBT = sipService.getCurrentMediaState().isBluetoothScoOn;
 				switch(arg0.getId()) {
 				case R.id.speaker_level:
 					sipService.confAdjustTxLevel(0, newValue);
-					configurationService.setPreferenceFloat(PreferencesWrapper.SND_SPEAKER_LEVEL, newValue);
+					key =  useBT ? SipConfigManager.SND_BT_SPEAKER_LEVEL : SipConfigManager.SND_SPEAKER_LEVEL;
+					configurationService.setPreferenceFloat(key, newValue);
 					break;
 				case R.id.micro_level:
 					sipService.confAdjustRxLevel(0, newValue);
-					configurationService.setPreferenceFloat(PreferencesWrapper.SND_MIC_LEVEL, newValue);
+					key =  useBT ? SipConfigManager.SND_BT_MIC_LEVEL : SipConfigManager.SND_MIC_LEVEL;
+					configurationService.setPreferenceFloat(key, newValue);
 					break;
 				}
 			} catch (RemoteException e) {
@@ -350,7 +356,7 @@ public class InCallMediaControl extends Activity implements OnSeekBarChangeListe
 				switch(arg0.getId()) {
 				case R.id.echo_cancellation:
 					sipService.setEchoCancellation(value);
-					configurationService.setPreferenceBoolean(PreferencesWrapper.ECHO_CANCELLATION, value);
+					configurationService.setPreferenceBoolean(SipConfigManager.ECHO_CANCELLATION, value);
 					break;
 				}
 				//Update quit timer

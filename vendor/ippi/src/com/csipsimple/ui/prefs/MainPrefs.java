@@ -20,7 +20,6 @@ package com.csipsimple.ui.prefs;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.pjsip.pjsua.pjsua;
 
 import android.app.ListActivity;
 import android.content.ComponentName;
@@ -41,7 +40,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import fr.ippi.voip.app.R;
-import com.csipsimple.service.ISipService;
+import com.csipsimple.api.ISipService;
 import com.csipsimple.service.SipService;
 import com.csipsimple.utils.Log;
 import com.csipsimple.utils.PreferencesWrapper;
@@ -78,7 +77,10 @@ public class MainPrefs extends ListActivity {
 				R.drawable.ic_prefs_media, new Intent(this, PrefsMedia.class)));		
 		prefs_list.add(new PrefGroup(R.string.prefs_ui, R.string.prefs_ui_desc, 
 				R.drawable.ic_prefs_ui, new Intent(this, PrefsUI.class)));
-		
+		prefs_list.add(new PrefGroup(R.string.prefs_calls, R.string.prefs_calls_desc, 
+				R.drawable.ic_prefs_calls, new Intent(this, PrefsCalls.class)));
+		prefs_list.add(new PrefGroup(R.string.filters, R.string.filters_desc, 
+				R.drawable.ic_prefs_filter, new Intent(this, PrefsFilters.class)));
 		
 		adapter = new PrefGroupAdapter(this, prefs_list);
 		setListAdapter(adapter);
@@ -90,9 +92,7 @@ public class MainPrefs extends ListActivity {
 		try {
 			bindService(serviceIntent, restartServiceConnection, 0);
 			startService(serviceIntent);
-		}catch(Exception e) {
-			
-		}
+		}catch(Exception e) {}
 	}
 	
 	@Override
@@ -177,13 +177,15 @@ public class MainPrefs extends ListActivity {
 	
 	//Menu
 	public static final int MENU_EXPERT_VIEW = Menu.FIRST + 1;
-	public static final int MENU_TEST_AUDIO = MENU_EXPERT_VIEW + 1;
+	public static final int MENU_RESET_VIEW = Menu.FIRST + 2;
+	public static final int MENU_TEST_AUDIO = Menu.FIRST + 3;
 	
 	
 	@Override
 	public boolean onPrepareOptionsMenu(Menu menu) {
 
 		menu.findItem(MENU_EXPERT_VIEW).setTitle(getToogleExpertTitle());
+		menu.findItem(MENU_TEST_AUDIO).setVisible(prefsWrapper.isAdvancedUser());
 		return super.onPrepareOptionsMenu(menu);
 	}
 	
@@ -195,10 +197,9 @@ public class MainPrefs extends ListActivity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 		menu.add(Menu.NONE, MENU_EXPERT_VIEW, Menu.NONE, getToogleExpertTitle()).setIcon(
 						R.drawable.ic_wizard_expert);
-		/*
-		menu.add(Menu.NONE, MENU_TEST_AUDIO, Menu.NONE, "Test audio").setIcon(
-				R.drawable.ic_prefs_media);
-				*/
+		menu.add(Menu.NONE, MENU_RESET_VIEW, Menu.NONE, R.string.restore_default).setIcon(
+				android.R.drawable.ic_menu_revert);
+		menu.add(Menu.NONE, MENU_TEST_AUDIO, Menu.NONE, "Test audio").setIcon(R.drawable.ic_prefs_media);
 		return super.onCreateOptionsMenu(menu);
 	}
 	
@@ -206,14 +207,11 @@ public class MainPrefs extends ListActivity {
 		public boolean onOptionsItemSelected(MenuItem item) {
 			switch (item.getItemId()) {
 			case MENU_TEST_AUDIO:
+				/*
 				Thread t = new Thread() {
 					public void run() {
-						pjsua.test_audio_dev(8000, 10);
-						pjsua.test_audio_dev(16000, 10);
 						pjsua.test_audio_dev(8000, 20);
 						pjsua.test_audio_dev(16000, 20);
-						pjsua.test_audio_dev(8000, 30);
-						pjsua.test_audio_dev(16000, 30);
 						pjsua.test_audio_dev(8000, 40);
 						pjsua.test_audio_dev(16000, 40);
 						
@@ -221,6 +219,11 @@ public class MainPrefs extends ListActivity {
 				};
 				
 				t.start();
+				*/
+				startActivity(new Intent(this, AudioTester.class));
+				return true;
+			case MENU_RESET_VIEW:
+				prefsWrapper.resetAllDefaultValues();
 				return true;
 			case MENU_EXPERT_VIEW:
 				prefsWrapper.toogleExpertMode();

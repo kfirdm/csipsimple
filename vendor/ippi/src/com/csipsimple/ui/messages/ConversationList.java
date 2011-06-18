@@ -51,12 +51,12 @@ import android.widget.TextView;
 
 import fr.ippi.voip.app.R;
 import com.csipsimple.api.SipManager;
+import com.csipsimple.api.SipUri;
 import com.csipsimple.db.DBAdapter;
 import com.csipsimple.models.SipMessage;
 import com.csipsimple.service.SipNotifications;
 import com.csipsimple.ui.SipHome;
 import com.csipsimple.utils.Log;
-import com.csipsimple.utils.SipUri;
 
 /**
  * This activity provides a list view of existing conversations.
@@ -214,16 +214,20 @@ public class ConversationList extends ListActivity {
             createNewMessage();
         } else {
             ConversationListItemViews tag = (ConversationListItemViews) v.getTag();
-            openThread(tag.from);
+            if (tag.from.equals("SELF")) {
+                openThread(tag.to, tag.fromFull);
+            } else {
+                openThread(tag.from, tag.fromFull);
+            }
         }
     }
 
     private void createNewMessage() {
-        startActivity(ComposeMessageActivity.createIntent(this, null));
+        startActivity(ComposeMessageActivity.createIntent(this, null, null));
     }
 
-    private void openThread(String from) {
-        startActivity(ComposeMessageActivity.createIntent(this, from));
+    private void openThread(String from, String fromFull) {
+        startActivity(ComposeMessageActivity.createIntent(this, from, fromFull));
     }
     
     private void confirmDeleteThread(final String from) {
@@ -271,15 +275,20 @@ public class ConversationList extends ListActivity {
     public boolean onContextItemSelected(MenuItem item) {
         Cursor cursor = ((CursorAdapter) getListAdapter()).getCursor();
         if (cursor != null && cursor.getPosition() >= 0) {
-        	String number = cursor.getString(cursor.getColumnIndex(SipMessage.FIELD_FROM));
-        	
+            String number = cursor.getString(cursor.getColumnIndex(SipMessage.FIELD_FROM));
+            String fromFull = cursor.getString(cursor.getColumnIndex(SipMessage.FIELD_FROM_FULL));
+            
+            if (number.equals("SELF")) {
+                number = cursor.getString(cursor.getColumnIndex(SipMessage.FIELD_TO));
+            }
+                    	
             switch (item.getItemId()) {
             case MENU_DELETE: {
                 confirmDeleteThread(number);
                 break;
             }
             case MENU_VIEW: {
-                openThread(number);
+                openThread(number, fromFull);
                 break;
             }
             /*
@@ -311,6 +320,8 @@ public class ConversationList extends ListActivity {
 		TextView dateView;
 		TextView subjectView;
 		String from;
+		String fromFull;
+		String to;
 	}
     
 
@@ -329,6 +340,8 @@ public class ConversationList extends ListActivity {
 		public void bindView(View view, Context context, Cursor cursor) {
 			final ConversationListItemViews tagView = (ConversationListItemViews) view.getTag();
 			String number = cursor.getString(cursor.getColumnIndex(SipMessage.FIELD_FROM));
+			String fromFull = cursor.getString(cursor.getColumnIndex(SipMessage.FIELD_FROM_FULL));
+			String to_number = cursor.getString(cursor.getColumnIndex(SipMessage.FIELD_TO));
 			int read = cursor.getInt(cursor.getColumnIndex(SipMessage.FIELD_READ));
 			long date = cursor.getLong(cursor.getColumnIndex(SipMessage.FIELD_DATE));
 			String subject = cursor.getString(cursor.getColumnIndex(SipMessage.FIELD_BODY));
@@ -348,6 +361,8 @@ public class ConversationList extends ListActivity {
 			
 			//From
 			tagView.from = number;
+			tagView.fromFull = fromFull;
+			tagView.to = to_number;
 			tagView.fromView.setText(formatMessage(cursor));
 
 			//Date
@@ -374,8 +389,13 @@ public class ConversationList extends ListActivity {
 		
 		private CharSequence formatMessage(Cursor cursor) {
 			String remoteContact = cursor.getString(cursor.getColumnIndex(SipMessage.FIELD_FROM));
-	        SpannableStringBuilder buf = new SpannableStringBuilder(SipUri.getDisplayedSimpleUri(remoteContact));
-
+	        SpannableStringBuilder buf = new SpannableStringBuilder();
+			if (remoteContact.equals("SELF")) {
+				remoteContact = cursor.getString(cursor.getColumnIndex(SipMessage.FIELD_TO));
+				buf.append("To: ");
+			}
+			String remoteContactFull = cursor.getString(cursor.getColumnIndex(SipMessage.FIELD_FROM_FULL));
+            buf.append(SipUri.getDisplayedSimpleContact(remoteContactFull));
 	        
 	        int counter = cursor.getInt(cursor.getColumnIndex("counter"));
 	        if (counter > 1) {

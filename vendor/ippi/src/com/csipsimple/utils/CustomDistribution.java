@@ -103,7 +103,7 @@ public class CustomDistribution {
 	}
 	
 	public static String getFaqLink() {
-		return "http://code.google.com/p/csipsimple/wiki/FAQ#Summary";
+		return null;
 	}
 
 	public static String getRootPackage() {
@@ -111,6 +111,14 @@ public class CustomDistribution {
 	}
 
 	public static boolean showFirstSettingScreen() {
+		return true;
+	}
+
+	public static boolean supportMessaging() {
+		return true;
+	}
+
+	public static boolean forceNoMultipleCalls() {
 		return true;
 	}
 }

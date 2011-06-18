@@ -20,13 +20,18 @@ package com.csipsimple.utils.contacts;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.telephony.PhoneNumberUtils;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.SimpleCursorAdapter;
 
 import fr.ippi.voip.app.R;
 import com.csipsimple.utils.Compatibility;
@@ -57,6 +62,10 @@ public abstract class ContactsWrapper {
 	
 	public abstract Bitmap getContactPhoto(Context ctxt, Uri uri, Integer defaultResource);
 	public abstract ArrayList<Phone> getPhoneNumbers(Context ctxt, String id);
+	public abstract Cursor searchContact(Context ctxt, CharSequence constraint);
+	public abstract CharSequence transformToSipUri(Context ctxt, Cursor cursor);
+	public abstract void bindAutoCompleteView(View view, Context context, Cursor cursor);
+	public abstract SimpleCursorAdapter getAllContactsAdapter(Activity ctxt, int layout, int[] holders);
 	
 	public class Phone {
 		private String number;
@@ -88,7 +97,12 @@ public abstract class ContactsWrapper {
 		Uri contactUri = data.getData();
         List<String> list = contactUri.getPathSegments();
         String contactId = list.get(list.size() - 1);
-        ArrayList<Phone> phones = getPhoneNumbers(ctxt, contactId);
+        treatContactPickerPositiveResult(ctxt, contactId, l);
+	}
+	
+
+	public void treatContactPickerPositiveResult(final Context ctxt, final String contactId, final OnPhoneNumberSelected l) {
+		ArrayList<Phone> phones = getPhoneNumbers(ctxt, contactId);
         
         if(phones.size() == 0) {
 	        final AlertDialog.Builder builder = new AlertDialog.Builder(ctxt);
@@ -99,14 +113,14 @@ public abstract class ContactsWrapper {
         	dialog.show();
         }else if(phones.size() == 1) {
         	if(l != null) {
-        		l.onTrigger(phones.get(0).getNumber());
+        		l.onTrigger(formatNumber(phones.get(0).getNumber(), phones.get(0).getType()));
         	}
         }else {
 	        final AlertDialog.Builder builder = new AlertDialog.Builder(ctxt);
 			
 			ArrayList<String> entries = new ArrayList<String>();
 			for (Phone phone : phones) {
-				entries.add(phone.getNumber());
+				entries.add(formatNumber(phone.getNumber(), phone.getType()));
 			}
 			
 			final ArrayAdapter<String> phoneChoiceAdapter = new ArrayAdapter<String>(ctxt, android.R.layout.simple_dropdown_item_1line, entries );
@@ -133,7 +147,69 @@ public abstract class ContactsWrapper {
         }
 	}
 	
+	private String formatNumber(String number, String type) {
+	    if (type.equals("sip")) {
+	        return "sip:" + number;
+	    } else {
+	    	if (!number.startsWith("sip:")) {
+	    		//Code from android source : com/android/phone/OutgoingCallBroadcaster.java 
+                // so that we match exactly the same case that an outgoing call from android
+				number = PhoneNumberUtils.convertKeypadLettersToDigits(number);
+	            number = PhoneNumberUtils.stripSeparators(number);
+	    	}
+	        return number;
+	    }
+	}
+	
 	public interface OnPhoneNumberSelected {
 		void onTrigger(String number);
 	}
+
+/*
+    public static String formatNameAndNumber(String name, String number) {
+        String formattedNumber = number;
+        if (SipUri.isPhoneNumber(number)) {
+            formattedNumber = PhoneNumberUtils.formatNumber(number);
+        }
+
+        if (!TextUtils.isEmpty(name) && !name.equals(number)) {
+            return name + " <" + formattedNumber + ">";
+        } else {
+            return formattedNumber;
+        }
+    }
+    */
+	
+	
+
+    /**
+     * Returns true if all the characters are meaningful as digits
+     * in a phone number -- letters, digits, and a few punctuation marks.
+     */
+    protected boolean usefulAsDigits(CharSequence cons) {
+        int len = cons.length();
+
+        for (int i = 0; i < len; i++) {
+            char c = cons.charAt(i);
+
+            if ((c >= '0') && (c <= '9')) {
+                continue;
+            }
+            if ((c == ' ') || (c == '-') || (c == '(') || (c == ')') || (c == '.') || (c == '+')
+                    || (c == '#') || (c == '*')) {
+                continue;
+            }
+            if ((c >= 'A') && (c <= 'Z')) {
+                continue;
+            }
+            if ((c >= 'a') && (c <= 'z')) {
+                continue;
+            }
+
+            return false;
+        }
+
+        return true;
+    }
+
 }

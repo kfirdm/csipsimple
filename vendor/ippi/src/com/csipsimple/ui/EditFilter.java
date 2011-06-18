@@ -32,6 +32,7 @@ import android.widget.Spinner;
 import android.widget.AdapterView.OnItemSelectedListener;
 
 import fr.ippi.voip.app.R;
+import com.csipsimple.api.SipProfile;
 import com.csipsimple.db.DBAdapter;
 import com.csipsimple.models.Filter;
 import com.csipsimple.models.Filter.RegExpRepresentation;
@@ -62,9 +63,9 @@ public class EditFilter extends Activity implements OnItemSelectedListener, Text
 		//Get back the concerned account and if any set the current (if not a new account is created)
 		Intent intent = getIntent();
         filterId = intent.getIntExtra(Intent.EXTRA_UID, -1);
-        accountId = intent.getIntExtra(Filter.FIELD_ACCOUNT, -1);
+        accountId = intent.getIntExtra(Filter.FIELD_ACCOUNT, SipProfile.INVALID_ID);
         
-        if(accountId < 0) {
+        if(accountId == SipProfile.INVALID_ID) {
         	Log.e(THIS_FILE, "Invalid account");
         	finish();
         }
@@ -144,7 +145,7 @@ public class EditFilter extends Activity implements OnItemSelectedListener, Text
 			repr.type = Filter.getReplaceForPosition(replaceSpinner.getSelectedItemPosition());
 			filter.setReplaceRepresentation(repr);
 		}else {
-			filter.replace = "";
+			filter.replace_pattern = "";
 		}
 		
 		//Save
@@ -175,16 +176,15 @@ public class EditFilter extends Activity implements OnItemSelectedListener, Text
 	private void checkFormValidity() {
 		boolean isValid = true;
 		
-		if(TextUtils.isEmpty(matchesView.getText().toString()) && Filter.getActionForPosition(actionSpinner.getSelectedItemPosition()) != Filter.ACTION_REPLACE) {
+		if(TextUtils.isEmpty(matchesView.getText().toString()) && 
+				Filter.getMatcherForPosition(matcherSpinner.getSelectedItemPosition() ) != Filter.MATCHER_ALL ){
 			isValid = false;
 		}
 		/*
-		if(Filter.getActionForPosition(actionSpinner.getSelectedItemPosition()) == Filter.ACTION_REPLACE) {
-			if(TextUtils.isEmpty(replaceView.getText().toString())) {
-				isValid = false;
-			}
-		}
-		*/
+				&&
+				Filter.getActionForPosition(actionSpinner.getSelectedItemPosition()) != Filter.ACTION_REPLACE) {
+			isValid = false;
+		} */
 		
 		saveButton.setEnabled(isValid);
 	}
@@ -215,6 +215,8 @@ public class EditFilter extends Activity implements OnItemSelectedListener, Text
 			}
 			break;
 		}
+		boolean showMatcherView = Filter.getMatcherForPosition(matcherSpinner.getSelectedItemPosition() ) != Filter.MATCHER_ALL ;
+		matchesView.setVisibility(showMatcherView ? View.VISIBLE : View.GONE);
 		checkFormValidity();
 	}
 	
