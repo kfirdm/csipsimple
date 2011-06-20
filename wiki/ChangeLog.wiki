@@ -2,7 +2,7 @@
 #labels Featured,Phase-Support
 
 = 0.02 =
-(current is 0.02-02)
+(current is 0.02-03 : it solves default configuration and the quit feature)
  * Many bug fixes 
  * Battery usage improvement
  * Theming of the app by third party app (+ gingerbread theme by default)
