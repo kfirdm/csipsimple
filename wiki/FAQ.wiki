@@ -6,7 +6,10 @@
 <wiki:toc max_depth="1" />
 
 ----
+= Before starting =
+If you don't know what is SIP and what this program does : [WhatIsSIP]
 
+----
 = The other party can hear me but I can not hear them =
 It's probably a NAT problem. Some networks are NATed network. It means that there is some network equipment between you and the rest of the world that "hide" your IP address to the rest and the world. It results that your SIP client will not announce properly your IP to sip server and other party. So when a call is placed and media stream is established, the remote party doesn't know where to send its stream and you can't hear him.
 
@@ -107,6 +110,10 @@ To do so :
     * Use Mode API (try to use this one first and without activating others)
     * Use Routing API.
     * Use tone hack.
+    * Use WebRTC implementation
+    * Change the micro source (if related to the way micro records - big echo for example)
+    * Change Audio Mode for SIP calls
+
 Try each of these settings independently and then in combination. 
 
 If one or a combination of that modes helps... well good news for you, you have CSipSimple running correctly on your phone ;). 
