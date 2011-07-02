@@ -2,6 +2,10 @@
 #labels Phase-Implementation
 #sidebar MainSideBar
 
+= IMPORTANT =
+For any question on how to build *PLEASE* join the [http://groups.google.com/group/csipsimple-dev/ development group]
+Also, if you build CSipSimple, you should first read the [Licensing] wiki page
+
 = Introduction =
 The application has two distinct parts : 
  * The pjsip dynamic library part that produce a .so (to be more precise a .so by android target).
