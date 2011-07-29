@@ -35,4 +35,4 @@ However obtaining a license for this part of the software doesn't grant you the 
 
 The source code of this codec is covered by the GNU-GPLv3 of this project. However, the usage of the codec is not free. Make sure you bought the usage license before activating the codec in CSipSimple. [http://www.synapseglobal.com/g729_codec_license.html Synapse Global].
 
-= [BrandedVersionsOfCSipSimple Knwon redistributions of CSipSimple] =
+= [BrandedVersionsOfCSipSimple Known redistributions of CSipSimple] =
