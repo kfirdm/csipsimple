@@ -92,8 +92,12 @@ cd pjsip_android
 
  * Launch a make (but it will generate only one target lib)
 {{{
+
 make APP=pjsip
-#if you want to build for target android 2.3 (for OpenSL-ES support type) : make APP=pjsip TARGET_PLATFORM=android-9
+#if you want to build for target android 2.3 (for OpenSL-ES support type or webRTC support ) :
+# WARNING : default of webRTC is now activated !! so you should consider use this line instead :  
+
+make APP=pjsip TARGET_PLATFORM=android-9
 }}}
 
 Congratulation you've just build the dynamic library.
