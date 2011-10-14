@@ -16,3 +16,4 @@ Do not hesitate to ask if you find another.
  * [http://open2world.tistory.com/262]
  * [http://iiordanov.blogspot.com/2009/07/sipdroid-gv-guava.html Use with googlevoice callback]
  * [http://www.blueface.ie/helpandadvice/configuration/csipsimple.aspx Use with Blueface]
+ * [http://wiki.voip.ms/article/CSipSimple voip.ms]
