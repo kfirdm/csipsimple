@@ -1,4 +1,5 @@
 #summary This page list existing known forks of CSipSimple.
+#sidebar MainSideBar
 
 = Introduction =
 
