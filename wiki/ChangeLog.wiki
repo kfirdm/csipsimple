@@ -1,6 +1,14 @@
 #summary This page allow you to track what are changes done on CSipSimple
 #labels Featured,Phase-Support
 
+= 0.03 =
+ * Bug fixes
+ * Improve incoming call reliablity
+ * Plugins for outgoing call handler
+ * AMR-NB codec for device with the library available in ROM
+ * WebRTC echo canceller and iLBC codec implementation
+
+
 = 0.02 =
 (current is 0.02-03 : it solves default configuration and the quit feature)
  * Many bug fixes 
