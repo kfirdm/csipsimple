@@ -1,8 +1,23 @@
 #summary Cette page résume les changements du logiciel CSipSimple
 #labels Featured,Phase-Support
 
-= 0.00-17 =
- * A venir
+= 0.03 = 
+ * Correction de bug
+ * Amélioriation de la disponiblité en mode toujours disponible
+ * Plugin pour les appels sortants
+ * Codec AMR-NB pour les téléphones qui ont ce codec dans leur ROM de base
+ * Annulation d'echo et implementation du codec iLBC en utilisant le projet WebRTC
+ 
+ 
+= 0.02 = 
+ * Correction de bug  
+ * Amélioration de l'utilisation de la batterie
+ * Application thémable via des plugins  (+ gingerbread en theme à defaut) 
+ * Support de la gestion de plusieurs appels - OPTIONEL - 
+ * Option de mode compact pour réduire l'utilisation réseau
+ * Android 2.3 integration : nouvelle source de micro et nouveau mode audio
+ * Android 2.3 integration : appel sortant sip
+
 
 = 0.00-16 =
  * Enregistrement en cours d'appel (Utilisez la touche Menu sur l'écran d'appel)
