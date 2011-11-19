@@ -66,7 +66,7 @@ make
 }}}
 _Note that you can use make -j4 to make things go faster if your computer allow that_
 
-If you get a problem at this point, it could be because there is a missing package on your system install. Since at this point it will do git, swig2.0, wget, unzip, quilt... there is chance one of these apps is missing. If so, try to get that installed on your system first. About swig, it may also works with swig. If your distribution install swig instead of swig2.0 just create an alias on this command.
+If you get a problem at this point, it could be because there is a missing package on your system install. Since at this point it will do git, swig2.0, wget, unzip, quilt... there is chance one of these apps is missing. If so, try to get that installed on your system first. About swig you may have to build and install it by yourself because version 2.0 is recent.
 
 If everything goes well, congrats, you have created the native libraries for CSipSimple (it will also produce native libs for plugins apps).
 
