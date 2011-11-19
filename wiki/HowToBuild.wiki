@@ -22,10 +22,61 @@ So if you plan to improve CSipSimple and redistribute it, you *MUST* release you
 <wiki:toc max_depth="2" />
 
 = System and Software Requirements =
-Assuming that you have a linux system with svn and all android ndk requirements.
+== For Linux ==
+You'll need following package _you may need to adapt depending to your distribution packages names_
+{{{ 
+svn git quilt unzip wget swig2.0 python
+}}} 
+You also have to install the android NDK and the android SDK.
+I do not details here how to install android NDK and SDK. Please read Android documentations about that :
+[http://developer.android.com/ndk/ndk/index.html Android NDK doc]
+[http://developer.android.com/sdk/installing.html Android SDK doc]
+To install correctly the android NDK, please add the NDK to your path. I usually recommend to add these lines to your .bashrc :
+{{{
+export ANDROID_NDK=/_path_to/android-ndk-linux/
+export ANDROID_SDK=/_path_to/android-sdk-linux/
+export PATH=$PATH:$ANDROID_SDK/tools:$ANDROID_SDK/platform-tools:$ANDROID_NDK
+}}}
+Anyway the naming of ANDROID_NDK export is important in the build of one part of the application. You can also do that only at build time, but if you use to develop for android, it's a good idea to do that.
 
-I don't not explain how to build for Windows cause I consider that if you really want to develop you probably don't use Windows. However it should be possible to build it for Windows too.
+== For MacOSX ==
+It's almost the same as for Linux. May be harder to find packages above. If you want to contribute in details to this section, feel free to contribute on the developer mailing list infos about how to get the environment. 
 
+== For Windows ==
+I don't not explain how to build for Windows because if you really want to develop you probably don't and shouldn't use Windows. 
+However it should be possible to build it for Windows too. To do so, you must understand Makefile syntax and have a look on commands to run to build the project. It's most about checkouting other projects using git, getting zip files from elsewhere, applying patches, and generating a swig interface. Maybe using cygwin it's easier. But if I where you I would rather install a virtual machine with some beginner linux distro (such as Ubuntu or Fedora). 
+
+= Checkout source code =
+We assume here you are in your folder where you put dev with a shell.
+_Start with a checkout of source code_
+{{{
+svn checkout http://csipsimple.googlecode.com/svn/trunk/CSipSimple CSipSimple
+}}}
+It will create a folder CSipSimple where source code from CSipSimple and all svn dependancies has been gathered.
+
+_Go into source folder_
+{{{
+cd CSipSimple
+}}}
+
+_Launch make to build the native part of the library and dependancies_
+{{{
+make
+}}}
+
+If you get a problem at this point, it could be because there is a missing package on your system install. Since at this point it will do git, swig2.0, wget, unzip, quilt... there is chance one of these apps is missing. If so, try to get that installed on your system first. About swig, it may also works with swig. If your distribution install swig instead of swig2.0 just create an alias on this command.
+
+If everything goes well, congrats, you have created the native libraries for CSipSimple (it will also produce native libs for plugins apps).
+
+
+You can now open the project with Eclipse or your preferred java IDE that is able to build a regular android application. On eclipse just import the project as an Android project (create project > android > from source).
+If you want to automate the build of the native part as well as the build of the android project, you can do that by installing CDT on eclipse and then on the android project do : New Project->Other->C++->Convert to C++ and tells it's a makefile project.
+
+You should now be able to launch the application as an Android application.
+
+
+----
+= Old way - for pjsip-1.x not anymore supported for CSipSimple =
 
 First thing to do :
 Create a new directory for the project.
