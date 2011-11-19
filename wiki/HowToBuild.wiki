@@ -48,6 +48,7 @@ However it should be possible to build it for Windows too. To do so, you must un
 
 = Checkout source code =
 We assume here you are in your folder where you put dev with a shell.
+
 _Start with a checkout of source code_
 {{{
 svn checkout http://csipsimple.googlecode.com/svn/trunk/CSipSimple CSipSimple
@@ -70,9 +71,16 @@ If everything goes well, congrats, you have created the native libraries for CSi
 
 
 You can now open the project with Eclipse or your preferred java IDE that is able to build a regular android application. On eclipse just import the project as an Android project (create project > android > from source).
+
+When you get an update from CSipSimple svn, you should always make the native library. To do so, as there is potential update from external projects you should do :
+{{{
+make update; make
+}}}
+
 If you want to automate the build of the native part as well as the build of the android project, you can do that by installing CDT on eclipse and then on the android project do : New Project->Other->C++->Convert to C++ and tells it's a makefile project.
 
 You should now be able to launch the application as an Android application.
+
 
 
 ----
