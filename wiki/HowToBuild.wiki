@@ -17,6 +17,7 @@ If you are a java developer and you are not interested in building the sip stack
 
 Some very important note : *CSipSimple is released under GPL license*. 
 Be really aware about what does that mean before developing. Read [Licensing] wiki page. 
+
 So if you plan to improve CSipSimple and redistribute it, you *MUST* release your source code. As we (CSipSimple developers) are open to any contribution, I'd advise you to directly contribute the CSipSimple project. All contributions are welcome !!!
 
 <wiki:toc max_depth="2" />
@@ -29,8 +30,8 @@ subversion git quilt unzip wget swig2.0 python make
 }}} 
 You also have to install the android NDK and the android SDK.
 I do not details here how to install android NDK and SDK. Please read Android documentations about that :
-[http://developer.android.com/ndk/ndk/index.html Android NDK doc]
-[http://developer.android.com/sdk/installing.html Android SDK doc]
+ * [http://developer.android.com/ndk/ndk/index.html Android NDK doc]
+ * [http://developer.android.com/sdk/installing.html Android SDK doc]
 To install correctly the android NDK, please add the NDK to your path. I usually recommend to add these lines to your .bashrc :
 {{{
 export ANDROID_NDK=/_path_to/android-ndk-linux/
