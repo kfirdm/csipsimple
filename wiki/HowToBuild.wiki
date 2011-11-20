@@ -25,7 +25,7 @@ So if you plan to improve CSipSimple and redistribute it, you *MUST* release you
 == For Linux ==
 You'll need following package _you may need to adapt depending to your distribution packages names_
 {{{ 
-subversion git quilt unzip wget swig2.0 python
+subversion git quilt unzip wget swig2.0 python build-essential
 }}} 
 You also have to install the android NDK and the android SDK.
 I do not details here how to install android NDK and SDK. Please read Android documentations about that :
