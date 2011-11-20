@@ -30,7 +30,7 @@ subversion git quilt unzip wget swig2.0 python make
 }}} 
 You also have to install the android NDK and the android SDK.
 I do not details here how to install android NDK and SDK. Please read Android documentations about that :
- * [http://developer.android.com/ndk/ndk/index.html Android NDK doc]
+ * [http://developer.android.com/sdk/ndk/index.html Android NDK doc]
  * [http://developer.android.com/sdk/installing.html Android SDK doc]
 To install correctly the android NDK, please add the NDK to your path. I usually recommend to add these lines to your .bashrc :
 {{{
