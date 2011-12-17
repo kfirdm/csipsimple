@@ -17,6 +17,7 @@ If application is not distributed under GPLv3 license terms the company can be s
  * WebsiteChat.net Live Help Chat (code will be available in csipsimple googlecode level7 branch)
  * EasyBell VoIP, smartcalls, 3gGlobal, voipcall (code source can be asked to MatrixConsultants www.matrixconsultants.com.au ).
  * Sonetel : www.sonetel.com
+ * VoxMobile : Branded fork for voxmobile. You can get source code here : http://code.google.com/p/voxmobile/
 
 = List of forks that still need to confirm they correctly respect GPL license =
  * Voipon3G
