@@ -53,8 +53,10 @@ We assume here you are in your folder where you put dev with a shell.
 _Start with a checkout of source code_
 {{{
 svn checkout http://csipsimple.googlecode.com/svn/trunk/CSipSimple CSipSimple
+svn checkout http://csipsimple.googlecode.com/svn/trunk/ActionBarSherlock ActionBarSherlock
 }}}
 It will create a folder CSipSimple where source code from CSipSimple and all svn dependancies has been gathered.
+CSipSimple also now depends on the ActionBarSherlock library. So the second line also checkout the ActionBarSherlock copy for current csipsimple version. When you'll import to Eclipse (if you do), you have to import ActionBarSherlock as well.
 
 _Go into source folder_
 {{{
@@ -88,13 +90,15 @@ You should now be able to launch the application as an Android application.
 ----
 = Old way - for pjsip-1.x not anymore supported for CSipSimple =
 
-First thing to do :
-Create a new directory for the project.
+*WARNING* : This method *ONLY* works for revision 1108 or lower. *DON'T TRY WITH LATEST SVN!*
 
 = Build the pjsip library for android =
 
+First thing to do :
+Create a new directory for the project.
+
 == Get the NDK and the source ==
-I have not committed into the svn the build toolchain for android. 
+The svn does not contains the build toolchain for android. 
 The one distributed in CSipSimple SVN is a mix between Crystax NDK and a NDK that allow to build for armv4t devices (thx to H. Manson).
 (For reference [http://www.crystax.net/android/ndk-r4.php crystax NDK] and [http://code.google.com/p/android-on-freerunner/issues/detail?id=142 android armv4t NDK].
 
