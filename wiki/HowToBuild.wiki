@@ -42,7 +42,10 @@ Anyway the naming of ANDROID_NDK export is important in the build of one part of
 
 == For MacOSX ==
 _Thx to Benjamin and Magnus for the contrib on these instructions_
-It's almost the same as for Linux. Packages are a little bit more complicated to get however. The two more difficult to get are quilt and swig2.0.
+
+For main instructions it's almost the same as for Linux. 
+
+Packages are a little bit more complicated to get however. The two more difficult to get are quilt and swig2.0.
 
 To install quilt you should install MacPorts first (http://www.macports.org). 
 Installation instructions: http://www.macports.org/install.php
@@ -63,6 +66,10 @@ Finally, since csipsimple make file has some crappy hard coded link to swig tool
 {{{
 sudo ln -s <path to swig> /opt/local/bin/swig2.0
 }}}
+
+Other packages (subversion git unzip wget python make) should be easier to install but are also required on Mac.
+
+Continue instructions of Linux build. It should go the same way once packages are installed.
 
 == For Windows ==
 I don't not explain how to build for Windows because if you really want to develop you probably don't and shouldn't use Windows. 
