@@ -52,8 +52,7 @@ And then install quilt using :
 sudo port install quilt
 }}} 
 
-To install swig 2.0 : download from source available here :
-I have installed swig 2.0.4 from http://www.swig.org/download.html
+To install swig 2.0 : download from source available here : http://www.swig.org/download.html
 And then execute
 {{{
 ./configure # optionally add prefix here to be able to install in your env
