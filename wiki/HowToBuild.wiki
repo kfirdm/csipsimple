@@ -41,7 +41,29 @@ export PATH=$PATH:$ANDROID_SDK/tools:$ANDROID_SDK/platform-tools:$ANDROID_NDK
 Anyway the naming of ANDROID_NDK export is important in the build of one part of the application. You can also do that only at build time, but if you use to develop for android, it's a good idea to do that.
 
 == For MacOSX ==
-It's almost the same as for Linux. May be harder to find packages above. If you want to contribute in details to this section, feel free to contribute on the developer mailing list infos about how to get the environment. 
+_Thx to Benjamin and Magnus for the contrib on these instructions_
+It's almost the same as for Linux. Packages are a little bit more complicated to get however. The two more difficult to get are quilt and swig2.0.
+
+To install quilt you should install MacPorts first (http://www.macports.org). 
+Installation instructions: http://www.macports.org/install.php
+
+And then install quilt using :
+{{{
+sudo port install quilt
+}}} 
+
+To install swig 2.0 : download from source available here :
+I have installed swig 2.0.4 from http://www.swig.org/download.html
+And then execute
+{{{
+./configure # optionally add prefix here to be able to install in your env
+make
+make install
+}}}
+Finally, since csipsimple make file has some crappy hard coded link to swig tool for now, you have to add a symbolic link to allow your system to recognize swig2.0 to be the same than swig. The faster way is probably to make a symlink:
+{{{
+sudo ln -s <path to swig> /opt/local/bin/swig2.0
+}}}
 
 == For Windows ==
 I don't not explain how to build for Windows because if you really want to develop you probably don't and shouldn't use Windows. 
