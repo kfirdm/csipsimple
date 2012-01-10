@@ -57,7 +57,7 @@ And then execute
 {{{
 ./configure # optionally add prefix here to be able to install in your env
 make
-make install
+make install # optionally do that in sudo if target is read only for the current user
 }}}
 Finally, since csipsimple make file has some crappy hard coded link to swig tool for now, you have to add a symbolic link to allow your system to recognize swig2.0 to be the same than swig. The faster way is probably to make a symlink:
 {{{
