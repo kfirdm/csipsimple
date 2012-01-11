@@ -166,8 +166,9 @@ _In future release this will not be relevant anymore. You can try nightly builds
     # Click on the account row
     # Scroll down to "Voice mail number", change it, and save
     # Optionally you can revert to the previous wizard by reproducing point 1 to 3.
+----
 
-= I try to use ZRTP + SRTP and ZRTP doesn't work =
+= I try to use ZRTP + SRTP, but ZRTP doesn't work =
 That's a known limitation. Due to the fact ZRTP is considered as a plugin for pjsip that already manages SRTP it's own way, you should never try to enable SRTP and ZRTP at the same time.
 
 In fact if you do so, pjsip will ignore ZRTP and use SRTP as media adapter.
