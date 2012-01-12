@@ -10,9 +10,12 @@
    * [HowToBuild How to build the app]
    * [Licensing The application licenses]
    * [Translations]
+ * For SIP providers
+   * [AddASipProvider How to add our service to CSipSimple?]
+   * [BrandedVersionsOfCSipSimple Branded versions of CSipSimple]
+   * [Donate Support the project by donating]
  * About
    * [WhatIsSIP What is SIP?]
    * [Screenshots]
    * [PermissionsUse What permissions this app uses?]
    * [Donate]
-   * [BrandedVersionsOfCSipSimple Branded versions of CSipSimple]
