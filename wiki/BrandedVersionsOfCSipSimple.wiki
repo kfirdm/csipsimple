@@ -3,8 +3,11 @@
 
 = Introduction =
 
-CSipSimple is released under GPL license. As consequence it's allowed to distribute forks of CSipSimple as far as branded version are distributed under GPL license.
-If application is not distributed under GPLv3 license terms the company can be sued by copyrights owners of the application.
+CSipSimple is released under GPLv3 license. 
+The project is also compound of several parts and the [Licensing licensing model is complex].
+A third company can decide to rely on CSipSimple source code in accordance with the [Licensing licensing rules].
+
+This page lists these apps. And try to keep track of companies that does not respect rules.
 
 = List of known forks =
 
