@@ -6,7 +6,7 @@
 The project is globally compounded of 3 main parts :
  * CSipSimple which is the Java application for Android
  * pjsip_android/jni which is the android portage of pjsip for Android
- * pjsip which is just re-hosted here to make things easier to build the lib.
+ * pjsip which is checked out at [HowToBuild build] time.
 
 There is also additional parts to bring other features such as codec or encryption.
 
