@@ -5,6 +5,10 @@
 = Summary =
 <wiki:toc max_depth="1" />
 
+For non listed question, do not hesitate to join and ask on the users group :
+
+[http://groups.google.com/group/csipsimple-users] (csipsimple-users@googlegroups.com).
+
 ----
 = Before starting =
 If you don't know what is SIP and what this program does : [WhatIsSIP]
