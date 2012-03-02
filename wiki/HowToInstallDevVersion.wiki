@@ -24,4 +24,4 @@ If you need to report logs on it, follow instructions here : HowToCollectLogs
 
 
 = Keep up to date =
-Using development version you'll be automatically upgraded from nightly build channel. You can subscribe the [To have more details on http://code.google.com/feeds/p/csipsimple/svnchanges/basic?path=/trunk rss feed] to know more about updates.
+Using development version you'll be automatically upgraded from nightly build channel. You can subscribe the on [http://code.google.com/feeds/p/csipsimple/svnchanges/basic?path=/trunk rss feed] to know more about updates content.
