@@ -90,6 +90,7 @@ svn checkout http://csipsimple.googlecode.com/svn/trunk/ActionBarSherlock Action
 It will create a folder CSipSimple where source code from CSipSimple and all svn dependancies has been gathered.
 CSipSimple also now depends on the ActionBarSherlock library. So the second line also checkout the ActionBarSherlock copy for current csipsimple version. When you'll import to Eclipse (if you do), you have to import !ActionBarSherlock as well.
 
+= Build native library =
 _Go into source folder_
 {{{
 cd CSipSimple
@@ -105,7 +106,7 @@ If you get a problem at this point, it could be because there is a missing packa
 
 If everything goes well, congrats, you have created the native libraries for CSipSimple (it will also produce native libs for plugins apps).
 
-
+= Setup/import application in your IDE _(Optional)_ =
 You can now open the projects with Eclipse or your preferred java IDE that is able to build a regular android application. 
 
 On eclipse just retrieve the projects as an Android projects (create project > android > from source). 
@@ -116,14 +117,27 @@ Don't be worried about the fact it's high values ! It does *not* mean that your 
 
 Finally you should have two eclipse projects "CSipSimple" and "!ActionBarSherlock". !ActionBarSherlock is a backward compatible way to use Fragements and Action Bar pattern of android newer versions.
 
+
+You should now be able to launch the application as an Android application.
+
+= Using ant _(Optional)_ =
+This is particularly useful for a pure command line environment. It's used on the automatic nightly build server for example.
+
+You have basically to follow instructions here :
+[http://developer.android.com/guide/developing/projects/projects-cmdline.html]
+
+Take care that it may modify the AndroidManifest.xml file, so revert it if it does.
+
+For parameters to pass, simply have a look to existing project.properties file and AndroidManifest.xml file that are in each project you init with ant tool.
+
+
+= Updates =
 When you get an update from CSipSimple svn, you should always make the native library. To do so, as there is potential update from external projects you should do :
 {{{
 make update; make
 }}}
 
 If you want to automate the build of the native part as well as the build of the android project, you can do that by installing CDT on eclipse and then on the android project do : New Project->Other->C++->Convert to C++ and tells it's a makefile project.
-
-You should now be able to launch the application as an Android application.
 
 
 
