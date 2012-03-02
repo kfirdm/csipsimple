@@ -106,7 +106,10 @@ If you get a problem at this point, it could be because there is a missing packa
 
 If everything goes well, congrats, you have created the native libraries for CSipSimple (it will also produce native libs for plugins apps).
 
-= Setup/import application in your IDE _(Optional)_ =
+= Build apk =
+There is several ways to build the apk once the native library is built. You can either use an IDE that integrates android development toolchains (described in details for Eclipse) or you can use Ant (for command line environments).
+
+== Setup/import application in your IDE _(Optional)_ ==
 You can now open the projects with Eclipse or your preferred java IDE that is able to build a regular android application. 
 
 On eclipse just retrieve the projects as an Android projects (create project > android > from source). 
@@ -120,15 +123,15 @@ Finally you should have two eclipse projects "CSipSimple" and "!ActionBarSherloc
 
 You should now be able to launch the application as an Android application.
 
-= Using ant _(Optional)_ =
+== Using ant _(Optional)_ ==
 This is particularly useful for a pure command line environment. It's used on the automatic nightly build server for example.
 
 You have basically to follow instructions here :
 [http://developer.android.com/guide/developing/projects/projects-cmdline.html]
 
-Take care that it may modify the AndroidManifest.xml file, so revert it if it does.
+Take care that it may modify the !AndroidManifest.xml file, so revert it if it does.
 
-For parameters to pass, simply have a look to existing project.properties file and AndroidManifest.xml file that are in each project you init with ant tool.
+For parameters to pass, simply have a look to existing project.properties file and !AndroidManifest.xml file that are in each project you init with ant tool.
 
 
 = Updates =
