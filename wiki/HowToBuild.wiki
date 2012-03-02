@@ -88,7 +88,7 @@ svn checkout http://csipsimple.googlecode.com/svn/trunk/CSipSimple CSipSimple
 svn checkout http://csipsimple.googlecode.com/svn/trunk/ActionBarSherlock ActionBarSherlock
 }}}
 It will create a folder CSipSimple where source code from CSipSimple and all svn dependancies has been gathered.
-CSipSimple also now depends on the ActionBarSherlock library. So the second line also checkout the ActionBarSherlock copy for current csipsimple version. When you'll import to Eclipse (if you do), you have to import ActionBarSherlock as well.
+CSipSimple also now depends on the ActionBarSherlock library. So the second line also checkout the ActionBarSherlock copy for current csipsimple version. When you'll import to Eclipse (if you do), you have to import !ActionBarSherlock as well.
 
 _Go into source folder_
 {{{
@@ -106,7 +106,15 @@ If you get a problem at this point, it could be because there is a missing packa
 If everything goes well, congrats, you have created the native libraries for CSipSimple (it will also produce native libs for plugins apps).
 
 
-You can now open the project with Eclipse or your preferred java IDE that is able to build a regular android application. On eclipse just import the project as an Android project (create project > android > from source).
+You can now open the projects with Eclipse or your preferred java IDE that is able to build a regular android application. 
+
+On eclipse just retrieve the projects as an Android projects (create project > android > from source). 
+Then when ADT plugin will ask you which android version you'd like to link on, you should check the "project.properties" file of each project you are importing (do that both for CSipSimple and !ActionBarSherlock). You can have a look to online files here :
+[http://code.google.com/p/csipsimple/source/browse/trunk/CSipSimple/project.properties CSipSimple project.properties] and [http://code.google.com/p/csipsimple/source/browse/trunk/ActionBarSherlock/project.properties ABS project.properties].
+
+Don't be worried about the fact it's high values ! It does *not* mean that your app will not run with older android version. Actually, it will be able to run on android 1.6 ! minSdk version and targetVersion are not linked. Backward compatibility is ensured by code not by the lib you link on while building.
+
+Finally you should have two eclipse projects "CSipSimple" and "!ActionBarSherlock". !ActionBarSherlock is a backward compatible way to use Fragements and Action Bar pattern of android newer versions.
 
 When you get an update from CSipSimple svn, you should always make the native library. To do so, as there is potential update from external projects you should do :
 {{{
