@@ -15,7 +15,7 @@ If you don't know what is SIP and what this program does : [WhatIsSIP]
 
 ----
 = The other party can hear me but I can not hear them =
-It's probably a NAT problem. Some networks are NATed network. It means that there is some network equipment between you and the rest of the world that "hide" your IP address to the rest and the world. It results that your SIP client will not announce properly your IP to sip server and other party. So when a call is placed and media stream is established, the remote party doesn't know where to send its stream and you can't hear him.
+  * It's probably a NAT problem. Some networks are NATed network. It means that there is some network equipment between you and the rest of the world that "hide" your IP address to the rest and the world. It results that your SIP client will not announce properly your IP to sip server and other party. So when a call is placed and media stream is established, the remote party doesn't know where to send its stream and you can't hear him.
 
 To solve this problem, you *must* activate *STUN* :
 
@@ -26,10 +26,16 @@ CSipSimple has a default a stun server *if you activate STUN option !* (but as s
 You can also try to use ICE in addition to STUN if STUN alone doesn't solve the problem :
 *Settings > Network - Tick "Use ICE"*
 
-If it doesn't help, there is maybe a problem with your device (on some device, manufacturers does strange things with the android audio stack). So report the problem on the issue section.
+
+  * Another possible root cause is a problem with Bluetooth feature. Since the app tries to automatically switch to Bluetooth, but that not all devices ROM gives the correct feedback about actual Bluetooth pairing, it may route audio to some virtual device and so you can't talk in the virtual micro :).
+In this case, try to disable Bluetooth option of your phone (even if nothing is paired).
+
+  * If it doesn't help, there is maybe a problem with your device (on some device, manufacturers does strange things with the android audio stack). So report the problem on the issue section.
+
+  * It can also be something with codec negotiation. So it can be interesting to try to disable all codecs but PCMU (aka G711u aka uLaw). To do so, go in settings > media > codecs. And long press each other codecs until you get the popup to tell that you want to disable it.
 
 ----
-= There is a mute icon in the notification bar while in call =
+= There is a vibrate icon in the notification bar while in call =
 
 That's absolutely normal. In order to avoid your ear to explode if there is an incoming GSM call, I put the ringer mode to silent (that's the mean of the icon in the notification bar).
 When call will end, ringer state will be restored to previous value.
@@ -37,7 +43,8 @@ When call will end, ringer state will be restored to previous value.
 ----
 = There is no contact list =
 
-Hey guys, just try to make a call using the standard android phone dialer, or clicking a contact in the official contact application ;).... And you'll see that a contact list is not needed at all in the SIP application !!!
+Just try to make a call using the standard android phone dialer, or clicking a contact in the official contact application ;).... And you'll see that a contact list is not needed at all in the SIP application !!!
+There is also a quick text search dialer if you switch to text dialing mode, that will search on android contacts.
 
 ----
 
