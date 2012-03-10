@@ -21,6 +21,7 @@ This page lists these apps. And try to keep track of companies that does not res
  * EasyBell VoIP, smartcalls, 3gGlobal, voipcall (code source can be asked to MatrixConsultants www.matrixconsultants.com.au ).
  * Sonetel : www.sonetel.com
  * VoxMobile : Branded fork for voxmobile. You can get source code here : http://code.google.com/p/voxmobile/
+ * IDPhone : Branded fork for ID Phone. You can get source code here : http://code.google.com/p/idphone/
 
 = List of forks that still need to confirm they correctly respect GPL license =
  * Voipon3G
