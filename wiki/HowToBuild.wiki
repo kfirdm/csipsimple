@@ -118,7 +118,9 @@ Then when ADT plugin will ask you which android version you'd like to link on, y
 
 Don't be worried about the fact it's high values ! It does *not* mean that your app will not run with older android version. Actually, it will be able to run on android 1.6 ! minSdk version and targetVersion are not linked. Backward compatibility is ensured by code not by the lib you link on while building.
 
-Finally you should have two eclipse projects "CSipSimple" and "!ActionBarSherlock". !ActionBarSherlock is a backward compatible way to use Fragements and Action Bar pattern of android newer versions.
+Finally you should have two eclipse projects "CSipSimple" and "!ActionBarSherlock". !ActionBarSherlock is a backward compatible way to use Fragments and Action Bar pattern of android newer versions.
+
+If you encounter some problems about override of methods, ensure that your Eclipse env setup projects for "java 1.6" or upper. -You should also check that per project if necessary-
 
 
 You should now be able to launch the application as an Android application.
