@@ -50,7 +50,7 @@ Packages are a little bit more complicated to get however. The two more difficul
 DUE TO A BUG IN MACPORT with quilt 0.6 -- DON'T USE THE FOLLOWING.
 
 _To install quilt you should install MacPorts first (http://www.macports.org). 
-Installation instructions: http://www.macports.org/install.php_
+[http://www.macports.org/install.php Installation instructions]_
 
 _If you work behind a proxy follow these instructions additionally [http://www.oconnoat.com/blog/2009/03/18/macports-through-a-proxy/ MacPorts behind proxy]_
 
