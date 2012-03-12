@@ -56,8 +56,8 @@ _If you work behind a proxy follow these instructions additionally [http://www.o
 
 _And then install quilt using :_
 {{{
-sudo port install quilt
 sudo port selfupdate
+sudo port install quilt
 }}} 
 
 *Instead build it from source*
