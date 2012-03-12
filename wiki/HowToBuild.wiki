@@ -47,8 +47,8 @@ For main instructions it's almost the same as for Linux.
 
 Packages are a little bit more complicated to get however. The two more difficult to get are quilt and swig2.0.
 
+DUE TO A BUG IN MACPORT with quilt 0.6 -- DON'T USE THE FOLLOWING.
 To install quilt you should install MacPorts first (http://www.macports.org). 
-
 Installation instructions: http://www.macports.org/install.php
 
 If you work behind a proxy follow these instructions additionally [http://www.oconnoat.com/blog/2009/03/18/macports-through-a-proxy/ MacPorts behind proxy]
@@ -58,6 +58,15 @@ And then install quilt using :
 sudo port install quilt
 sudo port selfupdate
 }}} 
+
+-- Instead build it from source.
+Download quilt from latest source available here : http://download.savannah.gnu.org/releases/quilt/
+And then execute
+{{{
+./configure # optionally add prefix here to be able to install in your env
+make
+make install # optionally do that in sudo if target is read only for the current user
+}}}
 
 To install swig 2.0 : download from source available here : http://www.swig.org/download.html
 And then execute
