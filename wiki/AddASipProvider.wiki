@@ -16,6 +16,8 @@ All these reason are not about the SIP provider but about SIP provider's users. 
 = What should be done before proposing a wizard ?=
 You have to make sure that the app can work with your service. So download and install the application and start configuring it. You can use Basic, Advanced or Expert wizard (depending on the need of specific configuration you need to make things work with your service).
 
+You can also play with ExpertSettingMode to activate/deactivate some options to tweak the application for your server. For example, `compact mode` can help to reduce bandwidth if your server does support it; `codec list` can help to have better codec negotiation too. `DNS SRV` and `STUN` option could also be mandatory for your server.
+
 If you experiment problems, feel free to contact the email : developers _at_ csipsimple _dot_ com. With details on what you usually provide to users to configure standard sip client. If you have other tutorial for other sip client it may also help to find correct adapted settings for csipsimple.
 
 Once this is done and working properly, you can create a new wizard request to add your wizard to the application.
