@@ -12,6 +12,7 @@
    * [Translations]
  * For SIP providers
    * [AddASipProvider How to add our service to CSipSimple?]
+   * [Licensing The application licenses]
    * [BrandedVersionsOfCSipSimple Branded versions of CSipSimple]
    * [Donate Support the project by donating]
  * About
