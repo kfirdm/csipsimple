@@ -96,8 +96,7 @@ We assume here you are in your folder where you put dev with a shell.
 _Start with a checkout of source code_
 {{{
 svn checkout http://csipsimple.googlecode.com/svn/trunk/CSipSimple CSipSimple
-git clone git://github.com/r3gis3r/ActionBarSherlock.git ABSRepository
-ln -s ABSRepository/library ActionBarSherlock 
+git clone git://github.com/r3gis3r/ActionBarSherlock.git ActionBarSherlock
 }}}
 It will create a folder CSipSimple where source code from CSipSimple and all svn dependancies has been gathered.
 CSipSimple also now depends on the ActionBarSherlock library. So the second line also checkout the ActionBarSherlock copy for current csipsimple version. When you'll import to Eclipse (if you do), you have to import !ActionBarSherlock folder as well.
