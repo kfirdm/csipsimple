@@ -39,6 +39,7 @@ export ANDROID_SDK=/_path_to/android-sdk-linux/
 export PATH=$PATH:$ANDROID_SDK/tools:$ANDROID_SDK/platform-tools:$ANDROID_NDK
 }}}
 Anyway the naming of ANDROID_NDK export is important in the build of one part of the application. You can also do that only at build time, but if you use to develop for android, it's a good idea to do that.
+Don't forget to install SDK and NDK dependencies as well. For example, on ubuntu 64bits system you will need `ia32-libs` for both NDK and SDK.
 
 == For MacOSX ==
 _Thx to Benjamin and Magnus for the contrib on these instructions_
