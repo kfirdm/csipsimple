@@ -146,13 +146,11 @@ You should now be able to launch the application as an Android application.
 == Using ant _(Optional)_ ==
 This is particularly useful for a pure command line environment. It's used on the automatic nightly build server for example.
 
-You have basically to follow instructions here :
-[http://developer.android.com/guide/developing/projects/projects-cmdline.html]
+You have to create your own ant script based integrating ant scripts from the SDK. You can get inspired of what is produced by command line tool of the sdk [http://developer.android.com/guide/developing/projects/projects-cmdline.html].
 
-Take care that it may modify the !AndroidManifest.xml file, so revert it if it does.
+Some interesting tutorial to follow : [http://www.androidengineer.com/2010/06/using-ant-to-automate-building-android.html].
 
-For parameters to pass, simply have a look to existing project.properties file and !AndroidManifest.xml file that are in each project you init with ant tool.
-
+You can also add additional ant task such as the one made for automatic revision in code number of the manifest. 
 
 = Updates =
 When you get an update from CSipSimple svn, you should always make the native library. To do so, as there is potential update from external projects you should do :
