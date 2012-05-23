@@ -11,9 +11,7 @@ The application has two distinct parts :
  * The pjsip dynamic library part that produce a .so (to be more precise a .so by android target).
  * The java application that produce a .apk (and can be installed on your android device).
 
-Both java and native part must have the same level of code if you want the app to run. So it's better to build both parts and follow the complete process.
-
-If you are a java developer and you are not interested in building the sip stack, you can directly go to the *Build the android application* section.
+If you are a java developer and you are not interested in building the sip stack, there is an alternate - not easy to maintain - way to build by getting auto-generated swig java class and the dynamic library from nightly build website. Please search the dev google group to get info about this method that is not recommended.
 
 Some very important note : *CSipSimple is released under GPL license*. 
 Be really aware about what does that mean before developing. Read [Licensing] wiki page. 
