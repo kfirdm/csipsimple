@@ -88,7 +88,20 @@ Continue instructions of Linux build. It should go the same way once packages ar
 
 == For Windows ==
 I don't not explain how to build for Windows because if you really want to develop you probably don't and shouldn't use Windows. 
-However it should be possible to build it for Windows too. To do so, you must understand Makefile syntax and have a look on commands to run to build the project. It's most about checkouting other projects using git, getting zip files from elsewhere, applying patches, and generating a swig interface. Maybe using cygwin it's easier. But if I where you I would rather install a virtual machine with some beginner linux distro (such as Ubuntu or Fedora). 
+However it should be possible to build it for Windows too. To do so, you must understand Makefile syntax and have a look on commands to run to build the project. It's most about checkouting other projects using git, getting zip files from elsewhere, applying patches, and generating a swig interface. Maybe using cygwin it's easier. 
+
+So, in this case the easiest way is to use the virtual machine as described in following chapter
+
+== With a virtual machine ==
+
+If you want to have an environment with everything required for !CSipSimple you can use a Virtual Machine. Thanks to Dennis work, there is one ready for direct use :
+
+[https://docs.google.com/file/d/0ByFooYVveHXdYVV6eVhaUElWaGM/edit?pli=1 CSipSimple-CompilerVM.vmdk]
+
+You can get root privilege with sudo command. The password is equals to the username, which should be "user".
+
+Using, this machine, you should still read the following step for your complete understand of how things work, but don't need to run the commands since everything was already done.  
+The step about how to update may be necessary to read if you want to be able to update to latest source code.
 
 = Checkout source code =
 We assume here you are in your folder where you put dev with a shell.
