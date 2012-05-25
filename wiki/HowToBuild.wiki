@@ -94,7 +94,7 @@ So, in this case the easiest way is to use the virtual machine as described in f
 
 == With a virtual machine ==
 
-If you want to have an environment with everything required for !CSipSimple you can use a Virtual Machine. Thanks to Dennis work, there is one ready for direct use :
+If you want to have an environment with everything required for CSipSimple you can use a Virtual Machine. Thanks to Dennis work, there is one ready for direct use :
 
 [https://docs.google.com/file/d/0ByFooYVveHXdYVV6eVhaUElWaGM/edit?pli=1 CSipSimple-CompilerVM.vmdk]
 
