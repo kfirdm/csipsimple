@@ -15,7 +15,10 @@ Time is priceless and if you have some to spare then there is no other better wa
 
 However, if you have not enough time to spent and you still want to contribute, you can support CSipSimple development by donating. Any donates will be re-invested into devices (such as Bluetooth handset) in order to improve CSipSimple.
 
-[https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=THH78SD9M9A8G&lc=FR&item_name=CSipSimple&item_number=CSipSimple&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donate_SM%2egif%3aNonHosted https://www.paypal.com/en_US/i/btn/btn_donate_SM.gif] (EUR)
+
+[https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=THH78SD9M9A8G&lc=EN&item_name=CSipSimple&item_number=CSipSimple&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donate_SM%2egif%3aNonHosted https://www.paypal.com/en_US/i/btn/btn_donate_SM.gif] (EUR - EN)
+[https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=THH78SD9M9A8G&lc=FR&item_name=CSipSimple&item_number=CSipSimple&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donate_SM%2egif%3aNonHosted https://www.paypal.com/en_US/i/btn/btn_donate_SM.gif] (EUR - FR)
+[https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=THH78SD9M9A8G&lc=DE&item_name=CSipSimple&item_number=CSipSimple&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donate_SM%2egif%3aNonHosted https://www.paypal.com/en_US/i/btn/btn_donate_SM.gif] (EUR - DE)
 
 [https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=THH78SD9M9A8G&lc=US&item_name=CSipSimple&item_number=csipsimple%2dus&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted https://www.paypal.com/en_US/i/btn/btn_donate_SM.gif] (USD)
 
