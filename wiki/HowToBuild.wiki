@@ -90,7 +90,7 @@ Continue instructions of Linux build. It should go the same way once packages ar
 I don't not explain how to build for Windows because if you really want to develop you probably don't and shouldn't use Windows. 
 However it should be possible to build it for Windows too. To do so, you must understand Makefile syntax and have a look on commands to run to build the project. It's most about checkouting other projects using git, getting zip files from elsewhere, applying patches, and generating a swig interface. Maybe using cygwin it's easier. 
 
-So, in this case the easiest way is to use the virtual machine as described in following chapter
+So, in this case the easiest way is to use the virtual machine as described in following chapter.
 
 == With a virtual machine ==
 
@@ -134,6 +134,20 @@ _Note that you can use make -j4 to make things go faster if your computer allow 
 If you get a problem at this point, it could be because there is a missing package on your system install. Since at this point it will do git, swig2.0, wget, unzip, quilt... there is chance one of these apps is missing. If so, try to get that installed on your system first. About swig you may have to build and install it by yourself because version 2.0 is recent.
 
 If everything goes well, congrats, you have created the native libraries for CSipSimple (it will also produce native libs for plugins apps).
+
+== Without building the native library ==
+*Alternate way -- most developers should ignore this section*
+
+This method is not officially supported. However it's helpful if you have not knowledge in native development or GNU toolchains.
+
+The native library build produce two things :
+ * swig auto generated java/jni bindings class.
+ * dynamic native library .so files
+To get the java/jni bindings class get the archive file here : 
+
+[http://nightlies.csipsimple.com/dev_helpers/org.tar.gz org.tar.gz] and unpack it to have the org.pjsip package in the src folder of CSipSimple.
+
+To get the .so files, download latest nightly build from nightly build website and unpack the apk file (apk files are just zip files). Then get lib/_ARCH_/*.so files and copy it into CSipSimple libs/_ARCH_/*.so
 
 = Build apk =
 There is several ways to build the apk once the native library is built. You can either use an IDE that integrates android development toolchains (described in details for Eclipse) or you can use Ant (for command line environments).
