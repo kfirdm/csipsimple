@@ -80,3 +80,9 @@ While releasing the application on the android market, remind of the fact you re
 The licensing information must be available inside the application. If you didn't changed it, it's already the case in the help menu, so no problem. You must also release somewhere the changes you did against the base source code. It could be only the modified files. (!CustomDistribution.java and !AndroidManifest.xml).
 
 Any donation to CSipSimple project [Donate] or to other opensource stuff included inside CSipSimple such as pjsip, zrtp4pj, etc are greatly appreciated and will help that the projects will not die and that your branded version will be maintained and will support all devices.
+
+= Update =
+
+Before updating your source code, you should temporarily revert to "import com.csipsimple.R" to avoid merges and headaches.
+
+So just proceed the reverse Ctrl+H than described in the section above. Then update as described in the HowToBuild wiki page update section. And reapply the Ctrl+H.
