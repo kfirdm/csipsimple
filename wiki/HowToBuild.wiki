@@ -186,8 +186,8 @@ make update; make
 If you want to automate the build of the native part as well as the build of the android project, you can do that by installing CDT on eclipse and then on the android project do : New Project->Other->C++->Convert to C++ and tells it's a makefile project.
 
 ----
-= Fast way to do a GPL branded version =
-BuildGPLBrandedVersion
+= Fast way to develop a GPL branded version =
+BuildGplBrandedVersion
 
 ----
 = Build with pjsip 1.x =
