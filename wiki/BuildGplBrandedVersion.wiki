@@ -1,5 +1,6 @@
 #summary This page explains how to build a branded version of CSipSimple making it easy to maintain.
 #labels Phase-Implementation
+#sidebar MainSideBar
 
 = Introduction =
 
