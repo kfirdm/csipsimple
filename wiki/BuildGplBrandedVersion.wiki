@@ -54,9 +54,15 @@ into
         android:allowBackup="false"
         android:hardwareAccelerated="true"
         android:icon="@drawable/my_icon_drawable"
-        android:label="YourAppName" >
+        android:label="@string/app_name" >
 }}}
 Usually, the my_icon_drawable is the one of your wizard which should be already included thanks to step [AddASipProvider].
+
+Also to change the application display name edit the [http://code.google.com/p/csipsimple/source/browse/trunk/CSipSimple/res/values/api_strings.xml api_strings.xml]
+
+{{{
+<string name="app_name">Your App Name</string>
+}}}
 
 = Change the apk package name =
 
