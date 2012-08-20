@@ -22,11 +22,10 @@ It's useful to allow remote party to hear you ;)
 
 == MODIFY_AUDIO_SETTINGS ==
 == WRITE_SETTINGS ==
-It allow CSipSimple to change audio routing. For example routing to earpiece/rear speaker. It also allow CSipSimple to put the phone in silent/vibrate mode while in SIP call. If I do not your hear may explode if there is an incoming GSM call that ring !
-If everything works fine, your audio settings are restore when calls end. If something goes wrong while in call, it may not restore your settings. In this case raise a but using the issue tab. And reconfigure your settings :( . Do not forget to restore wifi sleep policy that may have been changed too.
+It allow CSipSimple to change audio routing. For example routing to earpiece/rear speaker. It also allow CSipSimple to put the phone in silent/vibrate mode while in SIP call if an incoming GSM call arrives. If I do not your hear may explode if there is an incoming GSM call that ring !
 
 == PROCESS_OUTGOING_CALLS ==
-It allow the application to integrate android when an outgoing call is made. And propose you a popup that allow you to choose between a SIP account and GSM.
+It allows the application to integrate android when an outgoing call is made. And propose you a popup that allows you to choose between a SIP account and GSM.
 If you disable the feature in CSipSimple to "Integrate dialer" it will not process outgoing calls and just leave the standard telephony application manage it.
 
 == READ_PHONE_STATE ==
@@ -34,7 +33,7 @@ Even if not properly managed yet it will allow the application to be aware about
 
 == ACCESS_WIFI_STATE ==
 == ACCESS_NETWORK_STATE ==
-It allow the application to know about the fact you are using wifi / mobile data and so act regarding that (register/do not register, allow you to place sip calls or not).
+It allows the application to know about the fact you are using wifi / mobile data and so act regarding that (register/do not register, allow you to place sip calls or not).
 
 == RECEIVE_BOOT_COMPLETED ==
 With this permission the app should be able to automatically start. Don't be afraid, it does not mean that the app will be *running* in background. And by running I mean doing something : many users confuse with an app running and an active process app. Android manage a clever way your phone memory in recent android versions. As consequence an app can be listed by task managers but actually do nothing and so consume no battery. So if CSipSimple is properly configured it should not be hurting to register at autostart. It will auto stop itself (auto stop doesn't mean kill but regarding resources consumptions it is the same).
@@ -47,22 +46,22 @@ Allows to update SIP presence information. Also allow to write in your favorites
 
 == CALL_PHONE ==
 This is useful for GSM dialer integration. If call is not treat by CSipSimple it forward the request to the GSM dialer.
-Also be careful, by default CSipSimple user interface allow you to use mobile calls directly from its user interface. Check the little icon on the top right ;)
+Also be careful, by default CSipSimple user interface allow you to use mobile calls directly from its user interface. Check the little icon on the top right ;). There is a setting to prevent the use of GSM calls in CSipSimple interface that you can configure in settings.
 
 == CALL_PRIVILEGED ==
-For android 2.3 sip integration.
+For android 2.3 sip integration and android 4.0 tel integration. 
 
 == WAKE_LOCK ==
-Allow CSipSimple to acquire wake locks when in call or when setup to do so when registered.
+Allow CSipSimple to acquire wake locks when in call or when setup to do so when registered. Wake lock allows the application to ask CPU to stay active or to ask screen to stay enlighten. It's used only when necessary and is often configurable.
 
 == DISABLE_KEYGUARD ==
-Allow the application to remove keyguard when the phone is in keylock mode. With this permission csipsimple is able to wakeup the phone and disable keyguard while you are in call. It should reactivate keyguard when call is finished.
+Allow the application to remove keyguard when the phone is in keylock mode. With this permission csipsimple is able to wakeup the phone and disable keyguard while you are in call or received an incoming call. It will reactivate keyguard when call is finished.
 
 == VIBRATE ==
 For vibrate ringing mode and for dialer feedback.
 
 == BLUETOOTH ==
-For using bluetooth device. It's not yet fully supported but with a correct configuration (frequency to 8kHz) it should work.
+For using bluetooth device. There is still known problems to use fully Bluetooth SCO as implementation and what is allowed by manufacturers depends from a device to another.
 
 == READ_LOGS ==
 It is useful for the embedded issue reporting tool. CSipSimple use the standard logging system to write logs. To get back logs and send it to developers, it requires the permission to read logs. It's interesting for us to get the entire logs cause we can get some interesting logs about the audio driver of the phone for example. Or logs from network stack.
