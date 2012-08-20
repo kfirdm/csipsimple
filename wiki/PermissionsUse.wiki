@@ -43,8 +43,7 @@ With this permission the app should be able to automatically start. Don't be afr
 Allow contact integration within the application. Also allow to show contact picture and ringtone when there is an incoming call.
 
 == WRITE_CONTACTS ==
-Actually not used yet. For future use : may allow to merge with contact with a buddy list stored in XCAP. Or to share presence information.
-
+Allows to update SIP presence information. Also allow to write in your favorites a "csip" uri when you set the information to use for the favorite group as SIP data. 
 
 == CALL_PHONE ==
 This is useful for GSM dialer integration. If call is not treat by CSipSimple it forward the request to the GSM dialer.
@@ -67,9 +66,24 @@ For using bluetooth device. It's not yet fully supported but with a correct conf
 
 == READ_LOGS ==
 It is useful for the embedded issue reporting tool. CSipSimple use the standard logging system to write logs. To get back logs and send it to developers, it requires the permission to read logs. It's interesting for us to get the entire logs cause we can get some interesting logs about the audio driver of the phone for example. Or logs from network stack.
+If you don't use embedded issue reporting tool this permission will not be used by the application.
 
 == WRITE_EXTERNAL_STORAGE ==
 Used to write audio records on SDCard, to write backups and logs.
+
+== CAMERA ==
+The application is now ready to host the video plugin available for now for alpha testers [http://nightlies.csipsimple.com/plugins/CSipSimpleVideoPlugin.apk here]. 
+If you don't install the video plugin, this permission will not be used.
+
+== BROADCAST_STICKY ==
+Due to a "bug" in android 4.0 the connection to bluetooth system was requiring this permission (which broke releases 0.03-xx on android 4.0. In order to be compatible with android 4.0 and to be able to connect Bluetooth SCO we need this permission.
+If you don't use bluetooth the permission will not be used.
+
+== READ_PROFILE ==
+This permission is only required to be able to get your own photo/picture and display it in the user interface of the SIP Messaging feature. It's never used elsewhere. Besides this feature only works for android > 3.x (was not possible before). So if you are using android before 3.x you'll not see your own photo in the messaging interface.
+
+== WRITE_CALL_LOG ==
+Introduced in android 4.1 this permission is used to be able to integrate CSipSimple call logs to stock call logs. There is an option in CSipSimple settings to disable call log integration if you don't want the application to use this feature.
 
 == USE_SIP ==
 == CONFIGURE_SIP ==
