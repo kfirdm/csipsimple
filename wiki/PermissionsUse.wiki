@@ -49,7 +49,7 @@ This is useful for GSM dialer integration. If call is not treat by CSipSimple it
 Also be careful, by default CSipSimple user interface allow you to use mobile calls directly from its user interface. Check the little icon on the top right ;). There is a setting to prevent the use of GSM calls in CSipSimple interface that you can configure in settings.
 
 == CALL_PRIVILEGED ==
-For android 2.3 sip integration and android 4.0 tel integration. 
+For android 2.3 sip integration and android 4.0 tel integration in case the application is distributed as part of a ROM distribution. It should normally not be granted by android when distributed as third party application and not be used by the application in this case.
 
 == WAKE_LOCK ==
 Allow CSipSimple to acquire wake locks when in call or when setup to do so when registered. Wake lock allows the application to ask CPU to stay active or to ask screen to stay enlighten. It's used only when necessary and is often configurable.
@@ -88,9 +88,6 @@ Introduced in android 4.1 this permission is used to be able to integrate CSipSi
 == CONFIGURE_SIP ==
 This is mostly for internal use. CSipSimple may provide other application to control SIP calls and messages and also SIP configuration. To restrict rights of other apps to do that. There is these two rights.
 Besides USE_SIP is also the permission used by the stock SIP application. As consequence for the future it will allow CSipSimple to use the stock SIP stack in addition to pjsip stack.
-
-== RAISED_THREAD_PRIORITY ==
-Probably not taken into account by most recent android versions.
 
 = Permissions provided by CSipSimple =
 
