@@ -1,6 +1,28 @@
 #summary This page allow you to track what are changes done on CSipSimple
 #labels Featured,Phase-Support
 
+= 0.04 =
+ * Secure SIP transport TLS feature.
+ * Secure media transport with SRTP or ZRTP
+ * New user interface to match android 4.x guidelines
+ * Various new wizards
+ * New expert features from pjsip 2.x improvement
+ * Codecs list is now :
+      - pcmu/a (aka g711u/a);
+      - speex
+      - g722
+      - gsm
+      - iSAC
+      - SILK
+      - G729
+      - AMR (depending on device capabilities)
+And with extra plugin (https://play.google.com/store/apps/details?id=com.csipsimple.plugins.codecs.pack1) :
+      - OPUS
+      - g726
+      - g722.1
+      - codec2
+ * Bug fixes
+
 = 0.03 =
  * Bug fixes
  * Improve incoming call reliablity
