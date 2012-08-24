@@ -70,3 +70,4 @@ However, if you have not enough time to spent and you still want to contribute, 
 || 06/2012 || Juha Hämäläinen ||
 || 07/2012 || [http://www.sonetel.com Sonetel] ||
 || 07/2012 || [http://megavoiptelecom.com.br Megavoip Telecom] ||
+|| 08/2012 || DannyLaQc ||
