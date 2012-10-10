@@ -24,7 +24,9 @@ This page lists these apps. And try to keep track of companies that does not res
  * IDPhone : Branded fork for ID Phone. You can get source code here : http://code.google.com/p/idphone/
  * OSTEL : The Security oriented fork to give security available easily for mainstream users. Wiki of the project : [https://guardianproject.info/wiki/OSTN]. The patch [https://github.com/guardianproject/OSTel/blob/master/patches/csip_with_ostel.txt]
  * ABC-VoIP : Branded fork for ABC-VoIP Ltd. You can get the source code here : http://code.google.com/p/abc-voip/
+ * 1WorldVoip : Forked version for [http://www.1worldsip.com/desktop/index.html 1WorldVoip service]. Source code can be retrieved from [https://docs.google.com/open?id=0B_J4D-jF5VNBTVlCMUptLXJNTWs here]
  * Voxvalley : waiting for the way to get the source code : in progress
+
 
 = List of forks that still need to confirm they correctly respect GPL license =
  * Voipon3G
