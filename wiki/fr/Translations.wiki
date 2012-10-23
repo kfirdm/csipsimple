@@ -3,18 +3,11 @@
 
 = Comment aider ? =
 Pour participer à la traduction de CSipSimple dans une langue que vous maitrisez, vous êtes au bon endroit.
-Nous utilisons l'outil Android2po de Miracle2K et le projet Roseta de Launchpad pour la traduction. C'est plus facile à utiliser que des fichiers XML.
 
 Pour participer à la traduction de l'application, 
- # Enregistrez vous sur Launchpad - _Vous pouvez utiliser un Open ID, votre compte Google devrait être suffisant
- # Allez dans la section de traduction de CSipSimple : https://translations.launchpad.net/csipsimple/trunk
+ # Enregistrez vous sur Transifex - _Vous pouvez utiliser un Open ID, votre compte Google devrait être suffisant
+ # Allez dans la section de traduction de CSipSimple : https://www.transifex.com/projects/p/csipsimple/
  # Choisissez votre langue et participez via l'interface web.
-Si vous rencontrez des problèmes, laissez le nous savoir. La plupart du temps les tutoriels Launchpad suffisent.
+Si vous rencontrez des problèmes, laissez le nous savoir.
 
-Pour partcicper à la traduction du Wiki
- # Connectez vous au SVN du projet à l'URL https://csipsimple.googlecode.com/svn/wiki pour créer une copie locale du Wiki
- # Créer un sous-dossier nommé avec le code ISO de la langue choisie - fr pour France par exemple 
- # Créez les fichiers textes *_nom.wiki_* formatés en UTF8 sans BOM - le nom des pages WiKi doit être le même que les pages existantes
- # rédigez votre texte en utilisant la syntaxe Wiki - http://code.google.com/p/support/wiki/WikiSyntax#Localizing_Wiki_Content
- # Transmettez nous votre oeuvre ou demandez à devenir contributeur via le SVN
  
