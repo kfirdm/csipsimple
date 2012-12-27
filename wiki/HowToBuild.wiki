@@ -171,6 +171,21 @@ You should now be able to launch the application as an Android application.
 == Using ant _(Optional)_ ==
 This is particularly useful for a pure command line environment. It's used on the automatic nightly build server for example.
 
+Directory structure:
+  * ./ActionBarSherlock
+  * ./CSipSimple
+
+Steps:
+  * Install ant
+  * Setup SDK and NDK path (see above)
+  * (if needed) Built native lib part: in ./CSipSimple execute: make 
+  * in ./ActionBarSherlock execute: android update project ./
+  * Setup code signing for .apk
+    * (if needed) [http://developer.android.com/tools/publishing/app-signing.html Create keystore: keytool]
+    * [http://developer.android.com/tools/building/building-cmdline.html Configure code signing in ant.properties ]
+  * in ./CSipSimple execute: ant release
+  * ./CSipSimple/bin/CSipSimple-release.apk
+
 You have to create your own ant script based integrating ant scripts from the SDK. You can get inspired of what is produced by command line tool of the sdk [http://developer.android.com/guide/developing/projects/projects-cmdline.html].
 
 Some interesting tutorial to follow : [http://www.androidengineer.com/2010/06/using-ant-to-automate-building-android.html].
