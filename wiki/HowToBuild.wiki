@@ -179,7 +179,8 @@ Steps:
   * Install ant
   * Setup SDK and NDK path (see above)
   * (if needed) Built native lib part: in ./CSipSimple execute: make 
-  * in ./ActionBarSherlock execute: android update project ./
+  * in ./ActionBarSherlock execute: `android update project -p ./`
+  * in ./CSipSimple execute: `android update project -p ./`
   * Setup code signing for .apk
     * (if needed) [http://developer.android.com/tools/publishing/app-signing.html Create keystore: keytool]
     * [http://developer.android.com/tools/building/building-cmdline.html Configure code signing in ant.properties ]
