@@ -103,6 +103,11 @@ You can get root privilege with sudo command. The password is equals to the user
 Using, this machine, you should still read the following step for your complete understand of how things work, but don't need to run the commands since everything was already done.  
 The step about how to update may be necessary to read if you want to be able to update to latest source code.
 
+= Finalize your SDK installation =
+Launch android sdk manager to download and install the SDK of versions listed in files :
+[http://code.google.com/p/csipsimple/source/browse/trunk/CSipSimple/project.properties CSipSimple project.properties] and [http://code.google.com/p/csipsimple/source/browse/trunk/ActionBarSherlock/project.properties ABS project.properties].
+
+
 = Checkout source code =
 We assume here you are in your folder where you put dev with a shell.
 
