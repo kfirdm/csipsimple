@@ -115,7 +115,7 @@ _Start with a checkout of source code_
 {{{
 # Checkout CSipSimple
 svn checkout http://csipsimple.googlecode.com/svn/trunk/CSipSimple CSipSimple
-# Checkout ActionBarSherlock on github
+# Checkout ActionBarSherlock
 svn checkout http://csipsimple.googlecode.com/svn/trunk/ActionBarSherlock ActionBarSherlock
 }}}
 It will create a folder CSipSimple where source code from CSipSimple and all svn dependancies has been gathered.
@@ -160,9 +160,10 @@ There is several ways to build the apk once the native library is built. You can
 == Setup/import application in your IDE _(Optional)_ ==
 You can now open the projects with Eclipse or your preferred java IDE that is able to build a regular android application. 
 
-On eclipse just retrieve the projects as an Android projects (create project > android > from source). 
+On eclipse just retrieve the projects as an Android projects (right click > import > Android project from source). Pick only the "SipHome" one when importing CSipSimple (other are unit tests from subprojects). 
 Then when ADT plugin will ask you which android version you'd like to link on, you should check the "project.properties" file of each project you are importing (do that both for CSipSimple and !ActionBarSherlock). You can have a look to online files here :
 [http://code.google.com/p/csipsimple/source/browse/trunk/CSipSimple/project.properties CSipSimple project.properties] and [http://code.google.com/p/csipsimple/source/browse/trunk/ActionBarSherlock/project.properties ABS project.properties].
+Obviously you need these versions to be installed by Android SDK Manager if not already done.
 
 Don't be worried about the fact it's high values ! It does *not* mean that your app will not run with older android version. Actually, it will be able to run on android 1.6 ! minSdk version and targetVersion are not linked. Backward compatibility is ensured by code not by the lib you link on while building.
 
