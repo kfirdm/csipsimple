@@ -211,6 +211,9 @@ If you want to automate the build of the native part as well as the build of the
 = Fast way to develop a GPL branded version =
 BuildGplBrandedVersion
 
+= Integrate an existing pjsip module =
+IntegrateExistingPjsipModule
+
 ----
 = Build with pjsip 1.x =
 OldWayToBuild wiki page gives for reference the old way to build the library on older csipsimple versions. It's not supported anymore in development process.
