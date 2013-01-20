@@ -1,5 +1,6 @@
 #summary This page explains how to add an existing pjsip module to CSipSimple
 #labels Phase-Implementation
+#sidebar MainSideBar
 
 = Introduction =
 
