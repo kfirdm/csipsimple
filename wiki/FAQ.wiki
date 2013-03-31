@@ -35,10 +35,20 @@ In this case, try to disable Bluetooth option of your phone (even if nothing is 
   * It can also be something with codec negotiation. So it can be interesting to try to disable all codecs but PCMU (aka G711u aka uLaw). To do so, go in settings > media > codecs. And long press each other codecs until you get the popup to tell that you want to disable it.
 
 ----
-= There is a vibrate icon in the notification bar while in call =
+= No audio problems =
 
-That's absolutely normal. In order to avoid your ear to explode if there is an incoming GSM call, I put the ringer mode to silent (that's the mean of the icon in the notification bar).
-When call will end, ringer state will be restored to previous value.
+If you have problem with no audio on one of the side you can start to eliminate some use case before reporting a problem.
+
+ * While in call, you can press the last menu item on the bottom bar that shows a popup with audio activity.
+
+If it's the remote that doesn't ear you, focus on the micro activity :
+ # If you see no activity on the micro bar it's probably a problem with the audio layer of the device. You can try to see the instructions here on Audio troubleshooting. If you report an issue, give your device model and the settings your tried in "audio troubleshooting section".
+ # If you see activity on the micro bar but the remote doesn't here you, the problem is more likely with network. In this case check the STUN settings on the remote side. It's more likely a problem on remote side in this case. (Note : remote side here can be the actual remote sip client or the sip server in the middle if it's a media gateway).
+
+If it's the app that doesn't produce sound, focus on the speaker activity :
+ # If there is activity but you ear nothing, it's probably a problem with the audio layer. Try the Audio troubleshooting instructions and try to change the way the app renders sound (earpiece, speaker, bluetooth, headset). If you report an issue, give your device model, settings you tried in "audio troubleshooting section" and the audio device (earpiece, speaker, bluetooth, headset).
+ # If there is no activity here, it's probably because the app doesn't announce a suitable way to reach it in network negotiation. Please have a look to the instructions about about STUN. It might also be something with codec negotiation. You can try to disable all codecs but one you know to be supported by remote side (Note : remote side here can be the actual remote sip client or the sip server in the middle if it's a media gateway).
+
 
 ----
 = There is no contact list =
