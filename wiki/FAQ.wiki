@@ -35,7 +35,7 @@ In this case, try to disable Bluetooth option of your phone (even if nothing is 
   * It can also be something with codec negotiation. So it can be interesting to try to disable all codecs but PCMU (aka G711u aka uLaw). To do so, go in settings > media > codecs. And long press each other codecs until you get the popup to tell that you want to disable it.
 
 ----
-= No audio problems =
+= Audio not received/sent =
 
 If you have problem with no audio on one of the side you can start to eliminate some use case before reporting a problem.
 
