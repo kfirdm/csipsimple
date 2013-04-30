@@ -113,26 +113,38 @@ We assume here you are in your folder where you put dev with a shell.
 
 _Start with a checkout of source code_
 {{{
-# Checkout CSipSimple
-svn checkout http://csipsimple.googlecode.com/svn/trunk/CSipSimple CSipSimple
-# Checkout ActionBarSherlock
-svn checkout http://csipsimple.googlecode.com/svn/trunk/ActionBarSherlock ActionBarSherlock
+# Checkout CSipSimple incl. all svn dependancies
+svn checkout http://csipsimple.googlecode.com/svn/trunk/ CSipSimple-trunk
 }}}
-It will create a folder CSipSimple where source code from CSipSimple and all svn dependancies has been gathered.
-
-CSipSimple also now depends on the ActionBarSherlock library. 
-So from the second line it also checkout the ActionBarSherlock fork for current csipsimple version. 
-When you'll import to Eclipse (if you do), you have to import !ActionBarSherlock folder as well.
+It will create a folder *CSipSimple-trunk* with the following folder structure containing all source code and SVN dependencies:
+  * ActionBarSherlock: is a backward compatible way to use Fragments and Action Bar pattern of android newer versions
+  * CSipSimple: The CSipSimple-App source code
+  * CSipSimpleBranded
+  * CSipSimpleCodecG729
+  * CSipSimpleCodecPack
+  * CSipSimpleVideoPlugin
 
 = Build native library =
 _Go into source folder_
 {{{
-cd CSipSimple
+cd CSipSimple-trunk/CSipSimple
 }}}
 
 _Launch make to build the native part of the library and dependancies_
 {{{
 make
+}}}
+_If needed build video support libary (Optional)_
+{{{
+make VideoLibs
+}}}
+_If needed build CodecPackLibs (Optional)_
+{{{
+make CodecPackLibs
+}}}
+_If needed build CodecG729 (Optional)_
+{{{
+make CodecG729
 }}}
 _Note that you can use make -j4 to make things go faster if your computer allow that_
 
@@ -160,14 +172,17 @@ There is several ways to build the apk once the native library is built. You can
 == Setup/import application in your IDE _(Optional)_ ==
 You can now open the projects with Eclipse or your preferred java IDE that is able to build a regular android application. 
 
-On eclipse just retrieve the projects as an Android projects (right click > import > Android project from source). Pick only the "SipHome" one when importing CSipSimple (other are unit tests from subprojects). 
+Import the projects into *Eclipse* as an Android projects (right click > import > Android project from source) and select the folder *CSipSimple-trunk*.
+
+Pick at least *SipHome* and *ActionBarSherlock*. Add *CSipSimpleXXX*-projects if needed.
+
 Then when ADT plugin will ask you which android version you'd like to link on, you should check the "project.properties" file of each project you are importing (do that both for CSipSimple and !ActionBarSherlock). You can have a look to online files here :
 [http://code.google.com/p/csipsimple/source/browse/trunk/CSipSimple/project.properties CSipSimple project.properties] and [http://code.google.com/p/csipsimple/source/browse/trunk/ActionBarSherlock/project.properties ABS project.properties].
 Obviously you need these versions to be installed by Android SDK Manager if not already done.
 
-Don't be worried about the fact it's high values ! It does *not* mean that your app will not run with older android version. Actually, it will be able to run on android 1.6 ! minSdk version and targetVersion are not linked. Backward compatibility is ensured by code not by the lib you link on while building.
+Don't be worried about the fact it's high values! It does *not* mean that your app will not run with older android versions. Actually, it will be able to run on android 1.6! *MinSdk* version and *targetVersion* are not linked. Backward compatibility is ensured by code not by the lib you link on while building.
 
-Finally you should have two eclipse projects "CSipSimple" and "!ActionBarSherlock". !ActionBarSherlock is a backward compatible way to use Fragments and Action Bar pattern of android newer versions.
+Finally, you need to add the project dependencies to "SipHome", which is at least "ActionBarSherlock" and optional native lib projects. In Eclipse: right-click on "SipHome"-> Properties -> Java Build Path -> Projects.
 
 If you encounter some problems about override of methods, ensure that your Eclipse env setup projects for "java 1.6" or upper. -You should also check that per project if necessary-
 
@@ -200,9 +215,11 @@ Some interesting tutorial to follow : [http://www.androidengineer.com/2010/06/us
 You can also add additional ant task such as the one made for automatic revision in code number of the manifest. 
 
 = Updates =
-When you get an update from CSipSimple svn, you should always make the native library. To do so, as there is potential update from external projects you should do :
+If you would like to update your checkout of CSipSimple-trunk 
+to the current SVN revision use the provided *make tasks*!
+This command will remove all applied quilt patches from SVN dependencies, update the SVN dependencies and CSipSimple-repository, and re-apply the new patches. All native libraries must be re-build.
 {{{
-make update; make
+make update && make
 }}}
 
 If you want to automate the build of the native part as well as the build of the android project, you can do that by installing CDT on eclipse and then on the android project do : New Project->Other->C++->Convert to C++ and tells it's a makefile project.
