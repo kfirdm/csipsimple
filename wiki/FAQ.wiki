@@ -52,7 +52,9 @@ If it's the app that doesn't produce sound, focus on the speaker activity :
 ----
 = Call stops after 30 seconds =
 
-This is probably a configuration problem. You should ask your sip provider for settings they expect. If the call cuts automatically after 30seconds it's because the app never received the confirmation of the fact the call is established. In such situation sip protocol indicates that the call is not valid anymore.
+This is probably a configuration problem. You should ask your sip provider for settings they expect (particularly whether they expect to be the sip proxy or have a different sip proxy address). 
+
+If the call cuts automatically after 30seconds it's because the app never received the confirmation of the fact the call is established. In such situation sip protocol indicates that the call is not valid anymore.
 
 
 ----
