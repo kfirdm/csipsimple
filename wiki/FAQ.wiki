@@ -49,6 +49,11 @@ If it's the app that doesn't produce sound, focus on the speaker activity :
  # If there is activity but you ear nothing, it's probably a problem with the audio layer. Try the Audio troubleshooting instructions and try to change the way the app renders sound (earpiece, speaker, bluetooth, headset). If you report an issue, give your device model, settings you tried in "audio troubleshooting section" and the audio device (earpiece, speaker, bluetooth, headset).
  # If there is no activity here, it's probably because the app doesn't announce a suitable way to reach it in network negotiation. Please have a look to the instructions about about STUN. It might also be something with codec negotiation. You can try to disable all codecs but one you know to be supported by remote side (Note : remote side here can be the actual remote sip client or the sip server in the middle if it's a media gateway).
 
+----
+= Call stops after 30 seconds =
+
+This is probably a configuration problem. You should ask your sip provider for settings they expect. If the call cuts automatically after 30seconds it's because the app never received the confirmation of the fact the call is established. In such situation sip protocol indicates that the call is not valid anymore.
+
 
 ----
 = There is no contact list =
