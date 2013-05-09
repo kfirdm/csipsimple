@@ -18,19 +18,19 @@
  * Various new wizards
  * New expert features from pjsip 2.x improvement
  * Codecs list is now :
-      - pcmu/a (aka g711u/a);
-      - speex
-      - g722
-      - gsm
-      - iSAC
-      - SILK
-      - G729
-      - AMR (depending on device capabilities)
-And with extra plugin (https://play.google.com/store/apps/details?id=com.csipsimple.plugins.codecs.pack1) :
-      - OPUS
-      - g726
-      - g722.1
-      - codec2
+   * pcmu/a (aka g711u/a);
+   * speex
+   * g722
+   * gsm
+   * iSAC
+   * SILK
+   * G729
+   * AMR (depending on device capabilities)
+ * And with extra plugin (https://play.google.com/store/apps/details?id=com.csipsimple.plugins.codecs.pack1) :
+   * OPUS
+   * g726
+   * g722.1
+   * codec2
  * Bug fixes
 
 = 0.03 =
