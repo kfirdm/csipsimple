@@ -7,7 +7,7 @@
  * Improvements in TLS and ZRTP features.
  * New wizards.
  * G729 dropped from main app due to its license and now available as separate plugin (or you can build it from source code by your own if use for tests purpose).
- * New codecs supported as plugin in codec pack1 : AAC.
+ * New codec supported as plugin in codec pack1 : AAC.
  * Bug fixes.
  * Extends possibilities for new plugins to be released.
 
