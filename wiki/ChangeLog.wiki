@@ -3,7 +3,8 @@
 
 = 1.00 =
  * New AMR-WB codec if available on device 
- * Various fixes for android 4.2
+ * Various fixes for android 4.2.
+ * Backup/restore integrated to android OS
  * Improvements in TLS and ZRTP features.
  * New wizards.
  * G729 dropped from main app due to its license and now available as separate plugin (or you can build it from source code by your own if use for tests purpose).
