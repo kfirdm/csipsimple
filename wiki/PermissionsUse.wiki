@@ -94,7 +94,7 @@ Besides USE_SIP is also the permission used by the stock SIP application. As con
 CSipSimple may provide other apps a way to automatically configure your accounts or to override the calls screen or to place SIP calls.
 To restrict the numbers of applications allowed to do that, it announce permission that for which other apps should have grants if they wants to use SIP service.
 These permissions are :
-Use SIP (for make calls and control calls) and Configure SIP for read/write access to your accounts configuration.
+Use SIP (for make calls and control calls) and Configure SIP for read/write access to your sip datas (account configuration/sip call logs/sip messages...).
 
 So be careful with the apps you grant these permissions.
 By allowing an application to use some permission on android you *trust* the application. Do not *trust* anybody ;).
