@@ -157,9 +157,10 @@ It's possible that none of these settings helps (for example it's currently a kn
 = When screen goes off sound quality is bad =
 
 That's cause of the fact your device has special policy when screen goes off.
-There is two well known reason for that :
+There are a few well known reasons for it:
  * Could be cause of the PSP behavior of the wifi card (see http://code.google.com/p/android/issues/detail?id=9781)
  * Could be due to the fact you have setCPU that change CPU speed when screen goes off.
+ * Sometimes "Wi-Fi optimization" in the advanced settings for your Wi-Fi connection can cause packet loss and latency. Try disabling the setting and see if your connection improves.
 
 Fortunately, there is an existing workaround in CSipSimple to prevent screen going off and so keeping up the good call quality.
 To activate this workaround if not automatically detected by CSipSimple (there is an autodetection done for the PSP behavior).
