@@ -26,6 +26,7 @@ This page lists these apps. And try to keep track of companies that does not res
  * ABC-VoIP : Branded fork for ABC-VoIP Ltd. You can get the source code here : http://code.google.com/p/abc-voip/
  * 1WorldVoip : Forked version for [http://www.1worldsip.com/desktop/index.html 1WorldVoip service]. Source code can be retrieved from [https://docs.google.com/open?id=0B_J4D-jF5VNBTVlCMUptLXJNTWs here]
  * Tesco Calling Card : Uses csipsimple as library under LGPL license terms and own pjsip commercial license. You can request code of the library contacting [http://www.wavecrest.eu/]
+ * InstaTalk Voip : code of application can be requested. The current variation from csipsimple is a tab dedicated to the InstaTalk service.
 
 = List of forks that still need to confirm they correctly respect GPL license =
  * Voipon3G
