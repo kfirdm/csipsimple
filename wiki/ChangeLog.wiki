@@ -1,6 +1,12 @@
 #summary This page allow you to track what are changes done on CSipSimple
 #labels Featured,Phase-Support
 
+= 1.02 =
+ * Android 5.0 support.
+ * Option to rewrite inside dialer.
+ * Bug fixes.
+ * New wizards.
+
 = 1.00 =
  * New AMR-WB codec if available on device 
  * Various fixes for android 4.2.
